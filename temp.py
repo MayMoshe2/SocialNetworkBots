@@ -36,7 +36,7 @@ def set_chrome_options(headless:bool=False) -> None:
 
 
 
-# helper functions
+# helper function
 
 
 @dataclass
