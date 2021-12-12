@@ -1,7 +1,7 @@
 import pyautogui
 # import webbrowser
-from UserPage import User
-import chromedriver_binary
+# import UserPage
+# import DeliveryTracker
 import time
 import logging
 import sys
@@ -16,6 +16,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 import chromedriver_binary
+import GUI
+
+
 
 logger=logging.getLogger("bot")
 def set_chrome_options(headless:bool=False) -> None:
@@ -32,42 +35,38 @@ def set_chrome_options(headless:bool=False) -> None:
     chrome_prefs["profile.default_content_settings"] = {"images": 2}
     return chrome_options
 
-
-
-
-
 # helper function
-
 
 @dataclass
 class User:
     name: str
     email: str
     password: str
+    Id: int
 
 
 # testing credentials (blame asher)
 credentials = [
-    User("ariel", "shatz.ariel@gmail.com", "ASAS1919"),
-    User("asher", "ARADENSKY@GMAIL.COM", "Deep-tech"),
-    User("yuval", "yuval@deeptechshowcase.com", "Deep2021"),
-    User("josh", "josh@eaglepointfunding.com", "Jb2022Jb"),
-    User("liora", "lioramore123@gmail.com", "LiLeeDTS8"),
-    User("liora c", "liora@eaglepointfunding.com", "Liora145"),
-    User("shlomie", "shlomieisenmann@gmail.com", "4166reSe!"),
-    User("danielle", "daniellajakubowitz@gmail.com", "Purple!yay"),
-    User("sasha", "sblecher810@gmail.com ", "ISLAmujeres21"),
-    User("katie", "katie@eaglepointfunding.com", "4meonly2"),
-    User("max", "mhfrischman@gmail.com", "Mf2020Mf"),
-    User("yoav", "yoav.e.sadan@gmail.com", "NOWITSLENASFAULT123"),
-    User("bibi", "binyamin.samson@gmail.com", "R3dElephantsSaveSouls*"),
-    User("sarah", "sarahbatya123@gmail.com", "Houston909"),
-    User("ari", "ari@eaglepointfunding.com", "IloveOr5!"),
-    User("matthew", "Matthew.david.cloud@gmail.com", "Eaglepoint1"),
-    User("Bryan", "bryanmarkowitz@gmail.com", "MeGustanFajitas21"),
-    User("Lena", "Lenaawadp3@gmail.com", "EPF@2580"),
-    User("Ariel K", "tsarfatiariel@gmail.com", "Eagle2021"),
-    User("Sharon", "Sharon.ehieli@gmail.com", "chompi86!")
+    User("ariel", "shatz.ariel@gmail.com", "ASAS1919",0),
+    User("asher", "ARADENSKY@GMAIL.COM", "Deep-tech",1),
+    User("yuval", "yuval@deeptechshowcase.com", "Deep2021",2),
+    User("josh", "josh@eaglepointfunding.com", "Jb2022Jb",3),
+    User("liora", "lioramore123@gmail.com", "LiLeeDTS8",4),
+    User("liora c", "liora@eaglepointfunding.com", "Liora145",5),
+    User("shlomie", "shlomieisenmann@gmail.com", "4166reSe!",6),
+    User("danielle", "daniellajakubowitz@gmail.com", "Purple!yay",7),
+    User("sasha", "sblecher810@gmail.com ", "ISLAmujeres21",8),
+    User("katie", "katie@eaglepointfunding.com", "4meonly2",9),
+    User("max", "mhfrischman@gmail.com", "Mf2020Mf",10),
+    User("yoav", "yoav.e.sadan@gmail.com", "NOWITSLENASFAULT123",11),
+    User("bibi", "binyamin.samson@gmail.com", "R3dElephantsSaveSouls*",12),
+    User("sarah", "sarahbatya123@gmail.com", "Houston909",13),
+    User("ari", "ari@eaglepointfunding.com", "IloveOr5!",14),
+    User("matthew", "Matthew.david.cloud@gmail.com", "Eaglepoint1",15),
+    User("Bryan", "bryanmarkowitz@gmail.com", "MeGustanFajitas21",16),
+    User("Lena", "Lenaawadp3@gmail.com", "EPF@2580",17),
+    User("Ariel K", "tsarfatiariel@gmail.com", "Eagle2021",18),
+    User("Sharon", "Sharon.ehieli@gmail.com", "chompi86!",19)
 
 ]
 
@@ -133,9 +132,28 @@ def get_user_filter():
     except (ValueError, IndexError):
         return inp
 
+def get_current_page_number(user_filter):
+    regex_match = re.match(".*page=([0-9]+).*", user_filter)
+    regex_page_number_group = regex_match.groups()[0]
+    current_page = int(regex_page_number_group)
+    return current_page
+
+def get_next_page_url(user_filter):
+    if "page" not in user_filter:
+        user_filter = f"{user_filter}&page=1"
+    current_page_number = get_current_page_number(user_filter)
+    url_split = user_filter.split('&')
+    page_index = url_split.index(f'page={current_page_number}')
+    url_split[page_index] = f'page={current_page_number+1}'
+    return '&'.join(url_split)
+
 def prompt_user():
     get_setup_confirmation()
-    email, password = get_email_and_password()
+    # GUI.get_email_and_password2()
+    print (GUI.myglobalemail)
+    email = GUI.myglobalemail
+    password = GUI.myglobalpassword
+    print(email, password)
     user_filter = get_user_filter()
     message = get_message()
     num_pages = get_num_pages()
@@ -190,34 +208,157 @@ def login(driver, email, password):
     time.sleep(2)
     driver.implicitly_wait(5)
 
+class UserPage:
+    MESSAGE_FORMATTINGS = ["first_name"]
+    def __init__(self, driver, message, delivery_tracker_filename, testing: bool = False):
+        self.driver = driver
+        self.message = message
+        self.testing = testing
+        self.delivery_tracker = DeliveryTracker(delivery_tracker_filename)
 
-# url = 'https://www.linkedin.com/'
+    def get_formatted_message(self, replace_strings: Dict[str, str]):
+        message = self.message
+        log = ", ".join([f"'<{k}>' = '{v}'" for k, v in replace_strings.items()])
+        logger.info(f"Using the following replace strings: {log}")
+        for replace_string in self.MESSAGE_FORMATTINGS:
+            if replace_string in replace_strings:
+                value_to_insert = replace_strings[replace_string]
+                message = message.replace(f"<{replace_string}>", value_to_insert)
+        return message
 
-# chrome_path = '"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" %s'
-# bot = webbrowser.get(chrome_path).open(url)
-# #webbchrome_path.rowser.maximize_window()
+    def send_message_to_user(self, userNum,user_element, **message_formatting):
+        message_button = self.get_message_button(userNum, user_element)
+        message_button.click()
+        message = self.get_formatted_message(replace_strings=message_formatting)
+        self.send_message(message)
+        time.sleep(0.5)
+        self.click_x()
+        if self.testing is True:
+            self.discard_message()
 
-# time.sleep(10)
-  
-# Obtain button by link text and click.
-#button = driver.find_element_by_xpath('//*[@id="msg-overlay-list-bubble-search__search-typeahead-input"]')
-#button = webbrowser.find_element_by_link_text("mynetwork")
-#button.click()
+    def send_message_to_users(self, user_elements):
+        userNum = 1
+        for user_element in user_elements:
+            full_name = self.get_full_name(user_element)
+            if not self.delivery_tracker.already_delivered(full_name):
+                logger.info(f"Sending to {full_name}")
+                first_name = full_name.split(" ")[0]
+                self.send_message_to_user(userNum, user_element, first_name=first_name)
+                self.delivery_tracker.add_user_to_delivered_list(full_name)
+            else:
+                logger.info(f"Already delivered to {full_name}")
+            userNum+= 1
 
-# button.click()
+    def send_message(self, message):
+        msgwin = self.driver.find_element_by_css_selector(".msg-form__contenteditable")
+        msgwin.send_keys(message)
+        if self.testing is False:
+            msgwin.send_keys(Keys.ENTER)
+
+    def discard_message(self):
+        self.driver.find_element_by_xpath("//span[contains(.,'Discard')]").click()
+
+    def get_user_elements(self):
+        try:
+            element_list_container = self.driver.find_element_by_css_selector(
+                "#main > div > div > div.ph0.pv2.artdeco-card.mb2 > ul"
+            )
+            user_list = element_list_container.find_elements_by_css_selector("li")
+            return user_list
+        except Exception as exc:
+            logger.exception("failed to find buttons", exc_info=exc)
+
+    def get_full_name(self, user_element):
+        name_info = user_element.find_element_by_partial_link_text("View").text
+        name_info_parts = name_info.split("\n")
+        if len(name_info_parts) < 2:
+            logger.error(f"Seems like we have a problem with '{name_info}")
+        full_name = name_info_parts[0]
+        full_name= full_name.encode()
+        full_name = str(full_name)[2:-1]
+        logger.info(f"Found user's name: '{full_name}'")
+        return full_name
+
+    def get_message_button(self,userNum, user_element):
+        xpathB = "//div/div/div[3]/ul/li[tempi]/div/div/div[3]/button"
+        number = str(userNum)
+        print("number", number)
+        xpathB = xpathB.replace("tempi", number)
+        print("xpathB:", xpathB) 
+        return user_element.find_element_by_xpath(xpathB)
+
+    def click_x(self):
+        logger.info("click_x")
+        try:
+            self.driver.find_element_by_xpath("//div[2]/header/section[2]/button[3]").click()  # ash
+        except Exception as exc:
+            pass
+        try:
+            self.driver.find_element_by_xpath("/html/body/div[6]/aside/div[2]/header/section[2]/button[2]").click()
+        except Exception as exc:
+            pass
+        try:
+            self.driver.find_element_by_xpath("/html/body/div[6]/aside/div[3]/header/section[2]/button[3]").click()
+        except Exception as exc:
+            pass
+        try:
+            self.driver.find_element_by_xpath(".//span[contains(.,'Close your conversation')]").click()
+        except Exception as exc:
+            pass
+
+class DeliveryTracker:
+    def __init__(self, filename):
+        self.filename = filename
+        self.already_sent = set()
+        self.update_delivered_users()
+
+    def update_delivered_users(self):
+        with open(self.filename) as f:
+            user_full_names = [user_full_name.strip() for user_full_name in f]
+        self.already_sent.update(user_full_names)
+
+    def get_delivered_users(self) -> Set:
+        return self.already_sent
+
+    def add_user_to_delivered_list(self, full_name: str):
+        if full_name not in self.already_sent:
+            self.already_sent.add(full_name)
+            with open(self.filename, "a") as f:
+                f.write(f"{full_name}\n")
+
+    def already_delivered(self, full_name) -> bool:
+        return full_name in self.already_sent
 
 
 
 if __name__ == "__main__":
+    GUI
+    # print (GUI.myglobalemail)
+    # print (GUI.myglobalpassword)
     os.makedirs("logs", exist_ok=True)
     delivery_tracker_filename = os.path.join("logs", "delivery_tracker.csv")
+    print("delivery_tracker_filename: delivery_tracker_filename:",delivery_tracker_filename)
     initialize_logger()
     driver, user_filter, message, num_pages = initialize_linkedin()
-    print("\ndriver", driver)
-    print("\nuser_filter", user_filter)
-    print("\nmessage",  message)
-    print("\nnum_pages", num_pages)
-    
 
-    page = User(driver, message, delivery_tracker_filename, testing=False)
+    page = UserPage(driver, message, delivery_tracker_filename, testing=False)
 
+    try:
+        for i in range(num_pages):
+            page_number = i + 1
+            logger.info(f"Processing page {page_number}")
+            user_elements = page.get_user_elements()
+            logger.info(f"Found {len(user_elements)} users on this page")
+            if len(user_elements) == 0:
+                logger.info(f"No more users on this page. My work here is done")
+                break
+            page.send_message_to_users(user_elements)
+            logger.info("Attempting to go to next page")
+            user_filter = get_next_page_url(user_filter)
+            apply_filter(driver, user_filter=user_filter)
+            time.sleep(1)
+    except Exception as exc:
+        logger.exception("failed", exc_info=exc)
+        driver.get_screenshot_as_file("logs/crash.png")
+        driver.close()
+    logger.info("Done")

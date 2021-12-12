@@ -2,3 +2,840 @@
 2021-12-12 12:04:08 - INFO - logged in
 2021-12-12 12:05:33 - INFO - logged in
 2021-12-12 12:13:10 - INFO - logged in
+2021-12-12 12:53:49 - INFO - logged in
+2021-12-12 13:42:40 - INFO - logged in
+2021-12-12 13:45:01 - INFO - logged in
+2021-12-12 13:45:43 - INFO - logged in
+2021-12-12 13:49:50 - INFO - logged in
+2021-12-12 13:52:28 - INFO - logged in
+2021-12-12 13:54:03 - INFO - logged in
+2021-12-12 13:55:43 - INFO - logged in
+2021-12-12 13:56:22 - INFO - logged in
+2021-12-12 13:58:11 - INFO - logged in
+2021-12-12 13:59:23 - INFO - logged in
+2021-12-12 14:03:36 - INFO - logged in
+2021-12-12 14:03:39 - INFO - Processing page 1
+2021-12-12 14:03:39 - INFO - Found 10 users on this page
+2021-12-12 14:03:39 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 14:03:39 - INFO - Sending to Clive George Cook
+2021-12-12 14:03:39 - INFO - Using the following replace strings: '<first_name>' = 'Clive'
+2021-12-12 14:03:42 - INFO - click_x
+2021-12-12 14:03:57 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 14:03:57 - INFO - Sending to Daniel Edwards
+2021-12-12 14:03:58 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 352, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 255, in send_message_to_users
+    self.send_message_to_user(user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 241, in send_message_to_user
+    message_button.click()
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <span class="artdeco-button__text">...</span> is not clickable at point (785, 390). Other element would receive the click: <a class="app-aware-link artdeco-button
+            artdeco-button--secondary
+            artdeco-button--1 feed-shared-event__cta
+            " aria-label="View event: Deep-Tech Showcase: Aerospace &amp; Defense" data-control-id="" data-control-name="event_share_card_cta" href="https://www.linkedin.com/events/deep-techshowcase-aerospace-def6805797022231207936/">...</a>
+  (Session info: chrome=96.0.4664.45)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004C6903+2517251]
+	Ordinal0 [0x0045F8E1+2095329]
+	Ordinal0 [0x00362848+1058888]
+	Ordinal0 [0x00393509+1258761]
+	Ordinal0 [0x00391868+1251432]
+	Ordinal0 [0x0038F65D+1242717]
+	Ordinal0 [0x0038E4A8+1238184]
+	Ordinal0 [0x00384037+1196087]
+	Ordinal0 [0x003A64D3+1336531]
+	Ordinal0 [0x00383A36+1194550]
+	Ordinal0 [0x003A65BA+1336762]
+	Ordinal0 [0x003B5BBF+1399743]
+	Ordinal0 [0x003A639B+1336219]
+	Ordinal0 [0x003827A7+1189799]
+	Ordinal0 [0x00383609+1193481]
+	GetHandleVerifier [0x00655904+1577972]
+	GetHandleVerifier [0x00700B97+2279047]
+	GetHandleVerifier [0x00556D09+534521]
+	GetHandleVerifier [0x00555DB9+530601]
+	Ordinal0 [0x00464FF9+2117625]
+	Ordinal0 [0x004698A8+2136232]
+	Ordinal0 [0x004699E2+2136546]
+	Ordinal0 [0x00473541+2176321]
+	BaseThreadInitThunk [0x75AFFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x778C7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x778C7A6E+238]
+
+2021-12-12 14:03:58 - INFO - Done
+2021-12-12 14:09:26 - INFO - logged in
+2021-12-12 14:12:45 - INFO - Processing page 1
+2021-12-12 14:14:30 - INFO - Found 10 users on this page
+2021-12-12 14:15:34 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 14:16:00 - INFO - Already delivered to Clive George Cook
+2021-12-12 14:16:55 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 14:17:47 - INFO - Sending to Daniel Edwards
+2021-12-12 14:18:29 - INFO - Using the following replace strings: '<first_name>' = 'Daniel'
+2021-12-12 14:18:48 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 352, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 255, in send_message_to_users
+    self.send_message_to_user(user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 243, in send_message_to_user
+    self.send_message(message)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 261, in send_message
+    msgwin = self.driver.find_element_by_css_selector(".msg-form__contenteditable")
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 808, in find_element_by_css_selector
+    return self.find_element(by=By.CSS_SELECTOR, value=css_selector)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1244, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".msg-form__contenteditable"}
+  (Session info: chrome=96.0.4664.45)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004C6903+2517251]
+	Ordinal0 [0x0045F8E1+2095329]
+	Ordinal0 [0x00362848+1058888]
+	Ordinal0 [0x0038D448+1233992]
+	Ordinal0 [0x0038D63B+1234491]
+	Ordinal0 [0x003B7812+1406994]
+	Ordinal0 [0x003A650A+1336586]
+	Ordinal0 [0x003B5BBF+1399743]
+	Ordinal0 [0x003A639B+1336219]
+	Ordinal0 [0x003827A7+1189799]
+	Ordinal0 [0x00383609+1193481]
+	GetHandleVerifier [0x00655904+1577972]
+	GetHandleVerifier [0x00700B97+2279047]
+	GetHandleVerifier [0x00556D09+534521]
+	GetHandleVerifier [0x00555DB9+530601]
+	Ordinal0 [0x00464FF9+2117625]
+	Ordinal0 [0x004698A8+2136232]
+	Ordinal0 [0x004699E2+2136546]
+	Ordinal0 [0x00473541+2176321]
+	BaseThreadInitThunk [0x75AFFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x778C7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x778C7A6E+238]
+
+2021-12-12 14:18:51 - INFO - Done
+2021-12-12 15:17:47 - INFO - logged in
+2021-12-12 15:17:57 - INFO - Processing page 1
+2021-12-12 15:17:59 - INFO - Found 10 users on this page
+2021-12-12 15:18:07 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 15:18:09 - INFO - Already delivered to Clive George Cook
+2021-12-12 15:18:10 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 15:18:11 - INFO - Sending to Daniel Edwards
+2021-12-12 15:31:43 - INFO - logged in
+2021-12-12 15:32:00 - INFO - Processing page 1
+2021-12-12 15:32:01 - INFO - Found 10 users on this page
+2021-12-12 15:32:02 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 15:32:02 - INFO - Already delivered to Clive George Cook
+2021-12-12 15:32:02 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 15:32:02 - INFO - Sending to Daniel Edwards
+2021-12-12 15:41:57 - INFO - logged in
+2021-12-12 15:42:00 - INFO - Processing page 1
+2021-12-12 15:42:00 - INFO - Found 10 users on this page
+2021-12-12 15:42:00 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 15:42:00 - INFO - Already delivered to Clive George Cook
+2021-12-12 15:42:00 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 15:42:00 - INFO - Sending to Daniel Edwards
+2021-12-12 15:44:26 - INFO - logged in
+2021-12-12 15:44:29 - INFO - Processing page 1
+2021-12-12 15:44:29 - INFO - Found 10 users on this page
+2021-12-12 15:44:29 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 15:44:29 - INFO - Already delivered to Clive George Cook
+2021-12-12 15:44:29 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 15:44:29 - INFO - Sending to Daniel Edwards
+2021-12-12 15:44:29 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 338, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 239, in send_message_to_users
+    self.send_message_to_user(userNum, user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 223, in send_message_to_user
+    message_button = self.get_message_button(userNum, user_element)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 276, in get_message_button
+    return user_element.find_element_by_xpath("//div/div/div[3]/ul/li[{0}]/div/div/div[3]/button", userNum)
+TypeError: find_element_by_xpath() takes 2 positional arguments but 3 were given
+2021-12-12 15:44:33 - INFO - Done
+2021-12-12 15:50:48 - INFO - logged in
+2021-12-12 15:50:51 - INFO - Processing page 1
+2021-12-12 15:50:51 - INFO - Found 10 users on this page
+2021-12-12 15:50:51 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 15:50:51 - INFO - Already delivered to Clive George Cook
+2021-12-12 15:50:51 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 15:50:51 - INFO - Sending to Daniel Edwards
+2021-12-12 15:50:51 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 341, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 239, in send_message_to_users
+    self.send_message_to_user(userNum, user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 223, in send_message_to_user
+    message_button = self.get_message_button(userNum, user_element)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 277, in get_message_button
+    xpathB.replace("{0}", userNum)
+TypeError: replace() argument 2 must be str, not int
+2021-12-12 15:50:55 - INFO - Done
+2021-12-12 15:52:36 - INFO - logged in
+2021-12-12 15:52:39 - INFO - Processing page 1
+2021-12-12 15:52:39 - INFO - Found 10 users on this page
+2021-12-12 15:52:39 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 15:52:39 - INFO - Already delivered to Clive George Cook
+2021-12-12 15:52:39 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 15:52:39 - INFO - Sending to Daniel Edwards
+2021-12-12 15:52:39 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 341, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 239, in send_message_to_users
+    self.send_message_to_user(userNum, user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 223, in send_message_to_user
+    message_button = self.get_message_button(userNum, user_element)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 279, in get_message_button
+    return user_element.find_element_by_xpath("//div/div/div[3]/ul/li[{0}]/div/div/div[3]/button", userNum)
+TypeError: find_element_by_xpath() takes 2 positional arguments but 3 were given
+2021-12-12 15:52:43 - INFO - Done
+2021-12-12 15:53:53 - INFO - logged in
+2021-12-12 15:53:56 - INFO - Processing page 1
+2021-12-12 15:53:56 - INFO - Found 10 users on this page
+2021-12-12 15:53:56 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 15:53:56 - INFO - Already delivered to Clive George Cook
+2021-12-12 15:53:56 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 15:53:56 - INFO - Sending to Daniel Edwards
+2021-12-12 15:54:01 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 341, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 239, in send_message_to_users
+    self.send_message_to_user(userNum, user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 223, in send_message_to_user
+    message_button = self.get_message_button(userNum, user_element)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 279, in get_message_button
+    return user_element.find_element_by_xpath(xpathB)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 735, in find_element
+    return self._execute(Command.FIND_CHILD_ELEMENT,
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div/div/div[3]/ul/li[tempi]/div/div/div[3]/button"}
+  (Session info: chrome=96.0.4664.93)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00AA6903+2517251]
+	Ordinal0 [0x00A3F8E1+2095329]
+	Ordinal0 [0x00942848+1058888]
+	Ordinal0 [0x0096D448+1233992]
+	Ordinal0 [0x0096D63B+1234491]
+	Ordinal0 [0x00963AB1+1194673]
+	Ordinal0 [0x0098650A+1336586]
+	Ordinal0 [0x00963A36+1194550]
+	Ordinal0 [0x009865BA+1336762]
+	Ordinal0 [0x00995BBF+1399743]
+	Ordinal0 [0x0098639B+1336219]
+	Ordinal0 [0x009627A7+1189799]
+	Ordinal0 [0x00963609+1193481]
+	GetHandleVerifier [0x00C35904+1577972]
+	GetHandleVerifier [0x00CE0B97+2279047]
+	GetHandleVerifier [0x00B36D09+534521]
+	GetHandleVerifier [0x00B35DB9+530601]
+	Ordinal0 [0x00A44FF9+2117625]
+	Ordinal0 [0x00A498A8+2136232]
+	Ordinal0 [0x00A499E2+2136546]
+	Ordinal0 [0x00A53541+2176321]
+	BaseThreadInitThunk [0x75AFFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x778C7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x778C7A6E+238]
+
+2021-12-12 15:54:05 - INFO - Done
+2021-12-12 15:56:40 - INFO - logged in
+2021-12-12 15:56:42 - INFO - Processing page 1
+2021-12-12 15:56:42 - INFO - Found 10 users on this page
+2021-12-12 15:56:42 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 15:56:42 - INFO - Already delivered to Clive George Cook
+2021-12-12 15:56:42 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 15:56:42 - INFO - Sending to Daniel Edwards
+2021-12-12 15:56:47 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 343, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 239, in send_message_to_users
+    self.send_message_to_user(userNum, user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 223, in send_message_to_user
+    message_button = self.get_message_button(userNum, user_element)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 281, in get_message_button
+    return user_element.find_element_by_xpath(xpathB)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 735, in find_element
+    return self._execute(Command.FIND_CHILD_ELEMENT,
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div/div/div[3]/ul/li[tempi]/div/div/div[3]/button"}
+  (Session info: chrome=96.0.4664.93)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00AA6903+2517251]
+	Ordinal0 [0x00A3F8E1+2095329]
+	Ordinal0 [0x00942848+1058888]
+	Ordinal0 [0x0096D448+1233992]
+	Ordinal0 [0x0096D63B+1234491]
+	Ordinal0 [0x00963AB1+1194673]
+	Ordinal0 [0x0098650A+1336586]
+	Ordinal0 [0x00963A36+1194550]
+	Ordinal0 [0x009865BA+1336762]
+	Ordinal0 [0x00995BBF+1399743]
+	Ordinal0 [0x0098639B+1336219]
+	Ordinal0 [0x009627A7+1189799]
+	Ordinal0 [0x00963609+1193481]
+	GetHandleVerifier [0x00C35904+1577972]
+	GetHandleVerifier [0x00CE0B97+2279047]
+	GetHandleVerifier [0x00B36D09+534521]
+	GetHandleVerifier [0x00B35DB9+530601]
+	Ordinal0 [0x00A44FF9+2117625]
+	Ordinal0 [0x00A498A8+2136232]
+	Ordinal0 [0x00A499E2+2136546]
+	Ordinal0 [0x00A53541+2176321]
+	BaseThreadInitThunk [0x75AFFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x778C7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x778C7A6E+238]
+
+2021-12-12 15:56:48 - INFO - Done
+2021-12-12 15:58:09 - INFO - logged in
+2021-12-12 15:58:12 - INFO - Processing page 1
+2021-12-12 15:58:12 - INFO - Found 10 users on this page
+2021-12-12 15:58:12 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 15:58:12 - INFO - Already delivered to Clive George Cook
+2021-12-12 15:58:12 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 15:58:12 - INFO - Sending to Daniel Edwards
+2021-12-12 15:58:13 - INFO - Using the following replace strings: '<first_name>' = 'Daniel'
+2021-12-12 15:58:15 - INFO - click_x
+2021-12-12 15:58:30 - INFO - Found user's name: 'Philip D'Amelia'
+2021-12-12 15:58:30 - INFO - Sending to Philip D'Amelia
+2021-12-12 15:58:31 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 343, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 239, in send_message_to_users
+    self.send_message_to_user(userNum, user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 224, in send_message_to_user
+    message_button.click()
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button id="ember122" class="artdeco-button artdeco-button--2 artdeco-button--secondary ember-view">...</button> is not clickable at point (785, 500). Other element would receive the click: <div class="msg-form__contenteditable t-14 t-black--light t-normal flex-grow-1 full-height notranslate
+      " contenteditable="true" role="textbox" aria-multiline="true" aria-label="Write a message…">...</div>
+  (Session info: chrome=96.0.4664.93)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00AA6903+2517251]
+	Ordinal0 [0x00A3F8E1+2095329]
+	Ordinal0 [0x00942848+1058888]
+	Ordinal0 [0x00973509+1258761]
+	Ordinal0 [0x00971868+1251432]
+	Ordinal0 [0x0096F65D+1242717]
+	Ordinal0 [0x0096E4A8+1238184]
+	Ordinal0 [0x00964037+1196087]
+	Ordinal0 [0x009864D3+1336531]
+	Ordinal0 [0x00963A36+1194550]
+	Ordinal0 [0x009865BA+1336762]
+	Ordinal0 [0x00995BBF+1399743]
+	Ordinal0 [0x0098639B+1336219]
+	Ordinal0 [0x009627A7+1189799]
+	Ordinal0 [0x00963609+1193481]
+	GetHandleVerifier [0x00C35904+1577972]
+	GetHandleVerifier [0x00CE0B97+2279047]
+	GetHandleVerifier [0x00B36D09+534521]
+	GetHandleVerifier [0x00B35DB9+530601]
+	Ordinal0 [0x00A44FF9+2117625]
+	Ordinal0 [0x00A498A8+2136232]
+	Ordinal0 [0x00A499E2+2136546]
+	Ordinal0 [0x00A53541+2176321]
+	BaseThreadInitThunk [0x75AFFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x778C7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x778C7A6E+238]
+
+2021-12-12 15:58:32 - INFO - Done
+2021-12-12 16:20:05 - INFO - logged in
+2021-12-12 16:20:07 - INFO - Processing page 1
+2021-12-12 16:20:07 - INFO - Found 10 users on this page
+2021-12-12 16:20:07 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 16:20:07 - INFO - Already delivered to Clive George Cook
+2021-12-12 16:20:07 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 16:20:07 - INFO - Already delivered to Daniel Edwards
+2021-12-12 16:20:07 - INFO - Found user's name: 'Philip D'Amelia'
+2021-12-12 16:20:07 - INFO - Sending to Philip D'Amelia
+2021-12-12 16:20:08 - INFO - Using the following replace strings: '<first_name>' = 'Philip'
+2021-12-12 16:20:10 - INFO - click_x
+2021-12-12 16:20:25 - INFO - Found user's name: 'Neeraj Kashyap'
+2021-12-12 16:20:25 - INFO - Sending to Neeraj Kashyap
+2021-12-12 16:20:27 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 342, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 239, in send_message_to_users
+    self.send_message_to_user(userNum, user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 224, in send_message_to_user
+    message_button.click()
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button id="ember129" class="artdeco-button artdeco-button--2 artdeco-button--secondary ember-view">...</button> is not clickable at point (785, 548). Other element would receive the click: <footer aria-label="Compose actions for your conversation with Philip D&amp;amp;#39;Amelia" class="msg-form__footer flex-shrink-zero ">...</footer>
+  (Session info: chrome=96.0.4664.93)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00AA6903+2517251]
+	Ordinal0 [0x00A3F8E1+2095329]
+	Ordinal0 [0x00942848+1058888]
+	Ordinal0 [0x00973509+1258761]
+	Ordinal0 [0x00971868+1251432]
+	Ordinal0 [0x0096F65D+1242717]
+	Ordinal0 [0x0096E4A8+1238184]
+	Ordinal0 [0x00964037+1196087]
+	Ordinal0 [0x009864D3+1336531]
+	Ordinal0 [0x00963A36+1194550]
+	Ordinal0 [0x009865BA+1336762]
+	Ordinal0 [0x00995BBF+1399743]
+	Ordinal0 [0x0098639B+1336219]
+	Ordinal0 [0x009627A7+1189799]
+	Ordinal0 [0x00963609+1193481]
+	GetHandleVerifier [0x00C35904+1577972]
+	GetHandleVerifier [0x00CE0B97+2279047]
+	GetHandleVerifier [0x00B36D09+534521]
+	GetHandleVerifier [0x00B35DB9+530601]
+	Ordinal0 [0x00A44FF9+2117625]
+	Ordinal0 [0x00A498A8+2136232]
+	Ordinal0 [0x00A499E2+2136546]
+	Ordinal0 [0x00A53541+2176321]
+	BaseThreadInitThunk [0x75AFFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x778C7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x778C7A6E+238]
+
+2021-12-12 16:20:31 - INFO - Done
+2021-12-12 16:21:29 - INFO - logged in
+2021-12-12 16:21:32 - INFO - Processing page 1
+2021-12-12 16:21:32 - INFO - Found 10 users on this page
+2021-12-12 16:21:32 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 16:21:32 - INFO - Already delivered to Clive George Cook
+2021-12-12 16:21:32 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 16:21:32 - INFO - Already delivered to Daniel Edwards
+2021-12-12 16:21:32 - INFO - Found user's name: 'Philip D'Amelia'
+2021-12-12 16:21:32 - INFO - Already delivered to Philip D'Amelia
+2021-12-12 16:21:32 - INFO - Found user's name: 'Neeraj Kashyap'
+2021-12-12 16:21:32 - INFO - Sending to Neeraj Kashyap
+2021-12-12 16:21:32 - INFO - Using the following replace strings: '<first_name>' = 'Neeraj'
+2021-12-12 16:22:37 - INFO - click_x
+2021-12-12 16:24:54 - INFO - logged in
+2021-12-12 16:24:57 - INFO - Processing page 1
+2021-12-12 16:24:57 - INFO - Found 10 users on this page
+2021-12-12 16:24:57 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 16:24:57 - INFO - Already delivered to Clive George Cook
+2021-12-12 16:24:57 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 16:24:57 - INFO - Already delivered to Daniel Edwards
+2021-12-12 16:24:57 - INFO - Found user's name: 'Philip D'Amelia'
+2021-12-12 16:24:57 - INFO - Already delivered to Philip D'Amelia
+2021-12-12 16:24:57 - INFO - Found user's name: 'Neeraj Kashyap'
+2021-12-12 16:24:57 - INFO - Sending to Neeraj Kashyap
+2021-12-12 16:24:57 - INFO - Using the following replace strings: '<first_name>' = 'Neeraj'
+2021-12-12 16:25:00 - INFO - click_x
+2021-12-12 16:25:20 - INFO - Found user's name: 'Eric Gallagher'
+2021-12-12 16:25:20 - INFO - Sending to Eric Gallagher
+2021-12-12 16:25:21 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 346, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 239, in send_message_to_users
+    self.send_message_to_user(userNum, user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 224, in send_message_to_user
+    message_button.click()
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button id="ember130" class="artdeco-button artdeco-button--2 artdeco-button--secondary ember-view">...</button> is not clickable at point (785, 358). Other element would receive the click: <span>...</span>
+  (Session info: chrome=96.0.4664.93)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00AA6903+2517251]
+	Ordinal0 [0x00A3F8E1+2095329]
+	Ordinal0 [0x00942848+1058888]
+	Ordinal0 [0x00973509+1258761]
+	Ordinal0 [0x00971868+1251432]
+	Ordinal0 [0x0096F65D+1242717]
+	Ordinal0 [0x0096E4A8+1238184]
+	Ordinal0 [0x00964037+1196087]
+	Ordinal0 [0x009864D3+1336531]
+	Ordinal0 [0x00963A36+1194550]
+	Ordinal0 [0x009865BA+1336762]
+	Ordinal0 [0x00995BBF+1399743]
+	Ordinal0 [0x0098639B+1336219]
+	Ordinal0 [0x009627A7+1189799]
+	Ordinal0 [0x00963609+1193481]
+	GetHandleVerifier [0x00C35904+1577972]
+	GetHandleVerifier [0x00CE0B97+2279047]
+	GetHandleVerifier [0x00B36D09+534521]
+	GetHandleVerifier [0x00B35DB9+530601]
+	Ordinal0 [0x00A44FF9+2117625]
+	Ordinal0 [0x00A498A8+2136232]
+	Ordinal0 [0x00A499E2+2136546]
+	Ordinal0 [0x00A53541+2176321]
+	BaseThreadInitThunk [0x75AFFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x778C7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x778C7A6E+238]
+
+2021-12-12 16:25:25 - INFO - Done
+2021-12-12 16:29:30 - INFO - logged in
+2021-12-12 16:29:33 - INFO - Processing page 1
+2021-12-12 16:29:43 - INFO - Found 10 users on this page
+2021-12-12 16:30:02 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 16:30:06 - INFO - Already delivered to Clive George Cook
+2021-12-12 16:30:08 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 16:30:11 - INFO - Already delivered to Daniel Edwards
+2021-12-12 16:30:15 - INFO - Found user's name: 'Philip D'Amelia'
+2021-12-12 16:30:17 - INFO - Already delivered to Philip D'Amelia
+2021-12-12 16:30:18 - INFO - Found user's name: 'Neeraj Kashyap'
+2021-12-12 16:30:20 - INFO - Already delivered to Neeraj Kashyap
+2021-12-12 16:30:22 - INFO - Found user's name: 'Eric Gallagher'
+2021-12-12 16:30:23 - INFO - Sending to Eric Gallagher
+2021-12-12 16:31:14 - INFO - Using the following replace strings: '<first_name>' = 'Eric'
+2021-12-12 16:31:18 - INFO - click_x
+2021-12-12 16:31:55 - INFO - Found user's name: 'Dan Keller'
+2021-12-12 16:31:57 - INFO - Sending to Dan Keller
+2021-12-12 16:32:03 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 346, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 239, in send_message_to_users
+    self.send_message_to_user(userNum, user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 224, in send_message_to_user
+    message_button.click()
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button id="ember125" class="artdeco-button artdeco-button--2 artdeco-button--secondary ember-view">...</button> is not clickable at point (601, 512). Other element would receive the click: <div class="msg-form__hint-text t-12 t-black--light t-normal">...</div>
+  (Session info: chrome=96.0.4664.93)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00AA6903+2517251]
+	Ordinal0 [0x00A3F8E1+2095329]
+	Ordinal0 [0x00942848+1058888]
+	Ordinal0 [0x00973509+1258761]
+	Ordinal0 [0x00971868+1251432]
+	Ordinal0 [0x0096F65D+1242717]
+	Ordinal0 [0x0096E4A8+1238184]
+	Ordinal0 [0x00964037+1196087]
+	Ordinal0 [0x009864D3+1336531]
+	Ordinal0 [0x00963A36+1194550]
+	Ordinal0 [0x009865BA+1336762]
+	Ordinal0 [0x00995BBF+1399743]
+	Ordinal0 [0x0098639B+1336219]
+	Ordinal0 [0x009627A7+1189799]
+	Ordinal0 [0x00963609+1193481]
+	GetHandleVerifier [0x00C35904+1577972]
+	GetHandleVerifier [0x00CE0B97+2279047]
+	GetHandleVerifier [0x00B36D09+534521]
+	GetHandleVerifier [0x00B35DB9+530601]
+	Ordinal0 [0x00A44FF9+2117625]
+	Ordinal0 [0x00A498A8+2136232]
+	Ordinal0 [0x00A499E2+2136546]
+	Ordinal0 [0x00A53541+2176321]
+	BaseThreadInitThunk [0x75AFFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x778C7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x778C7A6E+238]
+
+2021-12-12 16:53:50 - INFO - logged in
+2021-12-12 16:53:52 - INFO - Processing page 1
+2021-12-12 16:53:53 - INFO - Found 10 users on this page
+2021-12-12 16:53:53 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 16:53:53 - INFO - Already delivered to Clive George Cook
+2021-12-12 16:53:53 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 16:53:53 - INFO - Already delivered to Daniel Edwards
+2021-12-12 16:53:53 - INFO - Found user's name: 'Philip D'Amelia'
+2021-12-12 16:53:53 - INFO - Already delivered to Philip D'Amelia
+2021-12-12 16:53:53 - INFO - Found user's name: 'Neeraj Kashyap'
+2021-12-12 16:53:53 - INFO - Already delivered to Neeraj Kashyap
+2021-12-12 16:53:53 - INFO - Found user's name: 'Eric Gallagher'
+2021-12-12 16:53:53 - INFO - Already delivered to Eric Gallagher
+2021-12-12 16:53:53 - INFO - Found user's name: 'Dan Keller'
+2021-12-12 16:53:53 - INFO - Sending to Dan Keller
+2021-12-12 16:53:53 - INFO - Using the following replace strings: '<first_name>' = 'Dan'
+2021-12-12 16:53:56 - INFO - click_x
+2021-12-12 16:54:11 - INFO - Found user's name: 'Aron Einhorn'
+2021-12-12 16:54:11 - INFO - Sending to Aron Einhorn
+2021-12-12 16:54:12 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 346, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 239, in send_message_to_users
+    self.send_message_to_user(userNum, user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 224, in send_message_to_user
+    message_button.click()
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button id="ember131" class="artdeco-button artdeco-button--2 artdeco-button--secondary ember-view">...</button> is not clickable at point (785, 238). Other element would receive the click: <div class="flex-grow-1 t-normal " tabindex="0">...</div>
+  (Session info: chrome=96.0.4664.93)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00AA6903+2517251]
+	Ordinal0 [0x00A3F8E1+2095329]
+	Ordinal0 [0x00942848+1058888]
+	Ordinal0 [0x00973509+1258761]
+	Ordinal0 [0x00971868+1251432]
+	Ordinal0 [0x0096F65D+1242717]
+	Ordinal0 [0x0096E4A8+1238184]
+	Ordinal0 [0x00964037+1196087]
+	Ordinal0 [0x009864D3+1336531]
+	Ordinal0 [0x00963A36+1194550]
+	Ordinal0 [0x009865BA+1336762]
+	Ordinal0 [0x00995BBF+1399743]
+	Ordinal0 [0x0098639B+1336219]
+	Ordinal0 [0x009627A7+1189799]
+	Ordinal0 [0x00963609+1193481]
+	GetHandleVerifier [0x00C35904+1577972]
+	GetHandleVerifier [0x00CE0B97+2279047]
+	GetHandleVerifier [0x00B36D09+534521]
+	GetHandleVerifier [0x00B35DB9+530601]
+	Ordinal0 [0x00A44FF9+2117625]
+	Ordinal0 [0x00A498A8+2136232]
+	Ordinal0 [0x00A499E2+2136546]
+	Ordinal0 [0x00A53541+2176321]
+	BaseThreadInitThunk [0x75AFFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x778C7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x778C7A6E+238]
+
+2021-12-12 16:54:16 - INFO - Done
+2021-12-12 16:56:38 - INFO - logged in
+2021-12-12 16:56:41 - INFO - Processing page 1
+2021-12-12 16:56:41 - INFO - Found 10 users on this page
+2021-12-12 16:56:41 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 16:56:41 - INFO - Already delivered to Clive George Cook
+2021-12-12 16:56:41 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 16:56:41 - INFO - Already delivered to Daniel Edwards
+2021-12-12 16:56:41 - INFO - Found user's name: 'Philip D'Amelia'
+2021-12-12 16:56:41 - INFO - Already delivered to Philip D'Amelia
+2021-12-12 16:56:41 - INFO - Found user's name: 'Neeraj Kashyap'
+2021-12-12 16:56:41 - INFO - Already delivered to Neeraj Kashyap
+2021-12-12 16:56:41 - INFO - Found user's name: 'Eric Gallagher'
+2021-12-12 16:56:41 - INFO - Already delivered to Eric Gallagher
+2021-12-12 16:56:41 - INFO - Found user's name: 'Dan Keller'
+2021-12-12 16:56:41 - INFO - Already delivered to Dan Keller
+2021-12-12 16:56:41 - INFO - Found user's name: 'Aron Einhorn'
+2021-12-12 16:56:41 - INFO - Sending to Aron Einhorn
+2021-12-12 16:56:41 - INFO - Using the following replace strings: '<first_name>' = 'Aron'
+2021-12-12 16:56:44 - INFO - click_x
+2021-12-12 16:57:04 - INFO - Found user's name: 'soner haci'
+2021-12-12 16:57:04 - INFO - Sending to soner haci
+2021-12-12 16:57:05 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 350, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 239, in send_message_to_users
+    self.send_message_to_user(userNum, user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 224, in send_message_to_user
+    message_button.click()
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button id="ember132" class="artdeco-button artdeco-button--2 artdeco-button--secondary ember-view">...</button> is not clickable at point (785, 548). Other element would receive the click: <footer aria-label="Compose actions for your conversation with Aron Einhorn" class="msg-form__footer flex-shrink-zero ">...</footer>
+  (Session info: chrome=96.0.4664.93)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00AA6903+2517251]
+	Ordinal0 [0x00A3F8E1+2095329]
+	Ordinal0 [0x00942848+1058888]
+	Ordinal0 [0x00973509+1258761]
+	Ordinal0 [0x00971868+1251432]
+	Ordinal0 [0x0096F65D+1242717]
+	Ordinal0 [0x0096E4A8+1238184]
+	Ordinal0 [0x00964037+1196087]
+	Ordinal0 [0x009864D3+1336531]
+	Ordinal0 [0x00963A36+1194550]
+	Ordinal0 [0x009865BA+1336762]
+	Ordinal0 [0x00995BBF+1399743]
+	Ordinal0 [0x0098639B+1336219]
+	Ordinal0 [0x009627A7+1189799]
+	Ordinal0 [0x00963609+1193481]
+	GetHandleVerifier [0x00C35904+1577972]
+	GetHandleVerifier [0x00CE0B97+2279047]
+	GetHandleVerifier [0x00B36D09+534521]
+	GetHandleVerifier [0x00B35DB9+530601]
+	Ordinal0 [0x00A44FF9+2117625]
+	Ordinal0 [0x00A498A8+2136232]
+	Ordinal0 [0x00A499E2+2136546]
+	Ordinal0 [0x00A53541+2176321]
+	BaseThreadInitThunk [0x75AFFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x778C7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x778C7A6E+238]
+
+2021-12-12 16:57:09 - INFO - Done
+2021-12-12 17:01:13 - INFO - logged in
+2021-12-12 17:01:16 - INFO - Processing page 1
+2021-12-12 17:01:16 - INFO - Found 10 users on this page
+2021-12-12 17:01:16 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 17:01:16 - INFO - Already delivered to Clive George Cook
+2021-12-12 17:01:16 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 17:01:16 - INFO - Already delivered to Daniel Edwards
+2021-12-12 17:01:16 - INFO - Found user's name: 'Philip D'Amelia'
+2021-12-12 17:01:16 - INFO - Already delivered to Philip D'Amelia
+2021-12-12 17:01:16 - INFO - Found user's name: 'Neeraj Kashyap'
+2021-12-12 17:01:16 - INFO - Already delivered to Neeraj Kashyap
+2021-12-12 17:01:16 - INFO - Found user's name: 'Eric Gallagher'
+2021-12-12 17:01:16 - INFO - Already delivered to Eric Gallagher
+2021-12-12 17:01:16 - INFO - Found user's name: 'Dan Keller'
+2021-12-12 17:01:16 - INFO - Already delivered to Dan Keller
+2021-12-12 17:01:16 - INFO - Found user's name: 'Aron Einhorn'
+2021-12-12 17:01:16 - INFO - Already delivered to Aron Einhorn
+2021-12-12 17:01:16 - INFO - Found user's name: 'soner haci'
+2021-12-12 17:01:16 - INFO - Sending to soner haci
+2021-12-12 17:01:16 - INFO - Using the following replace strings: '<first_name>' = 'soner'
+2021-12-12 17:01:19 - INFO - click_x
+2021-12-12 17:01:34 - INFO - Found user's name: 'Yohei Iwasaki'
+2021-12-12 17:01:34 - INFO - Sending to Yohei Iwasaki
+2021-12-12 17:01:35 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 350, in <module>
+    page.send_message_to_users(user_elements)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 239, in send_message_to_users
+    self.send_message_to_user(userNum, user_element, first_name=first_name)
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 224, in send_message_to_user
+    message_button.click()
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button id="ember133" class="artdeco-button artdeco-button--2 artdeco-button--secondary ember-view">...</button> is not clickable at point (785, 548). Other element would receive the click: <footer aria-label="Compose actions for your conversation with soner haci" class="msg-form__footer flex-shrink-zero ">...</footer>
+  (Session info: chrome=96.0.4664.93)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00AA6903+2517251]
+	Ordinal0 [0x00A3F8E1+2095329]
+	Ordinal0 [0x00942848+1058888]
+	Ordinal0 [0x00973509+1258761]
+	Ordinal0 [0x00971868+1251432]
+	Ordinal0 [0x0096F65D+1242717]
+	Ordinal0 [0x0096E4A8+1238184]
+	Ordinal0 [0x00964037+1196087]
+	Ordinal0 [0x009864D3+1336531]
+	Ordinal0 [0x00963A36+1194550]
+	Ordinal0 [0x009865BA+1336762]
+	Ordinal0 [0x00995BBF+1399743]
+	Ordinal0 [0x0098639B+1336219]
+	Ordinal0 [0x009627A7+1189799]
+	Ordinal0 [0x00963609+1193481]
+	GetHandleVerifier [0x00C35904+1577972]
+	GetHandleVerifier [0x00CE0B97+2279047]
+	GetHandleVerifier [0x00B36D09+534521]
+	GetHandleVerifier [0x00B35DB9+530601]
+	Ordinal0 [0x00A44FF9+2117625]
+	Ordinal0 [0x00A498A8+2136232]
+	Ordinal0 [0x00A499E2+2136546]
+	Ordinal0 [0x00A53541+2176321]
+	BaseThreadInitThunk [0x75AFFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x778C7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x778C7A6E+238]
+
+2021-12-12 17:01:35 - INFO - Done
+2021-12-12 17:02:36 - INFO - logged in
+2021-12-12 17:02:38 - INFO - Processing page 1
+2021-12-12 17:03:34 - INFO - Found 10 users on this page
+2021-12-12 17:03:36 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 17:03:36 - INFO - Already delivered to Clive George Cook
+2021-12-12 17:03:36 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 17:03:36 - INFO - Already delivered to Daniel Edwards
+2021-12-12 17:03:36 - INFO - Found user's name: 'Philip D'Amelia'
+2021-12-12 17:03:36 - INFO - Already delivered to Philip D'Amelia
+2021-12-12 17:03:36 - INFO - Found user's name: 'Neeraj Kashyap'
+2021-12-12 17:03:36 - INFO - Already delivered to Neeraj Kashyap
+2021-12-12 17:03:36 - INFO - Found user's name: 'Eric Gallagher'
+2021-12-12 17:03:36 - INFO - Already delivered to Eric Gallagher
+2021-12-12 17:03:36 - INFO - Found user's name: 'Dan Keller'
+2021-12-12 17:03:36 - INFO - Already delivered to Dan Keller
+2021-12-12 17:03:36 - INFO - Found user's name: 'Aron Einhorn'
+2021-12-12 17:03:36 - INFO - Already delivered to Aron Einhorn
+2021-12-12 17:03:36 - INFO - Found user's name: 'soner haci'
+2021-12-12 17:03:36 - INFO - Already delivered to soner haci
+2021-12-12 17:03:36 - INFO - Found user's name: 'Yohei Iwasaki'
+2021-12-12 17:03:36 - INFO - Sending to Yohei Iwasaki
+2021-12-12 17:03:36 - INFO - Using the following replace strings: '<first_name>' = 'Yohei'
+2021-12-12 17:03:57 - INFO - click_x
+2021-12-12 17:06:46 - INFO - logged in
+2021-12-12 17:06:48 - INFO - Processing page 1
+2021-12-12 17:06:48 - INFO - Found 10 users on this page
+2021-12-12 17:06:48 - INFO - Found user's name: 'Clive George Cook'
+2021-12-12 17:06:48 - INFO - Already delivered to Clive George Cook
+2021-12-12 17:06:48 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-12 17:06:48 - INFO - Already delivered to Daniel Edwards
+2021-12-12 17:06:48 - INFO - Found user's name: 'Philip D'Amelia'
+2021-12-12 17:06:48 - INFO - Already delivered to Philip D'Amelia
+2021-12-12 17:06:48 - INFO - Found user's name: 'Neeraj Kashyap'
+2021-12-12 17:06:48 - INFO - Already delivered to Neeraj Kashyap
+2021-12-12 17:06:48 - INFO - Found user's name: 'Eric Gallagher'
+2021-12-12 17:06:48 - INFO - Already delivered to Eric Gallagher
+2021-12-12 17:06:48 - INFO - Found user's name: 'Dan Keller'
+2021-12-12 17:06:48 - INFO - Already delivered to Dan Keller
+2021-12-12 17:06:48 - INFO - Found user's name: 'Aron Einhorn'
+2021-12-12 17:06:48 - INFO - Already delivered to Aron Einhorn
+2021-12-12 17:06:48 - INFO - Found user's name: 'soner haci'
+2021-12-12 17:06:48 - INFO - Already delivered to soner haci
+2021-12-12 17:06:49 - INFO - Found user's name: 'Yohei Iwasaki'
+2021-12-12 17:06:49 - INFO - Sending to Yohei Iwasaki
+2021-12-12 17:06:49 - INFO - Using the following replace strings: '<first_name>' = 'Yohei'
+2021-12-12 17:06:51 - INFO - click_x
+2021-12-12 17:07:12 - INFO - Found user's name: 'Bisa E. Peterson'
+2021-12-12 17:07:12 - INFO - Sending to Bisa E. Peterson
+2021-12-12 17:07:12 - INFO - Using the following replace strings: '<first_name>' = 'Bisa'
+2021-12-12 17:07:14 - INFO - click_x
+2021-12-12 17:07:34 - INFO - Attempting to go to next page
+2021-12-12 17:07:38 - INFO - Done
