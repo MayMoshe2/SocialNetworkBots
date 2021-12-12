@@ -12,7 +12,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 class UserPage:
     MESSAGE_FORMATTINGS = ["first_name"]
-
+    print("IM HERE!!!!!!!!!!!!!!!!!!")
     def __init__(self, driver, message, delivery_tracker_filename, testing: bool = False):
         self.driver = driver
         self.message = message

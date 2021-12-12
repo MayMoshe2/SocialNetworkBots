@@ -1,6 +1,6 @@
 import pyautogui
 # import webbrowser
-import UserPage
+from UserPage import User
 import chromedriver_binary
 import time
 import logging
@@ -213,6 +213,11 @@ if __name__ == "__main__":
     delivery_tracker_filename = os.path.join("logs", "delivery_tracker.csv")
     initialize_logger()
     driver, user_filter, message, num_pages = initialize_linkedin()
+    print("\ndriver", driver)
+    print("\nuser_filter", user_filter)
+    print("\nmessage",  message)
+    print("\nnum_pages", num_pages)
+    
 
-    page = UserPage(driver, message, delivery_tracker_filename=delivery_tracker_filename, testing=False)
+    page = User(driver, message, delivery_tracker_filename, testing=False)
 
