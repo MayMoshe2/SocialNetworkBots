@@ -839,3 +839,102 @@ Backtrace:
 2021-12-12 17:07:14 - INFO - click_x
 2021-12-12 17:07:34 - INFO - Attempting to go to next page
 2021-12-12 17:07:38 - INFO - Done
+2021-12-13 14:24:02 - INFO - logged in
+2021-12-13 14:24:03 - INFO - Processing page 1
+2021-12-13 14:24:08 - ERROR - failed to find buttons
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 263, in get_user_elements
+    element_list_container = self.driver.find_element_by_css_selector(
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 808, in find_element_by_css_selector
+    return self.find_element(by=By.CSS_SELECTOR, value=css_selector)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1244, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"#main > div > div > div.ph0.pv2.artdeco-card.mb2 > ul"}
+  (Session info: chrome=96.0.4664.93)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00746903+2517251]
+	Ordinal0 [0x006DF8E1+2095329]
+	Ordinal0 [0x005E2848+1058888]
+	Ordinal0 [0x0060D448+1233992]
+	Ordinal0 [0x0060D63B+1234491]
+	Ordinal0 [0x00637812+1406994]
+	Ordinal0 [0x0062650A+1336586]
+	Ordinal0 [0x00635BBF+1399743]
+	Ordinal0 [0x0062639B+1336219]
+	Ordinal0 [0x006027A7+1189799]
+	Ordinal0 [0x00603609+1193481]
+	GetHandleVerifier [0x008D5904+1577972]
+	GetHandleVerifier [0x00980B97+2279047]
+	GetHandleVerifier [0x007D6D09+534521]
+	GetHandleVerifier [0x007D5DB9+530601]
+	Ordinal0 [0x006E4FF9+2117625]
+	Ordinal0 [0x006E98A8+2136232]
+	Ordinal0 [0x006E99E2+2136546]
+	Ordinal0 [0x006F3541+2176321]
+	BaseThreadInitThunk [0x75AFFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x778C7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x778C7A6E+238]
+
+2021-12-13 14:24:08 - ERROR - failed
+Traceback (most recent call last):
+  File "c:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 351, in <module>
+    logger.info(f"Found {len(user_elements)} users on this page")
+TypeError: object of type 'NoneType' has no len()
+2021-12-13 14:24:12 - INFO - Done
+2021-12-13 14:26:46 - INFO - logged in
+2021-12-13 14:26:48 - INFO - Processing page 1
+2021-12-13 14:26:48 - INFO - Found 10 users on this page
+2021-12-13 14:26:48 - INFO - Found user's name: 'Clive George Cook'
+2021-12-13 14:26:48 - INFO - Already delivered to Clive George Cook
+2021-12-13 14:26:48 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-13 14:26:48 - INFO - Already delivered to Daniel Edwards
+2021-12-13 14:26:48 - INFO - Found user's name: 'Eric Gallagher'
+2021-12-13 14:26:48 - INFO - Already delivered to Eric Gallagher
+2021-12-13 14:26:48 - INFO - Found user's name: 'Neeraj Kashyap'
+2021-12-13 14:26:48 - INFO - Already delivered to Neeraj Kashyap
+2021-12-13 14:26:48 - INFO - Found user's name: 'Philip D'Amelia'
+2021-12-13 14:26:48 - INFO - Already delivered to Philip D'Amelia
+2021-12-13 14:26:48 - INFO - Found user's name: 'Dan Keller'
+2021-12-13 14:26:48 - INFO - Already delivered to Dan Keller
+2021-12-13 14:26:48 - INFO - Found user's name: 'Aron Einhorn'
+2021-12-13 14:26:48 - INFO - Already delivered to Aron Einhorn
+2021-12-13 14:26:48 - INFO - Found user's name: 'soner haci'
+2021-12-13 14:26:48 - INFO - Already delivered to soner haci
+2021-12-13 14:26:49 - INFO - Found user's name: 'Yohei Iwasaki'
+2021-12-13 14:26:49 - INFO - Already delivered to Yohei Iwasaki
+2021-12-13 14:26:49 - INFO - Found user's name: 'Bisa E. Peterson'
+2021-12-13 14:26:49 - INFO - Already delivered to Bisa E. Peterson
+2021-12-13 14:26:49 - INFO - Attempting to go to next page
+2021-12-13 14:26:52 - INFO - Done
+2021-12-13 14:29:24 - INFO - logged in
+2021-12-13 14:29:27 - INFO - Processing page 1
+2021-12-13 14:29:27 - INFO - Found 10 users on this page
+2021-12-13 14:29:27 - INFO - Found user's name: 'Clive George Cook'
+2021-12-13 14:29:27 - INFO - Already delivered to Clive George Cook
+2021-12-13 14:29:27 - INFO - Found user's name: 'Daniel Edwards'
+2021-12-13 14:29:27 - INFO - Already delivered to Daniel Edwards
+2021-12-13 14:29:27 - INFO - Found user's name: 'Eric Gallagher'
+2021-12-13 14:29:27 - INFO - Already delivered to Eric Gallagher
+2021-12-13 14:29:27 - INFO - Found user's name: 'Neeraj Kashyap'
+2021-12-13 14:29:27 - INFO - Already delivered to Neeraj Kashyap
+2021-12-13 14:29:27 - INFO - Found user's name: 'Philip D'Amelia'
+2021-12-13 14:29:27 - INFO - Already delivered to Philip D'Amelia
+2021-12-13 14:29:27 - INFO - Found user's name: 'Dan Keller'
+2021-12-13 14:29:27 - INFO - Already delivered to Dan Keller
+2021-12-13 14:29:27 - INFO - Found user's name: 'Aron Einhorn'
+2021-12-13 14:29:27 - INFO - Already delivered to Aron Einhorn
+2021-12-13 14:29:27 - INFO - Found user's name: 'soner haci'
+2021-12-13 14:29:27 - INFO - Already delivered to soner haci
+2021-12-13 14:29:27 - INFO - Found user's name: 'Yohei Iwasaki'
+2021-12-13 14:29:27 - INFO - Already delivered to Yohei Iwasaki
+2021-12-13 14:29:27 - INFO - Found user's name: 'Bisa E. Peterson'
+2021-12-13 14:29:27 - INFO - Sending to Bisa E. Peterson
+2021-12-13 14:29:27 - INFO - Using the following replace strings: '<first_name>' = 'Bisa'
+2021-12-13 14:29:29 - INFO - click_x
+2021-12-13 14:29:46 - INFO - Attempting to go to next page
+2021-12-13 14:29:49 - INFO - Done

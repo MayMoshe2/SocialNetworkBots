@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="https://img.pngio.com/travel-icon-of-colored-outline-style-available-in-svg-png-eps-travel-icon-png-256_256.png"/>
+        <script src="js/FileSaver.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    </head>
+    <body>
+        <div id = "first_page">
+            <h2>Hay, This is Liora Cubed I will help you with Marketing Now</h2>
+            <h2>Please don't forget to turn off new message popups in messaging setting and changing send to enter.</h2>
+            <button id = "bt_first">Click me</button>  
+        </div>
+    
+        <div id = "second_page" style = "visibility : hidden">
+            <form onSubmit="WriteToFile(this)">
+                <h2>this is the second page !!</h2>
+                <label for="cars">Choose a car:</label>
+                <select name="cars" id="cars" onchange="jsFunction(this.value);">
+                    <option value="0">ariel</option>
+                    <option value="1">asher</option>
+                    <option value="2">yuval</option>
+                    <option value="3">josh</option>
+                    <option value="4">liora</option>
+                    <option value="5">liora c</option>
+                    <option value="6">shlomie</option>
+                    <option value="7">danielle</option>
+                    <option value="8">sasha</option>
+                    <option value="9">katie</option>
+                    <option value="10">max</option>
+                    <option value="11">yoav</option>
+                    <option value="12">bibi</option>
+                    <option value="13">sarah</option>
+                    <option value="14">ari</option>
+                    <option value="15">matthew</option>
+                    <option value="16">Bryan</option>
+                    <option value="17">Lena</option>
+                    <option value="18">"Ariel K</option>
+                    <option value="19">Sharon</option>
+                </select>
+                <input type="submit" value="submit">
+            </form>
+            <!-- <button id = "bt_first" onclick="writePage">Click me</button>  -->
+        </div>
+
+        <!-- <script type="text/javascript"> -->
+        <SCRIPT LANGUAGE="JavaScript">
+   
+            document.getElementById("bt_first").onclick = function () {
+                var x = document.getElementById("first_page");
+                var y = document.getElementById("second_page"); 
+                x.style.display = "none";
+                y.style = "visibility: visible"
+            } 
+            
+            function jsFunction(value){
+                alert(value);
+                
+            }
+            function WriteToFile (passForm){
+                // alert ("nir");
+         
+                    //typeof(window.ActiveXObject) !== "undefined") {
+                   // var fso = CreateObject("Scripting.FileSystemObject"); 
+                    // var fso = new COMObject("WMPlayer.OCX");
+                    //var s   = fso.CreateTextFile("<your Path>/filename.txt", True);
+                 var fso = new ActiveXObject("Scripting.FileSystemObject");
+                 var a = fso.CreateTextFile("c:\\testfile.txt", true);
+                 a.WriteLine("This is a test.");
+                 a.Close();
+
+                    //     var dropVal = document.getElementById('cars');
+                    // s.writeline("dropDwon :" + dropVal);
+                    // s.writeline("-----------------------------");
+                    // s.Close();
+              
+            }
+           
+        </script>
+    </body>
+</html>

@@ -98,7 +98,7 @@ def setup(driver, fullscreen=False):
 
 # message
 messages = [
-    "Hi <first_name>, I am reaching out to invite you to our next showcase focused on Aerospace and Defense taking place on October 28th. You can register for the event here: https://www.linkedin.com/events/deep-techshowcase-aerospace-def6805797022231207936/ . Looking forward to seeing you there!",
+    "Hi <first_name>, I am reaching out to invite you to our next showcase focused on Federal Funding Opportunities for Silicon Valley Start-Ups taking place on Decemcer 15th. You can register for the event here: https://www.linkedin.com/events/6859061435058708481/ . Looking forward to seeing you there!",
     "test",
 ]
 
@@ -148,12 +148,13 @@ def get_next_page_url(user_filter):
     return '&'.join(url_split)
 
 def prompt_user():
-    get_setup_confirmation()
+    # get_setup_confirmation()
     # GUI.get_email_and_password2()
-    print (GUI.myglobalemail)
+    # print (GUI.myglobalemail)
     email = GUI.myglobalemail
     password = GUI.myglobalpassword
     print(email, password)
+    # email, password = get_email_and_password()
     user_filter = get_user_filter()
     message = get_message()
     num_pages = get_num_pages()
