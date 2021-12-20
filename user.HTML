@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="icon" href="https://img.pngio.com/travel-icon-of-colored-outline-style-available-in-svg-png-eps-travel-icon-png-256_256.png"/>
-        <script src="js/FileSaver.js"></script>
+        
+        <link href="user.css" rel = "stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <!-- <script src="js/FileSaver.js"></script> -->
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
     </head>
     <body>
         <div id = "first_page">
@@ -13,10 +16,13 @@
         </div>
     
         <div id = "second_page" style = "visibility : hidden">
-            <form onSubmit="WriteToFile(this)">
-                <h2>this is the second page !!</h2>
-                <label for="cars">Choose a car:</label>
-                <select name="cars" id="cars" onchange="jsFunction(this.value);">
+            <form id = "formId" onSubmit="WriteToFile(this)">
+              <br>
+              <br>
+              <br>
+
+                <label for="cars style="font-size: large;">Choose a user:</label>
+                <select name="cars" id="cars" onchange="jsFunction(this.value); required">
                     <option value="0">ariel</option>
                     <option value="1">asher</option>
                     <option value="2">yuval</option>
@@ -38,14 +44,71 @@
                     <option value="18">"Ariel K</option>
                     <option value="19">Sharon</option>
                 </select>
-                <input type="submit" value="submit">
+
+                <h2>Please select the relevant option</h2>
+                
+                <div id ="check">
+                   
+                    <input type="radio" id="option1" name="fav_language" value="0" onclick="showT" required>
+                    <label for="option1"> specified filter from linkedin</label><br>
+
+                    <input type="textbox" id="area" style = "visibility : hidden"><br>
+
+
+                    <input type="radio" id="option2" name="fav_language" value="1" onclick="hideT">
+                    <label for="option2">first connections that are ceos of tech companies</label>
+                <br>
+                <br>
+
+
+                    <input type="radio" id="option3" name="fav_language" value="2" onclick="hideT">
+                    <label for="option3">test eagle point employees</label><br>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="messege" id ="messege">
+                    <label for="link">add link to the event </label>
+                    <input type="textbox" id="link" required><br>
+
+
+                    <label for="area">write your message here: </label>
+                    <input type="textbox" id="area" required><br>
+
+                    <label for="num">choose number of pages: </label>
+                    <input type="number" min="0" max="100" id="area" required><br>
+
+                </div>
+                
+                <!-- <input id="area" style="display: none;" NAME="data" ROWS=10 COLS=50></input>    -->
+                <br>
+                <br>
+                <br>
+                <br>
+                <input type="submit" value="submit" onclick="WriteToFile">
             </form>
             <!-- <button id = "bt_first" onclick="writePage">Click me</button>  -->
         </div>
 
         <!-- <script type="text/javascript"> -->
         <SCRIPT LANGUAGE="JavaScript">
-   
+            
+            document.getElementById("option1").onclick = function () {
+                x = document.getElementById("area");
+                x.style = "visibility: visible"
+            }
+
+            document.getElementById("option2").onclick = function () {
+                x = document.getElementById("area");
+                x.style.display = "none"
+            }
+
+            document.getElementById("option3").onclick = function () {
+                x = document.getElementById("area");
+                x.style.display = "none"
+            }
+
             document.getElementById("bt_first").onclick = function () {
                 var x = document.getElementById("first_page");
                 var y = document.getElementById("second_page"); 
@@ -57,25 +120,40 @@
                 alert(value);
                 
             }
-            function WriteToFile (passForm){
-                // alert ("nir");
-         
-                    //typeof(window.ActiveXObject) !== "undefined") {
-                   // var fso = CreateObject("Scripting.FileSystemObject"); 
-                    // var fso = new COMObject("WMPlayer.OCX");
-                    //var s   = fso.CreateTextFile("<your Path>/filename.txt", True);
-                 var fso = new ActiveXObject("Scripting.FileSystemObject");
-                 var a = fso.CreateTextFile("c:\\testfile.txt", true);
-                 a.WriteLine("This is a test.");
-                 a.Close();
 
-                    //     var dropVal = document.getElementById('cars');
-                    // s.writeline("dropDwon :" + dropVal);
-                    // s.writeline("-----------------------------");
-                    // s.Close();
-              
+            function myFunc() {
+               anvil.call($('.content'), 'WriteToFile', 'world')
             }
-           
+
+
+            function WriteToFile (passForm){
+                // alert("nir");
+                // console.log("write");
+            
+
+
+
+            //    var form = document.getElementById("formId");
+            //    anvil.call($('.content'), 'my_method', 'world')
+            //    return;
+            //    alert(form.link.value);
+                
+            //   console.log(passForm);
+                // var fso = CreateObject("Scripting.FileSystemObject"); 
+                // var s   = fso.CreateTextFile("SocialNetworkBots\nirtry.txt", True);
+ 
+                // var firstName = document.getElementById('cars');
+                // var lastName  = document.getElementById('option1');
+
+                // s.writeline("First Name :" + FirstName);
+                // s.writeline("Last Name :" + lastName);
+
+                // s.writeline("-----------------------------");
+                // s.Close();
+
+            }
+          
+
         </script>
     </body>
 </html>
