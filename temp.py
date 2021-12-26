@@ -333,7 +333,7 @@ class DeliveryTracker:
 
 
 if __name__ == "__main__":
-    GUI
+    # GUI
     # print (GUI.myglobalemail)
     # print (GUI.myglobalpassword)
     os.makedirs("logs", exist_ok=True)
