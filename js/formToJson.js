@@ -2,7 +2,7 @@
 file = {}
 showT = function() {
   document.getElementById("Add_link_Id").type = "" ;
-  document.getElementById("nir").innerHTML = ('<br>');
+  // document.getElementById("nir").innerHTML = ('<br>');
 }
 hideT = function () {
   document.getElementById("Add_link_Id").type = "hidden" ;
@@ -45,6 +45,7 @@ $.ajax({
     success: function(){
         //   location.href = "/SiteList";
     alert("finish main");
+    window.location.href = "mainPage.html";
     },
     error: function( jqXhr, textStatus, errorThrown){
     alert( errorThrown);

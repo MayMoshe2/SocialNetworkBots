@@ -5,9 +5,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link  rel ="stylesheet" type="text/css" href="/messageOnEvent.css" />
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" type= "text/css" href="style/messageOnEvent.css" > -->
-    <link  rel ="stylesheet" type="text/css" href="/messageOnEvent.css" />
     <script src="/js/formToJson.js"></script>
     <script type="text/javascript" src ="/js/messageOnEvent.js"></script>
 
@@ -47,33 +47,26 @@
               <option value="18">Ariel K</option>
               <option value="19">Sharon</option>
           </select>
-          <!-- <div class="radio" required> -->
-          <div class="radio" id = "radio_options" name="checkbox" >
+         
+          <div class="radio" id = "radio_options" name="checkbox">
             <div>
-              <input type="radio" id="option1" value="0" name="checkbox" onclick="showT()"><span>specified filter from linkedin </span>
-            </div>
-            <br>
-            <!-- <div id ="nir">            
-            </div> -->
-            <div>
-              <input  type="hidden" id ="Add_link_Id" name="name" placeholder="Add link" >
-            </div>
-            <div class ="nir" id ="nir">            
-            </div>
-            <div>
-              <div id ="nir">            
+              <div class="row">
+                <input type="radio" id="option1" value="0" name="checkbox" onclick="showT()" required><span>specified filter from linkedin </span>
+                <div class="link_option">
+                  <input  type="hidden" id ="Add_link_Id" name="name" placeholder="Add link" >
+                </div>   
               </div>
-              <input type="radio" value="1"name="checkbox" id="option2" onclick="hideT()"><span>first connections that are ceos of tech companies </span>
-            </div>
-            <br>
-           
+          </div>        
+            <div>            
+              <input type="radio" value="1"name="checkbox" id="option2" onclick="hideT()" required><span>first connections that are ceos of tech companies </span>
+            </div>   
             <div>
-              <input type="radio" value="2" name="checkbox" id="option3" onclick="hideT()"><span>Test Eagle Point employees </span>
+              <input type="radio" value="2" name="checkbox" id="option3" onclick="hideT()"required><span>Test Eagle Point employees </span>
             </div>
           </div>
           <br>
-          <input class="event_link" type="text" name="event_link" placeholder="Link to event" >
-          <input class="message" type="text" name="message" placeholder="Write your message" >
+          <input class="event_link" type="text" name="event_link" placeholder="Link to event" required>
+          <input class="message" type="text" name="message" placeholder="Write your message" required >
           <input class="num_of_page" type="number" name="num_of_page" min="0" max="100" placeholder="choose number of pages" >
           
           <!-- <input type="password" name="name" placeholder="Password"> -->

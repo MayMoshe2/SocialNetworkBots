@@ -11,6 +11,8 @@ const app=express();
 app.use('/', express.static(path.join(__dirname, 'html')));
 // app.use('/main', express.static(path.join(__dirname, 'html/main.html')));
 app.use('/MessageOnEvent', express.static(path.join(__dirname, 'html/messageOnEvent.html')));
+app.use('/mainPage', express.static(path.join(__dirname, 'html/mainPage.html')));
+
 // app.use('/style', express.static(path.join(__dirname, 'style')));
 app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use(express.static('style'));

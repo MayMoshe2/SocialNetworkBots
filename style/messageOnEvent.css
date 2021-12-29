@@ -2,15 +2,15 @@ html, body {
 min-height: 100%;
 }
 body, div, form, input, select, p { 
-padding: 0;
-margin: 0;
-outline: none;
-font-family: Roboto, Arial, sans-serif;
-font-size: 16px;
-color: #eee;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    color: #eee;
 }
 body {
-background: url("/style/background.jpeg") no-repeat center;
+background: url("background.jpeg") no-repeat center;
 background-size: cover;
 }
 h1, h2 {
@@ -110,4 +110,11 @@ height: calc(100% - 50px);
 flex: 1;
 height: auto;
 }
+}
+.row{
+display: flex;  
+}
+.link_option{
+padding-left: 40px;
+padding-bottom: 5px;
 }
