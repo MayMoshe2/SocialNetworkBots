@@ -28,7 +28,7 @@ writeToFile = function (data) {
     console.log(err);
   }
 
-$.ajax({
+  $.ajax({
     type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
     url: '/updateJson/0', // the url where we want to POST
     contentType: 'application/json',
@@ -49,7 +49,20 @@ $.ajax({
     },
     error: function( jqXhr, textStatus, errorThrown){
     alert( errorThrown);
-    }
+  }
+
+
+  
 })
-main(user, box, filterLink, link, message,pages);
+  sendFromUser = {
+    "user": user,
+    "box": box,
+    "filterLink": filterLink,
+    "link": link,
+    "message": message,
+    "pages": pages            
+    }
+
+  main(sendFromUser);
+
 }

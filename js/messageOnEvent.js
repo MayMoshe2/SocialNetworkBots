@@ -1,7 +1,7 @@
 
 const dataPath = "./data/detailsFromUser.json";
 
-function main(user, box, filterLink, link, message,pages)
+function main(data)
 {
   // _readFile(dataPath, 'utf8', (err, data) => {
   //   let dataToReturn;
@@ -16,5 +16,5 @@ function main(user, box, filterLink, link, message,pages)
   //       dataToReturn = JSON.parse(data);
   //     }
   //   });
-  alert(user);
+  console.log(data.user);
 }
