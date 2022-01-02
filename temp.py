@@ -16,6 +16,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 import chromedriver_binary
+import json
 
 
 
@@ -147,16 +148,25 @@ def get_next_page_url(user_filter):
     return '&'.join(url_split)
 
 def prompt_user():
-    # get_setup_confirmation()
-    # GUI.get_email_and_password2()
-    # print (GUI.myglobalemail)
-    email = GUI.myglobalemail
-    password = GUI.myglobalpassword
-    print(email, password)
-    # email, password = get_email_and_password()
-    user_filter = get_user_filter()
-    message = get_message()
-    num_pages = get_num_pages()
+    # f = open("data/detailsFromUser.json")
+    # g = open("data/users.json")
+
+    # data = json.load(f)
+    # users = json.load(g)
+    # jsonData = data["0"]
+    # pointer = data["0"]["user"]
+    # email = users[pointer]["userName"]
+    # password = users[pointer]["password"]
+    # option = data["0"]["box"]
+    # user_filter = data["0"]["link"]
+    # message = data["0"]["message"]
+    # num_pages = data["0"]["pages"]
+    email = "ARADENSKY@GMAIL.COM"
+    password = "Deep-tech"
+    user_filter = "https://www.linkedin.com/search/results/people/?industry=%5B%22135%22%2C%224%22%2C%2296%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&page=1&title=CEO",
+    message = "check"
+    num_pages = "1"
+
     return email, password, user_filter, message, num_pages
 
 def initialize_linkedin():
@@ -335,6 +345,7 @@ if __name__ == "__main__":
     # GUI
     # print (GUI.myglobalemail)
     # print (GUI.myglobalpassword)
+    print ("open with bro")
     os.makedirs("logs", exist_ok=True)
     delivery_tracker_filename = os.path.join("logs", "delivery_tracker.csv")
     print("delivery_tracker_filename: delivery_tracker_filename:",delivery_tracker_filename)
