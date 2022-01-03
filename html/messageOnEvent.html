@@ -19,7 +19,7 @@
         <h2>Hey, I will help you with Marketing Now</h2>
         <p>Please don't forget to turn off new message popups in messaging setting and changing send to enter.</p>
       </div>
-      <form id="date_form" onsubmit="writeToFile(this)">
+      <form id="date_form">
         <div class="title">
           <i class="fas fa-pencil-alt"></i> 
           <h2>Welcome to Eagle Point Funding Bot</h2>
@@ -56,22 +56,22 @@
                   <input  type="hidden" id ="Add_link_Id" name="name" placeholder="Add link" >
                 </div>   
               </div>
-          </div>        
+            </div>        
             <div>            
-              <input type="radio" value="1"name="checkbox" id="option2" onclick="hideT()" required><span>first connections that are ceos of tech companies </span>
+              <input type="radio" value="1" name="checkbox" id="option2" onclick="hideT()" required><span>first connections that are ceos of tech companies </span>
             </div>   
             <div>
               <input type="radio" value="2" name="checkbox" id="option3" onclick="hideT()"required><span>Test Eagle Point employees </span>
             </div>
           </div>
           <br>
-          <input class="event_link" type="text" name="event_link" placeholder="Link to event" required>
-          <input class="message" type="text" name="message" placeholder="Write your message" required >
-          <input class="num_of_page" type="number" name="num_of_page" min="0" max="100" placeholder="choose number of pages" >
+          <input class="event_link" type="text" name="event_link" id="event_link" placeholder="Link to event" required>
+          <input class="message" type="text" name="message" id="message" placeholder="Write your message" required >
+          <input class="num_of_page" type="number" name="num_of_page" id="num_of_page" min="0" max="100" placeholder="choose number of pages" >
           
           <!-- <input type="password" name="name" placeholder="Password"> -->
         </div>
-        <button type="submit" onclick="writeToFile(data)" >Submit</button>
+        <button type="submit" onclick="writeToFile()" >Submit</button>
       </form>
     </div>
   </body>
