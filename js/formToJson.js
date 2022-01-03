@@ -1,4 +1,3 @@
-
 file = {}
 showT = function() {
   document.getElementById("Add_link_Id").type = "" ;
@@ -8,14 +7,6 @@ hideT = function () {
   document.getElementById("Add_link_Id").type = "hidden" ;
 }
 writeToFile = function (data) {
-  
-//   console.log("users_name: " +  data.users_name.value); //בחירת המשתמש(מציג את הערך שלו, ולא את שם המשתמש)
-//   console.log("checkbox: " + data.checkbox.value);//(מציג את ערך בחירת הרדיו 0\1\2)
-//   console.log("link: " + data.name.value)
-//   console.log("event_link: " + data.event_link.value); // מציג את הלינק הנבחר
-//   console.log("message: " + data.message.value); // מציג את מספר ההודעה הנבחר     
-//   console.log("num_of_page: " + data.num_of_page.value); // מציג את מספר העמודים הנבחר
-  
   try{
     user = data.users_name.value;
     box = data.checkbox.value;
@@ -43,26 +34,19 @@ writeToFile = function (data) {
     processData: false,            
     encode: true,
     success: function(){
-        //   location.href = "/SiteList";
-    alert("finish main");
-    window.location.href = "mainPage.html";
+    window.location.href = "/runPy";
     },
     error: function( jqXhr, textStatus, errorThrown){
     alert( errorThrown);
+    window.location.href = "/mainPage";
   }
-
-
-  
 })
-  sendFromUser = {
-    "user": user,
-    "box": box,
-    "filterLink": filterLink,
-    "link": link,
-    "message": message,
-    "pages": pages            
-    }
-
-  main(sendFromUser);
-
+  // sendFromUser = {
+  //   "user": user,
+  //   "box": box,
+  //   "filterLink": filterLink,
+  //   "link": link,
+  //   "message": message,
+  //   "pages": pages            
+  //   }
 }

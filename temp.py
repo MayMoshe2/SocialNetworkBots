@@ -44,32 +44,6 @@ class User:
     password: str
     Id: int
 
-
-# testing credentials (blame asher)
-credentials = [
-    User("ariel", "shatz.ariel@gmail.com", "ASAS1919",0),
-    User("asher", "ARADENSKY@GMAIL.COM", "Deep-tech",1),
-    User("yuval", "yuval@deeptechshowcase.com", "Deep2021",2),
-    User("josh", "josh@eaglepointfunding.com", "Jb2022Jb",3),
-    User("liora", "lioramore123@gmail.com", "LiLeeDTS8",4),
-    User("liora c", "liora@eaglepointfunding.com", "Liora145",5),
-    User("shlomie", "shlomieisenmann@gmail.com", "4166reSe!",6),
-    User("danielle", "daniellajakubowitz@gmail.com", "Purple!yay",7),
-    User("sasha", "sblecher810@gmail.com ", "ISLAmujeres21",8),
-    User("katie", "katie@eaglepointfunding.com", "4meonly2",9),
-    User("max", "mhfrischman@gmail.com", "Mf2020Mf",10),
-    User("yoav", "yoav.e.sadan@gmail.com", "NOWITSLENASFAULT123",11),
-    User("bibi", "binyamin.samson@gmail.com", "R3dElephantsSaveSouls*",12),
-    User("sarah", "sarahbatya123@gmail.com", "Houston909",13),
-    User("ari", "ari@eaglepointfunding.com", "IloveOr5!",14),
-    User("matthew", "Matthew.david.cloud@gmail.com", "Eaglepoint1",15),
-    User("Bryan", "bryanmarkowitz@gmail.com", "MeGustanFajitas21",16),
-    User("Lena", "Lenaawadp3@gmail.com", "EPF@2580",17),
-    User("Ariel K", "tsarfatiariel@gmail.com", "Eagle2021",18),
-    User("Sharon", "Sharon.ehieli@gmail.com", "chompi86!",19)
-
-]
-
 def initialize_logger():
     logger.setLevel(logging.DEBUG)
 
@@ -101,26 +75,6 @@ messages = [
     "Hi <first_name>, I am reaching out to invite you to our next showcase focused on Federal Funding Opportunities for Silicon Valley Start-Ups taking place on Decemcer 15th. You can register for the event here: https://www.linkedin.com/events/6859061435058708481/ . Looking forward to seeing you there!",
     "test",
 ]
-
-
-def get_message():
-    inp = input("Enter message or press enter for default: ")
-    try:
-        message_id = 0 if inp == "" else int(inp)
-        return messages[message_id]
-    except (ValueError, IndexError):
-        return inp
-
-
-def get_num_pages():
-    limitp = input("How many pages should I do? ")
-    return int(limitp)
-
-
-def get_setup_confirmation():
-    input(
-        "Please don't forget to turn off new message popups in messaging setting and changing send to enter. Press enter to continue."
-    )
 
 def get_user_filter():
     inp = input(
@@ -163,39 +117,23 @@ def prompt_user():
     # num_pages = data["0"]["pages"]
     email = "ARADENSKY@GMAIL.COM"
     password = "Deep-tech"
-    user_filter = "https://www.linkedin.com/search/results/people/?industry=%5B%22135%22%2C%224%22%2C%2296%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&page=1&title=CEO",
-    message = "check"
+    user_filter = "https://www.linkedin.com/search/results/people/?industry=%5B%22135%22%2C%224%22%2C%2296%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&page=1&title=CEO"
+    message = "Hey <first_name>, I thought you might be interested in our Advanced Connectivity/5G Day coming up on Mar. 23rds. Here is a link to join: https://www.linkedin.com/events/6854710705799614465/"
     num_pages = "1"
 
     return email, password, user_filter, message, num_pages
 
 def initialize_linkedin():
     email, password, user_filter, message, num_pages = prompt_user()
-
-    driver = webdriver.Chrome(options=set_chrome_options())
-    setup(driver, fullscreen=True)
-    login(driver, email=email, password=password)
-    logger.info("logged in")
-    apply_filter(driver, user_filter=user_filter)
-    return driver, user_filter, message, num_pages
-
-def get_email_and_password():
-    messages = [f"Enter for {credentials[0].name}"]
-    messages += [f"{str(i+1)} for {user.name}" for i, user in enumerate(credentials[1:])]
-    prompt = ", ".join(messages)
-
-    print(f"Please enter {prompt}")
-    print("or 'new' if you're not on the list")
-    inp = input(": ")
     try:
-        user_id = 0 if inp == "" else int(inp)
-        user = credentials[user_id]
-        return user.email, user.password
-    except (ValueError, IndexError):
-        email = input("LinkedIn email: ")
-        password = input("LinkedIn password: ")
-        return email, password
-
+        driver = webdriver.Chrome(options=set_chrome_options())
+        setup(driver, fullscreen=True)
+        login(driver, email=email, password=password)
+        apply_filter(driver, user_filter=user_filter)
+    except Exception as exc:
+        print(exc)
+    logger.info(f"logged in")
+    return driver, user_filter, message, num_pages
 
 user_filters = [
     "https://www.linkedin.com/search/results/people/?industry=%5B%22135%22%2C%224%22%2C%2296%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&page=1&title=CEO",
@@ -290,7 +228,7 @@ class UserPage:
         return full_name
 
     def get_message_button(self,userNum, user_element):
-        xpathB = "//div/div/div[3]/ul/li[tempi]/div/div/div[3]/button"
+        xpathB = "//div/div/div[3]/ul/li[tempi]/div/div/div[3]/div/button"
         number = str(userNum)
         print("number", number)
         xpathB = xpathB.replace("tempi", number)
@@ -342,20 +280,15 @@ class DeliveryTracker:
 
 
 if __name__ == "__main__":
-    # GUI
-    # print (GUI.myglobalemail)
-    # print (GUI.myglobalpassword)
-    print ("open with bro")
     os.makedirs("logs", exist_ok=True)
     delivery_tracker_filename = os.path.join("logs", "delivery_tracker.csv")
     print("delivery_tracker_filename: delivery_tracker_filename:",delivery_tracker_filename)
     initialize_logger()
     driver, user_filter, message, num_pages = initialize_linkedin()
-
     page = UserPage(driver, message, delivery_tracker_filename, testing=False)
-
+ 
     try:
-        for i in range(num_pages):
+        for i in range(int(num_pages)):
             page_number = i + 1
             logger.info(f"Processing page {page_number}")
             user_elements = page.get_user_elements()
@@ -371,5 +304,5 @@ if __name__ == "__main__":
     except Exception as exc:
         logger.exception("failed", exc_info=exc)
         driver.get_screenshot_as_file("logs/crash.png")
-        driver.close()
+        # driver.close()
     logger.info("Done")

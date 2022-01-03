@@ -29,17 +29,13 @@ const writeFile = (fileData, callback, filePath = dataPath, encoding = 'utf8') =
     updateJson: function (req, res) 
     {
         readFile(data => {
-            const tripId = req.params["id"];
-            if(data[tripId]){
-                delete data[tripId];
+            const userId = req.params["id"];
+            if(data[userId]){
+                delete data[userId];
             }
-            // if(!req.body) return res.status(400).send('Body is missing!');
-            // if (!tripId) return res.status(400).send('Id is missing!');
-            // if(data[tripId]) return res.status(400).send('tour already exists!');
-            data[tripId] = req.body;
-         
+            data[userId] = req.body;
             writeFile(JSON.stringify(data, null, 2), () => {
-                res.status(200).send('new tour added');
+                res.status(200).send('user Updated');
             });
         },
             true);
