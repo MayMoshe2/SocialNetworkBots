@@ -102,29 +102,34 @@ def get_next_page_url(user_filter):
     return '&'.join(url_split)
 
 def prompt_user():
-    # f = open("data/detailsFromUser.json")
-    # g = open("data/users.json")
+    f = open("data/detailsFromUser.json")
+    g = open("data/users.json")
 
-    # data = json.load(f)
-    # users = json.load(g)
-    # jsonData = data["0"]
-    # pointer = data["0"]["user"]
-    # email = users[pointer]["userName"]
-    # password = users[pointer]["password"]
-    # option = data["0"]["box"]
-    # user_filter = data["0"]["link"]
-    # message = data["0"]["message"]
-    # num_pages = data["0"]["pages"]
+    data = json.load(f)
+    users = json.load(g)
+    jsonData = data["0"]
+    pointer = data["0"]["user"]
+    email = users[pointer]["userName"]
+    password = users[pointer]["password"]
+    option = data["0"]["box"]
+    user_filter = data["0"]["filterLink"]
+    message = data["0"]["message"]
+    num_pages = data["0"]["pages"]
+    print(email)
+    print(password)
+    logger.info(user_filter)
+    print(message)
+    print(num_pages)
     # email = "yuval@deeptechshowcase.com"
     # password = "Deep2021"
     # user_filter = "https://www.linkedin.com/search/results/people/?industry=%5B%22135%22%2C%224%22%2C%2296%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&page=1&title=CEO"
     # message = "Hey <first_name>, I thought you might be interested in our Advanced Connectivity/5G Day coming up on Mar. 23rds. Here is a link to join: https://www.linkedin.com/events/6854710705799614465/"
     # num_pages = "1"
-    email = "maymoshe222@gmail.com"
-    password = "Ma208832873"
-    user_filter = "https://www.linkedin.com/search/results/people/?keywords=nir%20maman&network=%5B%22F%22%5D&origin=FACETED_SEARCH&position=0&searchId=bcb7779e-27b4-4137-97ba-ea85e4af9008&sid=v7i"
-    message = "Testing - Hey, I wanted to invite you to the event: https://www.linkedin.com/events/6881222996057477120/"
-    num_pages = "1"
+    # email = "maymoshe222@gmail.com"
+    # password = "Ma208832873"
+    # user_filter = "https://www.linkedin.com/search/results/people/?keywords=nir%20maman&network=%5B%22F%22%5D&origin=FACETED_SEARCH&position=0&searchId=bcb7779e-27b4-4137-97ba-ea85e4af9008&sid=v7i"
+    # message = "Testing - Hey, I wanted to invite you to the event: https://www.linkedin.com/events/6881222996057477120/"
+    # num_pages = "1"
     return email, password, user_filter, message, num_pages
 
 def initialize_linkedin():
@@ -134,6 +139,7 @@ def initialize_linkedin():
         setup(driver, fullscreen=True)
         login(driver, email=email, password=password)
         apply_filter(driver, user_filter=user_filter)
+        print (user_filter)
     except Exception as exc:
         print(exc)
     logger.info(f"logged in")
@@ -183,22 +189,23 @@ class UserPage:
         message_button.click()
         message = self.get_formatted_message(replace_strings=message_formatting)
         self.send_message(message)
+        logger.info("send message")
         time.sleep(0.5)
         self.click_x()
-        if self.testing is True:
-            self.discard_message()
+        # if self.testing is True:
+        #     self.discard_message()
 
     def send_message_to_users(self, user_elements):
         userNum = 1
         for user_element in user_elements:
             full_name = self.get_full_name(user_element)
-            if not self.delivery_tracker.already_delivered(full_name):
-                logger.info(f"Sending to {full_name}")
-                first_name = full_name.split(" ")[0]
-                self.send_message_to_user(userNum, user_element, first_name=first_name)
-                self.delivery_tracker.add_user_to_delivered_list(full_name)
-            else:
-                logger.info(f"Already delivered to {full_name}")
+            # if not self.delivery_tracker.already_delivered(full_name):
+            logger.info(f"Sending to {full_name}")
+            first_name = full_name.split(" ")[0]
+            self.send_message_to_user(userNum, user_element, first_name=first_name)
+            self.delivery_tracker.add_user_to_delivered_list(full_name)
+            # else:
+            #     logger.info(f"Already delivered to {full_name}")
             userNum+= 1
 
     def send_message(self, message):
@@ -206,8 +213,8 @@ class UserPage:
         # msgwin = self.driver.find_element_by_xpath("//button[contains(@class, 'send-button')]")
         msgwin.send_keys(message)
         self.driver.find_element_by_xpath("//button[contains(@class, 'send-button')]").click()
-        if self.testing is False:
-            msgwin.send_keys(Keys.ENTER)
+        # if self.testing is False:
+        #     msgwin.send_keys(Keys.ENTER)
 
     def discard_message(self):
         self.driver.find_element_by_xpath("//*[contains(span,'Discard')]").click()
@@ -288,7 +295,7 @@ class DeliveryTracker:
 if __name__ == "__main__":
     os.makedirs("logs", exist_ok=True)
     delivery_tracker_filename = os.path.join("logs", "delivery_tracker.csv")
-    print("delivery_tracker_filename: delivery_tracker_filename:",delivery_tracker_filename)
+    # print("delivery_tracker_filename: delivery_tracker_filename:",delivery_tracker_filename)
     initialize_logger()
     driver, user_filter, message, num_pages = initialize_linkedin()
     page = UserPage(driver, message, delivery_tracker_filename, testing=False)

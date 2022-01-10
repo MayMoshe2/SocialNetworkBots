@@ -1,4 +1,7 @@
+const { log } = require('console');
 const fs = require('fs');
+const {spawn} = require('child_process');
+
 // variables
 const dataPath = './data/detailsFromUser.json';
 
@@ -21,23 +24,57 @@ const writeFile = (fileData, callback, filePath = dataPath, encoding = 'utf8') =
             }
             callback();
         });
-    };
-
-    
-    module.exports = {
-                
-    updateJson: function (req, res) 
-    {
-        readFile(data => {
-            const userId = req.params["id"];
-            if(data[userId]){
-                delete data[userId];
-            }
-            data[userId] = req.body;
-            writeFile(JSON.stringify(data, null, 2), () => {
-                res.status(200).send('user Updated');
+    }; 
+           
+        
+const firstPython =  (req, res) =>{
+        try {
+            var dataToSend;
+            const python = spawn('python', ['temp.py']);
+            // collect data from script
+            python.stdout.on('data', function (data) {
+                console.log('Pipe data from python script ...');
+                dataToSend = data.toString();
             });
-        },
-            true);
-    }   
-};
+            python.on('close', (code) => {
+                console.log(`child process close all stdio with code ${code}`);
+                // send data to browser
+                res.send(dataToSend)
+            });
+        } catch (error) {
+            console.log(error);
+            res.status(500)
+        }
+    }
+     
+
+const updateJson = function (req, res) 
+    {
+        try {
+            readFile(data => {
+                const userId = req.params["id"];
+                if(data[userId]){
+                    delete data[userId];
+                }
+                data[userId] = req.body;
+                writeFile(JSON.stringify(data, null, 2), () => {
+                    res.status(200).send('user Updated');
+                });
+            },
+                true);
+        }             
+        catch (error) {
+            console.log(error);
+            res.status(500);
+        }
+    }
+
+
+
+module.exports = {
+    updateJson,
+    firstPython,
+    writeFile,
+    readFile,
+
+}

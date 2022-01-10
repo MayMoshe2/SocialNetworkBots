@@ -9,7 +9,6 @@ hideT = function () {
 writeToFile = function () {
   let user = document.getElementById("users_name").value;
   let box1 = document.getElementById("option1").checked;
-  let box2 = document.getElementById("option2").checked;
   let box3 = document.getElementById("option3").checked;
   let filterLink = document.getElementById("Add_link_Id").value;
   let link = document.getElementById("event_link").value;
@@ -19,9 +18,6 @@ writeToFile = function () {
 
   if (box1 == true){
     box = "1"
-  }
-  else if(box2 == true){
-    box = "2"
   }
   else{
     box = 3
@@ -33,7 +29,7 @@ writeToFile = function () {
   console.log("link " + link );
   console.log("message " + message );
   console.log("pages " + pages );
-
+alert("stopBeforAjax")
   $.ajax({
     type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
     url: '/updateJson/0', // the url where we want to POST
@@ -49,13 +45,30 @@ writeToFile = function () {
     processData: false,            
     encode: true,
     success: function(){
-      window.location.href = "/runPy";
+      // console.log("success");
+    callPython();
+     alert("Before making more action, please wait until this action end.");
+      //window.location.href = "/runPy";
     },
     error: function( jqXhr, textStatus, errorThrown){
       alert( errorThrown);
       window.location.href = "/mainPage";
     }
   })
-
+alert("stop")
  
+}
+
+callPython = function (){
+  console.log("call python first line");
+  $.ajax({
+    type: 'get', // define the type of HTTP verb we want to use (POST for our form)
+    url: '/firstPython', // the url where we want to POST
+    success: function(){
+      console.log("firstPython is called from client");
+    },
+    error: function( jqXhr, textStatus, errorThrown){
+      alert( errorThrown);
+    }
+  })
 }

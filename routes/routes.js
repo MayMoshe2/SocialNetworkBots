@@ -1,15 +1,8 @@
-const express = require('express'),
-    backendRoutes = require('./backend');
-
+const express = require('express')
+const { updateJson,firstPython,writeFile,readFile } = require('./backend')
 var router = express.Router();
 
-//change ' _'
-// router.put('/updateJson', backendRoutes.updateJson);
-// router.get('/getTour/:id', tripsRoutes.getTour);
-router.post('/updateJson/:id', backendRoutes.updateJson);
-// router.post('/createSiteInPath/:id', tripsRoutes.createSiteInPath);
-// router.put('/updateTour/:id', tripsRoutes.updateTour);
-// router.delete('/deleteTour/:id', tripsRoutes.deleteTour);
-// router.delete('/deleteSite/:id/:site_name', tripsRoutes.deleteSite);
+router.post('/updateJson/:id', updateJson);
+router.get('/firstPython', firstPython);
 
 module.exports = router;
