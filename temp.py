@@ -107,19 +107,20 @@ def prompt_user():
 
     data = json.load(f)
     users = json.load(g)
-    jsonData = data["0"]
     pointer = data["0"]["user"]
     email = users[pointer]["userName"]
     password = users[pointer]["password"]
     option = data["0"]["box"]
+    if option == 1:
+        user_filter = data["0"]["filterLink"]
+    else:
+        user_filter = user_filters[0]
     user_filter = data["0"]["filterLink"]
     message = data["0"]["message"]
     num_pages = data["0"]["pages"]
-    print(email)
-    print(password)
+   
     logger.info(user_filter)
-    print(message)
-    print(num_pages)
+   
     # email = "yuval@deeptechshowcase.com"
     # password = "Deep2021"
     # user_filter = "https://www.linkedin.com/search/results/people/?industry=%5B%22135%22%2C%224%22%2C%2296%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&page=1&title=CEO"

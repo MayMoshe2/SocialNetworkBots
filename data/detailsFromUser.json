@@ -1,10 +1,10 @@
 {
   "0": {
-    "user": "1",
-    "box": "0",
-    "filterLink": "https://www.linkedin.com/search/results/people/?industry=%5B%22135%22%2C%224%22%2C%2296%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&page=1&title=CEO",
-    "link": "4",
-    "message": "הייי אנחש ח4",
+    "user": "21",
+    "box": "1",
+    "filterLink": "https://www.linkedin.com/search/results/people/?firstName=may&lastName=moshe&network=%5B%22F%22%5D&origin=FACETED_SEARCH&sid=Z(P",
+    "link": "https://www.linkedin.com/events/6881222996057477120/",
+    "message": "message = \"Testing - Hey, I wanted to invite you to the event: https://www.linkedin.com/events/6881222996057477120/\"",
     "pages": "1"
   }
 }
