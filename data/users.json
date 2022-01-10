@@ -7,7 +7,7 @@
     "1":{
         "name": "asher",
         "userName":"ARADENSKY@GMAIL.COM", 
-        "password": "Deep-tech" 
+        "password": "Deep-tech1" 
     },
     "2":{
         "name": "yuval",
@@ -98,5 +98,11 @@
         "name": "Sharon",
         "userName": "Sharon.ehieli@gmail.com", 
         "password": "chompi86!"
+    },
+    "20":{
+        "name": "May test",
+        "userName": "maymoshe222@gmail.com", 
+        "password": "Ma208832873"
     }
+    
 }

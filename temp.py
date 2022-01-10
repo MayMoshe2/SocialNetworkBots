@@ -115,12 +115,16 @@ def prompt_user():
     # user_filter = data["0"]["link"]
     # message = data["0"]["message"]
     # num_pages = data["0"]["pages"]
-    email = "ARADENSKY@GMAIL.COM"
-    password = "Deep-tech"
-    user_filter = "https://www.linkedin.com/search/results/people/?industry=%5B%22135%22%2C%224%22%2C%2296%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&page=1&title=CEO"
-    message = "Hey <first_name>, I thought you might be interested in our Advanced Connectivity/5G Day coming up on Mar. 23rds. Here is a link to join: https://www.linkedin.com/events/6854710705799614465/"
+    # email = "yuval@deeptechshowcase.com"
+    # password = "Deep2021"
+    # user_filter = "https://www.linkedin.com/search/results/people/?industry=%5B%22135%22%2C%224%22%2C%2296%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&page=1&title=CEO"
+    # message = "Hey <first_name>, I thought you might be interested in our Advanced Connectivity/5G Day coming up on Mar. 23rds. Here is a link to join: https://www.linkedin.com/events/6854710705799614465/"
+    # num_pages = "1"
+    email = "maymoshe222@gmail.com"
+    password = "Ma208832873"
+    user_filter = "https://www.linkedin.com/search/results/people/?keywords=nir%20maman&network=%5B%22F%22%5D&origin=FACETED_SEARCH&position=0&searchId=bcb7779e-27b4-4137-97ba-ea85e4af9008&sid=v7i"
+    message = "Testing - Hey, I wanted to invite you to the event: https://www.linkedin.com/events/6881222996057477120/"
     num_pages = "1"
-
     return email, password, user_filter, message, num_pages
 
 def initialize_linkedin():
@@ -199,12 +203,14 @@ class UserPage:
 
     def send_message(self, message):
         msgwin = self.driver.find_element_by_css_selector(".msg-form__contenteditable")
+        # msgwin = self.driver.find_element_by_xpath("//button[contains(@class, 'send-button')]")
         msgwin.send_keys(message)
+        self.driver.find_element_by_xpath("//button[contains(@class, 'send-button')]").click()
         if self.testing is False:
             msgwin.send_keys(Keys.ENTER)
 
     def discard_message(self):
-        self.driver.find_element_by_xpath("//span[contains(.,'Discard')]").click()
+        self.driver.find_element_by_xpath("//*[contains(span,'Discard')]").click()
 
     def get_user_elements(self):
         try:
@@ -228,7 +234,7 @@ class UserPage:
         return full_name
 
     def get_message_button(self,userNum, user_element):
-        xpathB = "//div/div/div[3]/ul/li[tempi]/div/div/div[3]/div/button"
+        xpathB = "//div/*/ul/li[tempi]/div/*//button"
         number = str(userNum)
         print("number", number)
         xpathB = xpathB.replace("tempi", number)
