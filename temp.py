@@ -213,7 +213,10 @@ class UserPage:
         msgwin = self.driver.find_element_by_css_selector(".msg-form__contenteditable")
         # msgwin = self.driver.find_element_by_xpath("//button[contains(@class, 'send-button')]")
         msgwin.send_keys(message)
-        self.driver.find_element_by_xpath("//button[contains(@class, 'send-button')]").click()
+        #element = 
+        self.driver.find_element_by_xpath("//button[contains(@class, 'send-button')]").submit()
+        # self.driver.execute_script("arguments[0].click();", element)
+        #click()
         # if self.testing is False:
         #     msgwin.send_keys(Keys.ENTER)
 
@@ -252,7 +255,7 @@ class UserPage:
     def click_x(self):
         logger.info("click_x")
         try:
-            self.driver.find_element_by_xpath("//div[2]/header/section[2]/button[3]").click()  # ash
+            self.driver.find_element_by_xpath("//div[2]/header/section[2]/button[3]").submit()  # ash
         except Exception as exc:
             pass
         try:
