@@ -8,6 +8,8 @@ app.use('/', express.static(path.join(__dirname, 'html')))
 app.use('/MessageOnEvent', express.static(path.join(__dirname, 'html/messageOnEvent.html')))
 app.use('/mainPage', express.static(path.join(__dirname, 'html/mainPage.html')))
 app.use('/addConnections', express.static(path.join(__dirname, 'html/addConnections.html')))
+app.use('/login', express.static(path.join(__dirname, 'html/login.html')))
+
 app.use('/js', express.static(path.join(__dirname, 'js')))
 app.use(express.static('style'))
 
