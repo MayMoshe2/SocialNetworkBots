@@ -168,3 +168,7 @@ body {
     bottom: 100%;
   }
 }
+
+#wrong_option {
+  background-color: #03e9f4;
+}
