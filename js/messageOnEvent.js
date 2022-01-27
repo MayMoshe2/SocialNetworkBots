@@ -1,7 +1,5 @@
+const dataPath = './data/detailsFromUser.json'
 
-const dataPath = "./data/detailsFromUser.json";
-
-function main(data)
-{
-  console.log(data.user);
+function main(data) {
+  console.log(data.user)
 }
