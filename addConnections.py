@@ -1,3 +1,6 @@
+from ast import Or
+from asyncio.windows_events import NULL
+from tarfile import NUL
 import chromedriver_binary
 import time
 import logging
@@ -16,6 +19,8 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.action_chains import ActionChains
 import chromedriver_binary
 import winsound
+import json
+
 logger=logging.getLogger("bot")
 def set_chrome_options(headless:bool=False) -> None:
     """Sets chrome options for Selenium.
@@ -37,47 +42,22 @@ class User:
     email: str
     password: str
 
-# credentials = [
-#     User("ariel", "shatz.ariel@gmail.com", "ASAS1919"),
-#     User("asher", "ARADENSKY@GMAIL.COM", "Deep-tech"),
-#     User("yuval", "yuval@deeptechshowcase.com", "Deep2021"),
-#     User("josh", "josh@eaglepointfunding.com", "Jb2022Jb"),
-#     User("liora", "lioramore123@gmail.com", "LiLeeDTS8"),
-#     User("liora c", "liora@eaglepointfunding.com", "Liora145"),
-#     User("shlomie", "shlomieisenmann@gmail.com", "4166reSe!"),
-#     User("danielle", "daniellajakubowitz@gmail.com", "Purple!yay"),
-#     User("sasha", "sblecher810@gmail.com ", "ISLAmujeres21"),
-#     User("katie", "katie@eaglepointfunding.com", "4meonly2"),
-#     User("max", "mhfrischman@gmail.com", "Mf2020Mf"),
-#     User("yoav", "yoav.e.sadan@gmail.com", "NOWITSLENASFAULT123"),
-#     User("bibi", "binyamin.samson@gmail.com", "R3dElephantsSaveSouls*"),
-#     User("sarah", "sarahbatya123@gmail.com", "Houston909"),
-#     User("ari", "ari@eaglepointfunding.com", "IloveOr5!"),
-#     User("matthew", "Matthew.david.cloud@gmail.com", "Eaglepoint1"),
-#     User("Bryan", "bryanmarkowitz@gmail.com", "MeGustanFajitas21"),
-#     User("Sharon", "Sharon.ehieli@gmail.com", "chompi86!")
-# ]
-print("Welcome to the FriendMacherTM. Please use a larger monitor for this program to work properly. By using this bot you are prohibited from calling it Messi or Messy or any variation as such. Non cooperation of this agreement will lead to license restriction of said bot. Thank you. Have a wonderful time.")
-beep = int(input("how many people do you want clicked?"))
-nummy = int(input("Where should I start clicking from? (This is for people who have personal contacts on this list)"))
-
+# f = open("data/detailsFromUser.json")
+# data = json.load(f)
+# numOfConnections = data["1"]["connections"]
+# startFrom = data["1"]["start_from"]
 
 def get_email_and_password():
-    # messages = [f"Enter for {credentials[0].name}"]
-    # messages += [f"{str(i+1)} for {user.name}" for i, user in enumerate(credentials[1:])]
-    # prompt = ", ".join(messages)
-
-    # print(f"Please enter {prompt}")
-    print("or 'new' if you're not on the list")
-    # inp = input(": ")
-    # try:
-    #     user_id = 0 if inp == "" else int(inp)
-    #     user = credentials[user_id]
-    #     return user.email, user.password
-    # except (ValueError, IndexError):
-    #     email = input("LinkedIn email: ")
-    #     password = input("LinkedIn password: ")
-    #     return email, password
+    g = open("data/users.json")
+    f = open("data/detailsFromUser.json")
+    data = json.load(f)
+    users = json.load(g)
+    pointer = data["1"]["user"]
+    email = users[pointer]["userName"]
+    password = users[pointer]["password"]
+    numOfConnections = data["1"]["connections"]
+    startFrom = data["1"]["start_from"]
+    return email, password, numOfConnections, startFrom
 
 def setup(driver, fullscreen=False):
     # go to linkedin
@@ -106,65 +86,97 @@ def login(driver, email, password):
 
     time.sleep(2)
     driver.implicitly_wait(5)
-def get_user_filter():
-    inp = "https://www.linkedin.com/mynetwork/import-contacts/results/member/"
-    try:
-        filter_id = 0 if inp == "" else int(inp)
-        return user_filters[filter_id]
-    except (ValueError, IndexError):
-        return inp
+
+# def get_user_filter():
+#     inp = "https://www.linkedin.com/mynetwork/import-contacts/results/member/"
+#     try:
+#         filter_id = 0 if inp == "" else int(inp)
+#         return user_filters[filter_id]
+#     except (ValueError, IndexError):
+#         return inp
+
 def apply_filter(driver, user_filter):
     # goes to search page and applies filter
     driver.get(user_filter)
 
 def prompt_user():
-    email, password = get_email_and_password()
-    user_filter = get_user_filter()
-    return email, password, user_filter
+    email, password, numOfConnections, startFrom = get_email_and_password()
+    return email, password, numOfConnections, startFrom
 
 def initialize_linkedin():
-    email, password, user_filter = prompt_user()
+    email, password, numOfConnections, startFrom = prompt_user()
+    user_filter = "https://www.linkedin.com/mynetwork/import-contacts/results/member/" 
 
     driver = webdriver.Chrome(options=set_chrome_options())
     setup(driver, fullscreen=True)
     login(driver, email=email, password=password)
     logger.info("logged in")
     apply_filter(driver, user_filter=user_filter)
-    return driver, user_filter
+    return driver, user_filter, numOfConnections, startFrom
 def scrollDown(self):
     body = self.browser.find_element_by_xpath('/html/body')
     body.click()
     ActionChains(self.browser).send_keys(Keys.PAGE_DOWN).perform()
 
-def main():
-    driver, user_filter = initialize_linkedin()
-    time.sleep(4)
-    for x in range(int((nummy/10)+10)):
-        time.sleep(2)
-        body = driver.find_element_by_css_selector('body')
-        body.click()
-        body.send_keys(Keys.PAGE_DOWN)
-    for x in range(10):
-    	#time.sleep()
-            body = driver.find_element_by_css_selector('body')
-            body.click()
-            body.send_keys(Keys.HOME)
-    print("hello")
+def get_user_elements(self):
     try:
-        for i in range(beep):
-        	#finds the check boxes to make new friends and clicks them
-            driver.find_element_by_xpath("//*[@id='main']/div/div/div[2]/div/ul/li["+str(i+nummy)+"]/a/div/div[1]/label").click()
-            time.sleep(1)
-            if i==beep-1:
-                #this piece of code makes noise
-                duration =1000
-                freq = 440 
-                winsound.Beep(freq,duration)
-                #submits the requests before the program quits 
-                driver.find_element_by_xpath("//*[@id='ember2516']").click()
-                driver.find_element_by_xpath("//*[@id='ember2516']").click()
-                driver.find_element_by_xpath("//*[@id='ember2516']").click()                
-                time.sleep(30)
+        element_list_container = self.driver.find_element_by_xpath(
+            """//*[@id="main"]/div/div/div[2]/div/div[1]/ul"""
+        )
+        user_list = element_list_container.find_elements_by_css_selector("li")
+        return user_list
+    except Exception as exc:
+        logger.exception("failed to find buttons", exc_info=exc)
+
+
+def initialize_logger():
+    logger.setLevel(logging.DEBUG)
+
+    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+    handlers = [logging.StreamHandler(sys.stdout), logging.FileHandler(filename=f"logs/output.log")]
+    for handler in handlers:
+        handler.setLevel(logging.DEBUG)
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+
+def main():
+    initialize_logger()
+    driver, user_filter, numOfConnections, startFrom = initialize_linkedin()
+    time.sleep(4)
+    xpathWelcome = """//*[@id="main"]//*/h2"""
+    if driver.find_element_by_xpath(xpathWelcome) == None:
+        logger.info("There are no people you can add")
+        return
+
+    try:
+        element_list_container = driver.find_element_by_xpath("""//*[@id="main"]/div/div/div[2]/div/div[1]/ul""")
+        numberOfPeople = element_list_container.find_elements_by_css_selector("li")
+    except Exception as exc:
+        logger.exception("failed to find buttons", exc_info=exc)
+    
+    logger.info(f"Found {len(numberOfPeople)} users on this page")
+
+    if len(numberOfPeople) < int(startFrom) or len(numberOfPeople) < int(numOfConnections): 
+        if len(numberOfPeople) < int(startFrom):
+            logger.info("There arent enough connections! Please choose a different number to start from.")
+            return
+        else:
+            numOfConnections = len(numberOfPeople) 
+    print(startFrom)
+    print(numOfConnections)
+    howMany = int(numOfConnections) + int(startFrom)
+    print(howMany)
+    try:
+        for x in range(int(startFrom), int(howMany)):
+            time.sleep(2)
+            print("im here")
+            xpath = """//*[@id="main"]/div/div/div[2]/div/div[1]/ul/li[x]/div/*/*/*/label"""
+            xpath = xpath.replace("x", str(x))
+            driver.find_element_by_xpath(xpath).click()
+
+        driver.find_element_by_xpath("//*[contains(span, 'Add')]").click()
+
+    
     except Exception as exc:
         logger.exception("failed", exc_info=exc)
         driver.get_screenshot_as_file("logs/crash.png")
