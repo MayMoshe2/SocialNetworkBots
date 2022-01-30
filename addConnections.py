@@ -42,11 +42,6 @@ class User:
     email: str
     password: str
 
-# f = open("data/detailsFromUser.json")
-# data = json.load(f)
-# numOfConnections = data["1"]["connections"]
-# startFrom = data["1"]["start_from"]
-
 def get_email_and_password():
     g = open("data/users.json")
     f = open("data/detailsFromUser.json")
@@ -87,14 +82,6 @@ def login(driver, email, password):
     time.sleep(2)
     driver.implicitly_wait(5)
 
-# def get_user_filter():
-#     inp = "https://www.linkedin.com/mynetwork/import-contacts/results/member/"
-#     try:
-#         filter_id = 0 if inp == "" else int(inp)
-#         return user_filters[filter_id]
-#     except (ValueError, IndexError):
-#         return inp
-
 def apply_filter(driver, user_filter):
     # goes to search page and applies filter
     driver.get(user_filter)
@@ -113,20 +100,7 @@ def initialize_linkedin():
     logger.info("logged in")
     apply_filter(driver, user_filter=user_filter)
     return driver, user_filter, numOfConnections, startFrom
-def scrollDown(self):
-    body = self.browser.find_element_by_xpath('/html/body')
-    body.click()
-    ActionChains(self.browser).send_keys(Keys.PAGE_DOWN).perform()
 
-def get_user_elements(self):
-    try:
-        element_list_container = self.driver.find_element_by_xpath(
-            """//*[@id="main"]/div/div/div[2]/div/div[1]/ul"""
-        )
-        user_list = element_list_container.find_elements_by_css_selector("li")
-        return user_list
-    except Exception as exc:
-        logger.exception("failed to find buttons", exc_info=exc)
 
 
 def initialize_logger():
