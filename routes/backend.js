@@ -1,9 +1,28 @@
 const { log } = require('console')
 const fs = require('fs')
 const { spawn } = require('child_process')
+const { required } = require('nodemon/lib/config')
+// const collection = db.collection('users')
+
+{
+  /* <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script> */
+}
 
 // variables
 const dataPath = './data/detailsFromUser.json'
+
+// var db = firebase.firestore()
+
+// firebase.initializeApp({
+//   apiKey: 'AIzaSyCxzOG5wE6-A9PTPlQUSJEGHoz1Acbetm8',
+//   authDomain: 'socialnetworksbots.firebaseapp.com',
+//   projectId: 'socialnetworksbots',
+//   // storageBucket: 'socialnetworksbots.appspot.com',
+//   // messagingSenderId: '180389196591',
+//   // appId: '1:180389196591:web:a00c8fc35f5c496e55e7da',
+//   // measurementId: 'G-XN1SBKC3B4',
+// })
 
 // helper methods
 const readFile = (callback, returnJson = false, filePath = dataPath, encoding = 'utf8') => {
@@ -83,6 +102,32 @@ const updateJson = function (req, res) {
   }
 }
 
+const addEmployee = (req, res) => {
+  //let name = req.data.name
+  console.log('addEmploeefrom backend')
+  console.log(req.query.name)
+  console.log(req.query.username)
+  console.log(req.query.password)
+
+  firstName = req.query.name
+  linkdinName = req.query.username
+  passlink = req.query.password
+
+  // db.collection('users')
+  //   .add({
+  //     firstName: nameUser,
+  //     username: linkdinName,
+  //     password: passlink,
+  //   })
+  //   .then((docRef) => {
+  //     console.log('Document written with ID: ', docRef.id)
+  //     console.log(firstName + ' ' + username + ' ' + password)
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error adding document: ', error)
+  //   })
+}
+
 // const updateJsonConnection = function (req, res) {
 //   try {
 //     readFile((data) => {
@@ -107,4 +152,5 @@ module.exports = {
   writeFile,
   readFile,
   addCon,
+  addEmployee,
 }

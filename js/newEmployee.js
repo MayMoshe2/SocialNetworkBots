@@ -71,7 +71,7 @@ async function addEmployee() {
     })
     .then((docRef) => {
       console.log('Document written with ID: ', docRef.id)
-      alert(docRef.id)
+      alert(name + ' Added successfully!')
     })
     .catch((error) => {
       console.log(error)
