@@ -20,6 +20,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 import chromedriver_binary
 import winsound
 import json
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
+
 
 # מאי !!! ככה מדפיסים את השם הייחודי של המשתמש שאותו נרצה למחוק !!!
 # logger.info('First param:'+sys.argv[1]+'#')
@@ -48,18 +52,56 @@ class User:
     email: str
     password: str
 
+class WithdrawConnectionsTracker:
+    def __init__(self, filename):
+        self.filename = filename
+        self.already_sent = set()
+        self.update_withdrawConnections_users()
+
+    def update_withdrawConnections_users(self):
+        with open(self.filename) as f:
+            user_full_names = [user_full_name.strip() for user_full_name in f]
+        self.already_sent.update(user_full_names)
+
+    def get_withdrawConnections_users(self) -> Set:
+        return self.already_sent
+
+    def add_user_to_withdrawConnections_list(self, full_name: str):
+        if full_name not in self.already_sent:
+            self.already_sent.add(full_name)
+            with open(self.filename, "a") as f:
+                f.write(f"{full_name}\n")
+
+    def already_withdrawConnections(self, full_name) -> bool:
+        return full_name in self.already_sent
 
 def get_email_and_password():
-    g = open("data/users.json")
-    f = open("data/detailsFromUser.json")
-    data = json.load(f)
-    users = json.load(g)
-    pointer = data["1"]["user"]
-    email = users[pointer]["userName"]
-    password = users[pointer]["password"]
-    numOfConnections = data["1"]["connections"]
-    startFrom = data["1"]["start_from"]
-    return email, password, numOfConnections, startFrom
+    # g = open("data/users.json")
+    # f = open("data/detailsFromUser.json")
+    # data = json.load(f)
+    # users = json.load(g)
+    cred = credentials.Certificate(
+        "socialnetworksbots-firebase-adminsdk-ckg7j-0ed2aef80b.json")
+    firebase_admin.initialize_app(cred)
+    db = firestore.client()
+
+    emp_ref = db.collection('users')
+    docs = emp_ref.stream()
+
+    pointer = sys.argv[1]
+    for doc in docs:
+        value = int(doc.get('value'))
+        # logger.info(value)
+        # logger.info(id_user)
+        if value == pointer:
+            email = doc.get('username')
+            password = doc.get('password')
+        else:
+            logger.info("No success")
+
+    # email = users[pointer]["userName"]
+    # password = users[pointer]["password"]
+    return email, password
 
 
 def setup(driver, fullscreen=False):
@@ -130,6 +172,9 @@ def initialize_logger():
 
 
 def main():
+    withdrawConnections_tracker_filename = os.path.join("logs", "withdrawConnections_tracker.csv")
+    print("withdrawConnections_tracker_filename: withdrawConnections_tracker_filename:",
+          withdrawConnections_tracker_filename)
     initialize_logger()
     driver, user_filter, numOfConnections, startFrom = initialize_linkedin()
     time.sleep(4)
@@ -151,8 +196,12 @@ def main():
     try:
         for x in range(1, numberOfPeople):
             time.sleep(2)
+            fullName = "//ul/li[1]/div/div[z]/div/a/span[2]"
+            fullName = fullName.replace("z", str(x))
+            fullName = driver.find_element_by_xpath(fullName) 
+            WithdrawConnectionsTracker.add_user_to_withdrawConnections_list(fullName)
             print("im here")
-            xpath = "//li[1]//div/button[text()]"
+            xpath = "//li[x]//div/button[text()]"
             xpath = xpath.replace("x", str(x))
             driver.find_element_by_xpath(xpath).click()
 

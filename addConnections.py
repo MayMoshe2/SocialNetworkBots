@@ -49,6 +49,28 @@ class User:
     email: str
     password: str
 
+class AddConnectionsTracker:
+    def __init__(self, filename):
+        self.filename = filename
+        self.already_sent = set()
+        self.update_addConnections_users()
+
+    def update_addConnections_users(self):
+        with open(self.filename) as f:
+            user_full_names = [user_full_name.strip() for user_full_name in f]
+        self.already_sent.update(user_full_names)
+
+    def get_addConnections_users(self) -> Set:
+        return self.already_sent
+
+    def add_user_to_addConnections_list(self, full_name: str):
+        if full_name not in self.already_sent:
+            self.already_sent.add(full_name)
+            with open(self.filename, "a") as f:
+                f.write(f"{full_name}\n")
+
+    def already_addConnections(self, full_name) -> bool:
+        return full_name in self.already_sent
 
 def get_email_and_password():
     # g = open("data/users.json")
@@ -151,6 +173,9 @@ def initialize_logger():
 
 
 def main():
+    addConnections_tracker_filename = os.path.join("logs", "addConnections_tracker.csv")
+    print("addConnections_tracker_filename: addConnections_tracker_filename:",
+          addConnections_tracker_filename)
     initialize_logger()
     driver, user_filter, numOfConnections, startFrom = initialize_linkedin()
     time.sleep(4)
@@ -184,6 +209,10 @@ def main():
         for x in range(int(startFrom), int(howMany)):
             time.sleep(2)
             print("im here")
+            fullName = "//ul/li[z]//*/h4"
+            fullName = fullName.replace("z", str(x))
+            fullName = driver.find_element_by_xpath(fullName) 
+            AddConnectionsTracker.add_user_to_addConnections_list(fullName)
             xpath = """//*[@id="main"]/div/div/div[2]/div/div[1]/ul/li[x]/div/*/*/*/label"""
             xpath = xpath.replace("x", str(x))
             driver.find_element_by_xpath(xpath).click()
