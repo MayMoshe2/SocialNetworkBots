@@ -5,7 +5,7 @@ import chromedriver_binary
 import time
 import logging
 import sys
-import os 
+import os
 import re
 from dataclasses import dataclass
 from typing import Dict, Set
@@ -21,8 +21,13 @@ import chromedriver_binary
 import winsound
 import json
 
-logger=logging.getLogger("bot")
-def set_chrome_options(headless:bool=False) -> None:
+# מאי !!! ככה מדפיסים את השם הייחודי של המשתמש שאותו נרצה למחוק !!!
+# logger.info('First param:'+sys.argv[1]+'#')
+
+logger = logging.getLogger("bot")
+
+
+def set_chrome_options(headless: bool = False) -> None:
     """Sets chrome options for Selenium.
     Chrome options for headless browser is enabled.
     """
@@ -34,13 +39,15 @@ def set_chrome_options(headless:bool=False) -> None:
     chrome_prefs = {}
     chrome_options.experimental_options["prefs"] = chrome_prefs
     chrome_prefs["profile.default_content_settings"] = {"images": 2}
-    return chrome_options# testing credentials (blame asher)
+    return chrome_options  # testing credentials (blame asher)
+
 
 @dataclass
 class User:
     name: str
     email: str
     password: str
+
 
 def get_email_and_password():
     g = open("data/users.json")
@@ -54,9 +61,11 @@ def get_email_and_password():
     startFrom = data["1"]["start_from"]
     return email, password, numOfConnections, startFrom
 
+
 def setup(driver, fullscreen=False):
     # go to linkedin
-    driver.get("https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin")
+    driver.get(
+        "https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin")
     if fullscreen is True:
         driver.maximize_window()
     else:
@@ -65,6 +74,7 @@ def setup(driver, fullscreen=False):
     # waits for some time
     driver.implicitly_wait(40)
     return driver
+
 
 def login(driver, email, password):
     # enter phone/email
@@ -77,22 +87,26 @@ def login(driver, email, password):
     time.sleep(1)
 
     # Submits credentials
-    driver.find_element_by_xpath("//*[@id='organic-div']/form/div[3]/button").click()
+    driver.find_element_by_xpath(
+        "//*[@id='organic-div']/form/div[3]/button").click()
 
     time.sleep(2)
     driver.implicitly_wait(5)
+
 
 def apply_filter(driver, user_filter):
     # goes to search page and applies filter
     driver.get(user_filter)
 
+
 def prompt_user():
     email, password, numOfConnections, startFrom = get_email_and_password()
     return email, password, numOfConnections, startFrom
 
+
 def initialize_linkedin():
     email, password, numOfConnections, startFrom = prompt_user()
-    user_filter = "https://www.linkedin.com/mynetwork/invitation-manager/sent/" 
+    user_filter = "https://www.linkedin.com/mynetwork/invitation-manager/sent/"
 
     driver = webdriver.Chrome(options=set_chrome_options())
     setup(driver, fullscreen=True)
@@ -102,16 +116,18 @@ def initialize_linkedin():
     return driver, user_filter, numOfConnections, startFrom
 
 
-
 def initialize_logger():
     logger.setLevel(logging.DEBUG)
 
-    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
-    handlers = [logging.StreamHandler(sys.stdout), logging.FileHandler(filename=f"logs/output.log")]
+    formatter = logging.Formatter(
+        "%(asctime)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+    handlers = [logging.StreamHandler(
+        sys.stdout), logging.FileHandler(filename=f"logs/output.log")]
     for handler in handlers:
         handler.setLevel(logging.DEBUG)
         handler.setFormatter(formatter)
         logger.addHandler(handler)
+
 
 def main():
     initialize_logger()
@@ -123,11 +139,13 @@ def main():
         return
 
     try:
-        element_list_container = driver.find_element_by_xpath("//*/section/div[2]/ul")
-        numberOfPeople = element_list_container.find_elements_by_css_selector("li")
+        element_list_container = driver.find_element_by_xpath(
+            "//*/section/div[2]/ul")
+        numberOfPeople = element_list_container.find_elements_by_css_selector(
+            "li")
     except Exception as exc:
         logger.exception("failed to find buttons", exc_info=exc)
-    
+
     logger.info(f"Found {len(numberOfPeople)} users on this page")
 
     try:
@@ -137,12 +155,12 @@ def main():
             xpath = "//li[1]//div/button[text()]"
             xpath = xpath.replace("x", str(x))
             driver.find_element_by_xpath(xpath).click()
-    
+
     except Exception as exc:
         logger.exception("failed", exc_info=exc)
         driver.get_screenshot_as_file("logs/crash.png")
         driver.close()
-    logger.info("Done")  
+    logger.info("Done")
 
 
 if __name__ == "__main__":
