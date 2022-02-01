@@ -77,7 +77,10 @@ const withrowPy = (req, res) => {
 const addCon = (req, res) => {
   try {
     var dataToSend
-    const python = spawn('python', ['addConnections.py'])
+    const userId = req.params['value']
+    console.log(userId)
+
+    const python = spawn('python', ['addConnections.py', userId])
     // collect data from script
     python.stdout.on('data', function (data) {
       console.log('add Connections from backend ...')

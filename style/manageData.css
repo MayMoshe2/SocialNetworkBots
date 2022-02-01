@@ -1,0 +1,137 @@
+.col {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  vertical-align: top;
+  background-color: yellowgreen;
+}
+html,
+body {
+  min-height: 100%;
+}
+body,
+div,
+form,
+input,
+select,
+p {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 16px;
+  color: #eee;
+}
+body {
+  background: url('background.jpeg') no-repeat center;
+  background-size: cover;
+}
+h1,
+h2 {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+h2 {
+  margin: 0 0 0 8px;
+}
+.main-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.5);
+}
+.left-part,
+form {
+  padding: 25px;
+}
+.left-part {
+  text-align: center;
+  margin-bottom: 300px; /*//אחראי על הגובה של הטקסט */
+}
+.fa-graduation-cap {
+  font-size: 72px;
+}
+form {
+  background: rgba(0, 0, 0, 0.7);
+}
+.title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+}
+input,
+select {
+  padding: 5px;
+  margin-bottom: 30px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+input::placeholder {
+  color: #eee;
+}
+
+@media (min-width: 568px) {
+  html,
+  body {
+    height: 100%;
+  }
+  .main-block {
+    flex-direction: row;
+    height: calc(100% - 50px);
+  }
+  .left-part,
+  form {
+    flex: 1;
+    height: auto;
+  }
+
+  button {
+    border-radius: 4px;
+    background-color: #5ca1e1;
+    border: none;
+    color: #fff;
+    text-align: center;
+    font-size: 32px;
+    padding: 16px;
+    width: 23%;
+    /* width: 220px; */
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 36px;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+  }
+
+  button {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  button:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 14px;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  button:hover {
+    padding-right: 24px;
+    padding-left: 8px;
+  }
+
+  button:hover:after {
+    opacity: 1;
+    right: 10px;
+  }
+}

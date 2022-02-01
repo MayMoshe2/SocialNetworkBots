@@ -63,7 +63,7 @@ callPython2 = function () {
   console.log('callpython2')
   $.ajax({
     type: 'get', // define the type of HTTP verb we want to use (POST for our form)
-    url: '/addCon', // the url where we want to POST
+    url: '/addCon/' + document.getElementById('users_name').value, // the url where we want to POST
     success: function () {
       console.log('addCon is called from client')
     },

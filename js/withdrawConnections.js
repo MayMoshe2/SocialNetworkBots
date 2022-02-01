@@ -28,7 +28,7 @@ writeToFile = function () {
   alert(document.getElementById('users_name').value)
   $.ajax({
     type: 'get', // define the type of HTTP verb we want to use (POST for our form)
-    url: '/rwithowPy/' + document.getElementById('users_name').value, // the url where we want to POST
+    url: '/withrowPy/' + document.getElementById('users_name').value, // the url where we want to POST
     success: function () {
       console.log('withrowPyn is called from client')
       alert('stop1')
