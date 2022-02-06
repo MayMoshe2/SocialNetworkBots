@@ -65,8 +65,8 @@ def initialize_logger():
 def main():
     initialize_logger()
     deliveryTrackerRep = "logs\delivery_tracker.csv"
-    addConnectionsRep = "logs\addConnections_tracker"
-    withdrawConnectionsTracker = "logs\withdrawConnections_tracker"
+    addConnectionsRep = "logs\addConnections_tracker.csv"
+    withdrawConnectionsTracker = "logs\withdrawConnections_tracker.csv"
     if sys.argv[2] == 0:
         logger.info("export deliverytracker")
 
