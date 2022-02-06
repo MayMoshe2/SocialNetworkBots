@@ -84,7 +84,9 @@ def get_email_and_password():
     docs = emp_ref.stream()
     data = json.load(f)
     #users = json.load(g)
-    pointer = int(data["1"]["user"])
+    # pointer = int(data["1"]["user"])
+    pointer = sys.argv[1]
+
     for doc in docs:
         value = int(doc.get('value'))
         # logger.info(value)
