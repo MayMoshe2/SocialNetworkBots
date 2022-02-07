@@ -1,5 +1,6 @@
 from ast import Or
 from asyncio.windows_events import NULL
+from cmath import log
 from tarfile import NUL
 import chromedriver_binary
 import time
@@ -25,9 +26,6 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 
 
-# מאי !!! ככה מדפיסים את השם הייחודי של המשתמש שאותו נרצה למחוק !!!
-# logger.info('First param:'+sys.argv[1]+'#')
-
 logger = logging.getLogger("bot")
 
 
@@ -52,34 +50,31 @@ class User:
     email: str
     password: str
 
-class WithdrawConnectionsTracker:
+class AddConnectionsTracker:
     def __init__(self, filename):
         self.filename = filename
         self.already_sent = set()
-        self.update_withdrawConnections_users()
+        self.update_addConnections_users()
 
-    def update_withdrawConnections_users(self):
+    def update_addConnections_users(self):
         with open(self.filename) as f:
             user_full_names = [user_full_name.strip() for user_full_name in f]
         self.already_sent.update(user_full_names)
 
-    def get_withdrawConnections_users(self) -> Set:
+    def get_addConnections_users(self) -> Set:
         return self.already_sent
 
-    def add_user_to_withdrawConnections_list(self, full_name: str):
+    def add_user_to_addConnections_list(self, full_name: str):
         if full_name not in self.already_sent:
             self.already_sent.add(full_name)
             with open(self.filename, "a") as f:
                 f.write(f"{full_name}\n")
 
-    def already_withdrawConnections(self, full_name) -> bool:
+    def already_addConnections(self, full_name) -> bool:
         return full_name in self.already_sent
 
 def get_email_and_password():
-    # g = open("data/users.json")
-    # f = open("data/detailsFromUser.json")
-    # data = json.load(f)
-    # users = json.load(g)
+    f = open("data/detailsFromUser.json")
     cred = credentials.Certificate(
         "socialnetworksbots-firebase-adminsdk-ckg7j-0ed2aef80b.json")
     firebase_admin.initialize_app(cred)
@@ -87,22 +82,22 @@ def get_email_and_password():
 
     emp_ref = db.collection('users')
     docs = emp_ref.stream()
+    data = json.load(f)
+    pointer = int(sys.argv[1])
 
-    pointer = sys.argv[1]
     for doc in docs:
         value = int(doc.get('value'))
-        # logger.info(value)
-        # logger.info(id_user)
         if value == pointer:
             email = doc.get('username')
             password = doc.get('password')
+            logger.info(doc.get('password'))
+            logger.info(doc.get('username'))
         else:
             logger.info("No success")
 
-    # email = users[pointer]["userName"]
-    # password = users[pointer]["password"]
-    return email, password
-
+    numOfConnections = data["1"]["connections"]
+    startFrom = data["1"]["start_from"]
+    return email, password, numOfConnections, startFrom
 
 def setup(driver, fullscreen=False):
     # go to linkedin
@@ -148,14 +143,14 @@ def prompt_user():
 
 def initialize_linkedin():
     email, password, numOfConnections, startFrom = prompt_user()
-    user_filter = "https://www.linkedin.com/mynetwork/invitation-manager/sent/"
+    user_filter = "https://www.linkedin.com/mynetwork/import-contacts/results/member/"
 
     driver = webdriver.Chrome(options=set_chrome_options())
     setup(driver, fullscreen=True)
     login(driver, email=email, password=password)
     logger.info("logged in")
     apply_filter(driver, user_filter=user_filter)
-    return driver, user_filter, numOfConnections, startFrom
+    return driver, numOfConnections, startFrom
 
 
 def initialize_logger():
@@ -172,20 +167,21 @@ def initialize_logger():
 
 
 def main():
-    withdrawConnections_tracker_filename = os.path.join("logs", "withdrawConnections_tracker.csv")
-    print("withdrawConnections_tracker_filename: withdrawConnections_tracker_filename:",
-          withdrawConnections_tracker_filename)
+    addConnections_tracker_filename = os.path.join("logs", "addConnections_tracker.csv")
+    print("addConnections_tracker_filename: addConnections_tracker_filename:",
+          addConnections_tracker_filename)
+    addConnections_tracker = AddConnectionsTracker(addConnections_tracker_filename)
     initialize_logger()
-    driver, user_filter, numOfConnections, startFrom = initialize_linkedin()
+    driver, numOfConnections, startFrom = initialize_linkedin()
     time.sleep(4)
-    xpathWelcome = """//section/p[text()="No sent invitations"]"""
-    if driver.find_element_by_xpath(xpathWelcome) != None:
-        logger.info("There are no people you can withdraw")
+    xpathWelcome = """//*[@id="main"]//*/h2"""
+    if driver.find_element_by_xpath(xpathWelcome) == None:
+        logger.info("There are no people you can add")
         return
 
     try:
         element_list_container = driver.find_element_by_xpath(
-            "//*/section/div[2]/ul")
+            """//*[@id="main"]/div/div/div[2]/div/div[1]/ul""")
         numberOfPeople = element_list_container.find_elements_by_css_selector(
             "li")
     except Exception as exc:
@@ -193,17 +189,33 @@ def main():
 
     logger.info(f"Found {len(numberOfPeople)} users on this page")
 
+    if len(numberOfPeople) < int(startFrom) or len(numberOfPeople) < int(numOfConnections):
+        if len(numberOfPeople) < int(startFrom):
+            logger.info(
+                "There arent enough connections! Please choose a different number to start from.")
+            return
+        else:
+            numOfConnections = len(numberOfPeople)
+    
+    howMany = int(numOfConnections) + int(startFrom)
+    print(howMany)
     try:
-        for x in range(1, numberOfPeople):
+        for x in range(int(startFrom), int(howMany)):
             time.sleep(2)
-            fullName = "//ul/li[1]/div/div[z]/div/a/span[2]"
-            fullName = fullName.replace("z", str(x))
-            fullName = driver.find_element_by_xpath(fullName) 
-            WithdrawConnectionsTracker.add_user_to_withdrawConnections_list(fullName)
             print("im here")
-            xpath = "//li[x]//div/button[text()]"
+            fullName = "//ul/li[z]//*/h4"
+            logger.info(fullName)
+            fullName = fullName.replace("z", str(x))
+            logger.info(fullName)
+            fullName = driver.find_element_by_xpath(fullName).text
+             
+            logger.info(fullName)
+            addConnections_tracker.add_user_to_addConnections_list(fullName)
+            xpath = """//*[@id="main"]/div/div/div[2]/div/div[1]/ul/li[x]/div/*/*/*/label"""
             xpath = xpath.replace("x", str(x))
             driver.find_element_by_xpath(xpath).click()
+
+        driver.find_element_by_xpath("//*[contains(span, 'Add')]").click()
 
     except Exception as exc:
         logger.exception("failed", exc_info=exc)

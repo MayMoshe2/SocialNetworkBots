@@ -25,13 +25,13 @@ async function loadDetails() {
 }
 
 writeToFile = function () {
-  alert(document.getElementById('users_name').value)
+  // alert(document.getElementById('users_name').value)
   $.ajax({
     type: 'get', // define the type of HTTP verb we want to use (POST for our form)
     url: '/withrowPy/' + document.getElementById('users_name').value, // the url where we want to POST
     success: function () {
       console.log('withrowPyn is called from client')
-      alert('stop1')
+      // alert('stop1')
     },
     error: function (jqXhr, textStatus, errorThrown) {
       alert(errorThrown)

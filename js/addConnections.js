@@ -55,9 +55,9 @@ run_python = function () {
       window.location.href = '/mainPage'
     },
   })
-  alert('1')
+  // alert('1')
 
-  alert('nir')
+  // alert('nir')
 }
 callPython2 = function () {
   console.log('callpython2')
@@ -72,5 +72,5 @@ callPython2 = function () {
     },
   })
 
-  alert('nir')
+  // alert('nir')
 }

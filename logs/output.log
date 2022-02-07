@@ -1109,3 +1109,603 @@ TypeError: object of type 'NoneType' has no len()
 2022-01-24 14:58:35 - INFO - logged in
 2022-01-24 14:58:42 - INFO - Found 17 users on this page
 2022-01-24 14:58:42 - INFO - Done
+2022-02-07 09:53:08 - INFO - 13
+2022-02-07 09:53:08 - INFO - start prompt5 
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:10 - INFO - No success
+2022-02-07 09:53:31 - INFO - logged in
+2022-02-07 09:53:31 - INFO - Processing page 1
+2022-02-07 09:53:31 - INFO - Found 1 users on this page
+2022-02-07 09:53:31 - INFO - Found user's name: 'May Moshe'
+2022-02-07 09:53:31 - INFO - Sending to May Moshe
+2022-02-07 09:53:32 - INFO - Using the following replace strings: '<first_name>' = 'May'
+2022-02-07 09:53:33 - INFO - send message
+2022-02-07 09:53:33 - INFO - click_x
+2022-02-07 09:53:35 - INFO - Attempting to go to next page
+2022-02-07 09:53:35 - ERROR - failed
+Traceback (most recent call last):
+  File "C:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 397, in <module>
+    apply_filter(driver, user_filter=user_filter)
+  File "C:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\temp.py", line 82, in apply_filter
+    driver.get(user_filter)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 436, in get
+    self.execute(Command.GET, {'url': url})
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=97.0.4692.99)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00546903+2517251]
+	Ordinal0 [0x004DF8E1+2095329]
+	Ordinal0 [0x003E2848+1058888]
+	Ordinal0 [0x003CBF90+966544]
+	Ordinal0 [0x00428999+1345945]
+	Ordinal0 [0x00435342+1397570]
+	Ordinal0 [0x0042639B+1336219]
+	Ordinal0 [0x004027A7+1189799]
+	Ordinal0 [0x00403609+1193481]
+	GetHandleVerifier [0x006D5904+1577972]
+	GetHandleVerifier [0x00780B97+2279047]
+	GetHandleVerifier [0x005D6D09+534521]
+	GetHandleVerifier [0x005D5DB9+530601]
+	Ordinal0 [0x004E4FF9+2117625]
+	Ordinal0 [0x004E98A8+2136232]
+	Ordinal0 [0x004E99E2+2136546]
+	Ordinal0 [0x004F3541+2176321]
+	BaseThreadInitThunk [0x7695FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770A7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x770A7A6E+238]
+
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:03:13 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:17 - INFO - No success
+2022-02-07 10:05:59 - INFO - 1
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 2
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 3
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 4
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 5
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 6
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 7
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 8
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 9
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 10
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 11
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 12
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 13
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:05:59 - INFO - 14
+2022-02-07 10:05:59 - INFO - No success
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:06:58 - INFO - nir123456
+2022-02-07 10:06:58 - INFO - nirmaman631@gmail.com
+2022-02-07 10:06:58 - INFO - No success
+2022-02-07 10:07:16 - INFO - logged in
+2022-02-07 10:07:25 - INFO - Found 32 users on this page
+2022-02-07 10:07:27 - ERROR - failed
+Traceback (most recent call last):
+  File "C:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\addConnections.py", line 216, in main
+    AddConnectionsTracker.add_user_to_addConnections_list(fullName)
+TypeError: add_user_to_addConnections_list() missing 1 required positional argument: 'full_name'
+2022-02-07 10:07:28 - INFO - Done
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - nir123456
+2022-02-07 10:12:46 - INFO - nirmaman631@gmail.com
+2022-02-07 10:12:46 - INFO - No success
+2022-02-07 10:12:46 - INFO - 1
+2022-02-07 10:12:46 - INFO - 1
+2022-02-07 10:13:04 - INFO - logged in
+2022-02-07 10:13:12 - INFO - Found 32 users on this page
+2022-02-07 10:13:14 - INFO - //ul/li[z]//*/h4
+2022-02-07 10:13:14 - INFO - //ul/li[1]//*/h4
+2022-02-07 10:13:14 - ERROR - failed
+Traceback (most recent call last):
+  File "C:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\addConnections.py", line 221, in main
+    AddConnectionsTracker.add_user_to_addConnections_list(fullName)
+TypeError: add_user_to_addConnections_list() missing 1 required positional argument: 'full_name'
+2022-02-07 10:13:19 - INFO - Done
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:38 - INFO - nir123456
+2022-02-07 10:16:38 - INFO - nirmaman631@gmail.com
+2022-02-07 10:16:38 - INFO - No success
+2022-02-07 10:16:55 - INFO - logged in
+2022-02-07 10:17:03 - INFO - Found 32 users on this page
+2022-02-07 10:17:05 - INFO - //ul/li[z]//*/h4
+2022-02-07 10:17:05 - INFO - //ul/li[1]//*/h4
+2022-02-07 10:17:05 - INFO - <selenium.webdriver.remote.webelement.WebElement (session="bd95c78e1c3f326dcb014ac93d52d052", element="caccd91b-c016-48cd-aff3-723a91a3bfd7")>
+2022-02-07 10:17:05 - ERROR - failed
+Traceback (most recent call last):
+  File "C:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\addConnections.py", line 211, in main
+    AddConnectionsTracker.add_user_to_addConnections_list(fullName)
+TypeError: add_user_to_addConnections_list() missing 1 required positional argument: 'full_name'
+2022-02-07 10:17:06 - INFO - Done
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:27 - INFO - nir123456
+2022-02-07 10:20:27 - INFO - nirmaman631@gmail.com
+2022-02-07 10:20:27 - INFO - No success
+2022-02-07 10:20:43 - INFO - logged in
+2022-02-07 10:20:51 - INFO - Found 32 users on this page
+2022-02-07 10:20:53 - INFO - //ul/li[z]//*/h4
+2022-02-07 10:20:53 - INFO - //ul/li[1]//*/h4
+2022-02-07 10:20:53 - INFO - Shay Hershcovich
+2022-02-07 10:20:53 - ERROR - failed
+Traceback (most recent call last):
+  File "C:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\addConnections.py", line 212, in main
+    AddConnectionsTracker.add_user_to_addConnections_list(fullName)
+TypeError: add_user_to_addConnections_list() missing 1 required positional argument: 'full_name'
+2022-02-07 10:20:53 - INFO - Done
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:12 - INFO - nir123456
+2022-02-07 10:24:12 - INFO - nirmaman631@gmail.com
+2022-02-07 10:24:12 - INFO - No success
+2022-02-07 10:24:27 - INFO - logged in
+2022-02-07 10:24:35 - INFO - Found 32 users on this page
+2022-02-07 10:24:37 - INFO - //ul/li[z]//*/h4
+2022-02-07 10:24:37 - INFO - //ul/li[1]//*/h4
+2022-02-07 10:24:37 - INFO - Shay Hershcovich
+2022-02-07 10:24:37 - INFO - Done
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:30:59 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:33:40 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:36 - INFO - No success
+2022-02-07 10:34:56 - INFO - logged in
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:24 - INFO - No success
+2022-02-07 10:38:43 - INFO - logged in
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:39:59 - INFO - No success
+2022-02-07 10:40:18 - INFO - logged in
+2022-02-07 10:40:27 - INFO - im here
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:41:59 - INFO - No success
+2022-02-07 10:42:18 - INFO - logged in
+2022-02-07 10:42:27 - INFO - im here
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:42:57 - INFO - No success
+2022-02-07 10:43:16 - INFO - logged in
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:36 - INFO - No success
+2022-02-07 10:44:55 - INFO - logged in
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:35 - INFO - No success
+2022-02-07 10:45:51 - INFO - logged in
+2022-02-07 10:45:59 - INFO - im here
+2022-02-07 10:45:59 - INFO - Found 6 users on this page
+2022-02-07 10:45:59 - ERROR - failed
+Traceback (most recent call last):
+  File "C:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\withdrawConnections.py", line 195, in main
+    for x in range(1, numberOfPeople):
+TypeError: 'list' object cannot be interpreted as an integer
+2022-02-07 10:46:04 - INFO - Done
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:32 - INFO - No success
+2022-02-07 10:47:47 - INFO - logged in
+2022-02-07 10:48:05 - INFO - im here
+2022-02-07 10:48:05 - INFO - Found 6 users on this page
+2022-02-07 10:48:05 - ERROR - failed
+Traceback (most recent call last):
+  File "C:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\withdrawConnections.py", line 195, in main
+    for x in range(1, numberOfPeople):
+TypeError: 'list' object cannot be interpreted as an integer
+2022-02-07 10:48:06 - INFO - Done
+2022-02-07 10:48:40 - INFO - No success
+2022-02-07 10:48:40 - INFO - No success
+2022-02-07 10:48:40 - INFO - No success
+2022-02-07 10:48:40 - INFO - No success
+2022-02-07 10:48:40 - INFO - No success
+2022-02-07 10:48:40 - INFO - No success
+2022-02-07 10:48:40 - INFO - No success
+2022-02-07 10:48:40 - INFO - No success
+2022-02-07 10:48:40 - INFO - No success
+2022-02-07 10:48:40 - INFO - No success
+2022-02-07 10:48:40 - INFO - No success
+2022-02-07 10:48:41 - INFO - No success
+2022-02-07 10:48:41 - INFO - No success
+2022-02-07 10:48:57 - INFO - logged in
+2022-02-07 10:49:06 - INFO - im here
+2022-02-07 10:49:06 - INFO - Found 6 users on this page
+2022-02-07 10:49:06 - ERROR - failed
+Traceback (most recent call last):
+  File "C:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\withdrawConnections.py", line 195, in main
+    for x in range(1, numberOfPeople):
+TypeError: 'list' object cannot be interpreted as an integer
+2022-02-07 10:49:07 - INFO - Done
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 10:50:39 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:12 - INFO - No success
+2022-02-07 11:04:30 - INFO - logged in
+2022-02-07 11:04:37 - INFO - im here
+2022-02-07 11:04:37 - INFO - Found 6 users on this page
+2022-02-07 11:04:37 - ERROR - failed
+Traceback (most recent call last):
+  File "C:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\withdrawConnections.py", line 196, in main
+    for x in range(1, numberOfPeople):
+TypeError: 'list' object cannot be interpreted as an integer
+2022-02-07 11:04:38 - INFO - Done
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:15 - INFO - No success
+2022-02-07 11:06:38 - INFO - logged in
+2022-02-07 11:06:49 - INFO - im here
+2022-02-07 11:06:49 - INFO - Found 6 users on this page
+2022-02-07 11:06:51 - INFO - im here
+2022-02-07 11:06:51 - INFO - im here2
+2022-02-07 11:06:51 - INFO - Shay Hershcovich
+2022-02-07 11:06:51 - ERROR - failed
+Traceback (most recent call last):
+  File "C:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\withdrawConnections.py", line 207, in main
+    driver.find_element_by_xpath(xpath).click()
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 520, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1244, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidSelectorException: Message: invalid selector: Unable to locate an element with the xpath expression //li[1]//div/button[te1t()] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//li[1]//div/button[te1t()]' is not a valid XPath expression.
+  (Session info: chrome=97.0.4692.99)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00546903+2517251]
+	Ordinal0 [0x004DF8E1+2095329]
+	Ordinal0 [0x003E2848+1058888]
+	Ordinal0 [0x003E4F44+1068868]
+	Ordinal0 [0x003E4E0E+1068558]
+	Ordinal0 [0x003E5070+1069168]
+	Ordinal0 [0x0040D1C2+1233346]
+	Ordinal0 [0x0040D63B+1234491]
+	Ordinal0 [0x00437812+1406994]
+	Ordinal0 [0x0042650A+1336586]
+	Ordinal0 [0x00435BBF+1399743]
+	Ordinal0 [0x0042639B+1336219]
+	Ordinal0 [0x004027A7+1189799]
+	Ordinal0 [0x00403609+1193481]
+	GetHandleVerifier [0x006D5904+1577972]
+	GetHandleVerifier [0x00780B97+2279047]
+	GetHandleVerifier [0x005D6D09+534521]
+	GetHandleVerifier [0x005D5DB9+530601]
+	Ordinal0 [0x004E4FF9+2117625]
+	Ordinal0 [0x004E98A8+2136232]
+	Ordinal0 [0x004E99E2+2136546]
+	Ordinal0 [0x004F3541+2176321]
+	BaseThreadInitThunk [0x7695FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770A7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x770A7A6E+238]
+
+2022-02-07 11:06:53 - INFO - Done
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:09:47 - INFO - No success
+2022-02-07 11:10:00 - INFO - logged in
+2022-02-07 11:10:07 - INFO - im here
+2022-02-07 11:10:07 - INFO - Found 6 users on this page
+2022-02-07 11:10:09 - INFO - im here
+2022-02-07 11:10:09 - INFO - im here2
+2022-02-07 11:10:09 - INFO - Shay Hershcovich
+2022-02-07 11:10:11 - INFO - im here
+2022-02-07 11:10:11 - INFO - im here2
+2022-02-07 11:10:11 - INFO - zohar maman
+2022-02-07 11:10:12 - ERROR - failed
+Traceback (most recent call last):
+  File "C:\Users\maymo\OneDrive - Azrieli - Jerusalem College of Engineering\פרוייקט גמר\SocialNetworkBots\SocialNetworkBots\withdrawConnections.py", line 207, in main
+    driver.find_element_by_xpath(xpath).click()
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\maymo\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button aria-label="Withdraw invitation sent to zohar maman" id="ember48" class="artdeco-button artdeco-button--muted artdeco-button--3 artdeco-button--tertiary ember-view invitation-card__action-btn">...</button> is not clickable at point (798, 362). Other element would receive the click: <div id="ember161" class="artdeco-modal__content ember-view">...</div>
+  (Session info: chrome=97.0.4692.99)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00546903+2517251]
+	Ordinal0 [0x004DF8E1+2095329]
+	Ordinal0 [0x003E2848+1058888]
+	Ordinal0 [0x00413509+1258761]
+	Ordinal0 [0x00411868+1251432]
+	Ordinal0 [0x0040F65D+1242717]
+	Ordinal0 [0x0040E4A8+1238184]
+	Ordinal0 [0x00404037+1196087]
+	Ordinal0 [0x004264D3+1336531]
+	Ordinal0 [0x00403A36+1194550]
+	Ordinal0 [0x004265BA+1336762]
+	Ordinal0 [0x00435BBF+1399743]
+	Ordinal0 [0x0042639B+1336219]
+	Ordinal0 [0x004027A7+1189799]
+	Ordinal0 [0x00403609+1193481]
+	GetHandleVerifier [0x006D5904+1577972]
+	GetHandleVerifier [0x00780B97+2279047]
+	GetHandleVerifier [0x005D6D09+534521]
+	GetHandleVerifier [0x005D5DB9+530601]
+	Ordinal0 [0x004E4FF9+2117625]
+	Ordinal0 [0x004E98A8+2136232]
+	Ordinal0 [0x004E99E2+2136546]
+	Ordinal0 [0x004F3541+2176321]
+	BaseThreadInitThunk [0x7695FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770A7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x770A7A6E+238]
+
+2022-02-07 11:10:13 - INFO - Done
+2022-02-07 12:17:28 - INFO - No success
+2022-02-07 12:17:28 - INFO - No success
+2022-02-07 12:17:28 - INFO - No success
+2022-02-07 12:17:28 - INFO - No success
+2022-02-07 12:17:28 - INFO - No success
+2022-02-07 12:17:28 - INFO - No success
+2022-02-07 12:17:28 - INFO - No success
+2022-02-07 12:17:28 - INFO - No success
+2022-02-07 12:17:28 - INFO - No success
+2022-02-07 12:17:28 - INFO - No success
+2022-02-07 12:17:28 - INFO - No success
+2022-02-07 12:17:28 - INFO - No success
+2022-02-07 12:17:28 - INFO - nir123456
+2022-02-07 12:17:28 - INFO - nirmaman631@gmail.com
+2022-02-07 12:17:28 - INFO - No success

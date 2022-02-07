@@ -35,7 +35,7 @@ const writeFile = (fileData, callback, filePath = dataPath, encoding = 'utf8') =
 const firstPython = (req, res) => {
   try {
     var dataToSend
-    const python = spawn('python', ['temp.py'])
+    const python = spawn('python', ['BOT/sendMessages.py'])
     // collect data from script
     python.stdout.on('data', function (data) {
       console.log('Pipe data from python script ...')
@@ -59,7 +59,7 @@ const withrowPy = (req, res) => {
     console.log(userId)
 
     // print(userId)
-    const python = spawn('python', ['withdrawConnections.py', userId])
+    const python = spawn('python', ['BOT/withdrawConnections.py', userId])
     // collect data from script
     python.stdout.on('data', function (data) {
       console.log('Pipe data from python script ...')
@@ -80,7 +80,7 @@ const addCon = (req, res) => {
     const userId = req.params['value']
     console.log(userId)
 
-    const python = spawn('python', ['addConnections.py', userId])
+    const python = spawn('python', ['BOT/addConnections.py', userId])
     // collect data from script
     python.stdout.on('data', function (data) {
       console.log('add Connections from backend ...')

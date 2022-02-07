@@ -80,7 +80,7 @@ writeToFile = function () {
       window.location.href = '/mainPage'
     },
   })
-  alert('stop')
+  // alert('stop')
 }
 
 callPython = function () {
