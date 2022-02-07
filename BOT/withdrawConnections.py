@@ -53,6 +53,7 @@ class User:
     email: str
     password: str
 
+
 class WithdrawConnectionsTracker:
     def __init__(self, filename):
         self.filename = filename
@@ -75,6 +76,7 @@ class WithdrawConnectionsTracker:
 
     def already_withdrawConnections(self, full_name) -> bool:
         return full_name in self.already_sent
+
 
 def get_email_and_password():
     # g = open("data/users.json")
@@ -132,13 +134,16 @@ def login(driver, email, password):
     time.sleep(2)
     driver.implicitly_wait(5)
 
+
 def apply_filter(driver, user_filter):
     # goes to search page and applies filter
     driver.get(user_filter)
 
+
 def prompt_user():
     email, password = get_email_and_password()
     return email, password
+
 
 def initialize_linkedin():
     email, password = prompt_user()
@@ -166,10 +171,12 @@ def initialize_logger():
 
 
 def main():
-    withdrawConnections_tracker_filename = os.path.join("logs", "withdrawConnections_tracker.csv")
+    withdrawConnections_tracker_filename = os.path.join(
+        "logs", "withdrawConnections_tracker.csv")
     print("withdrawConnections_tracker_filename: withdrawConnections_tracker_filename:",
           withdrawConnections_tracker_filename)
-    withdrawConnections_tracker = WithdrawConnectionsTracker(withdrawConnections_tracker_filename)
+    withdrawConnections_tracker = WithdrawConnectionsTracker(
+        withdrawConnections_tracker_filename)
     initialize_logger()
     driver = initialize_linkedin()
     time.sleep(4)
@@ -195,13 +202,19 @@ def main():
             logger.info("im here")
             fullName = fullName.replace("z", str(x))
             logger.info("im here2")
-            fullName = driver.find_element_by_xpath(fullName).text 
+            fullName = driver.find_element_by_xpath(fullName).text
             logger.info(fullName)
-            withdrawConnections_tracker.add_user_to_withdrawConnections_list(fullName)
+            withdrawConnections_tracker.add_user_to_withdrawConnections_list(
+                fullName)
             xpath = "//li[z]//div/button[text()]"
             xpath = xpath.replace("z", str(x))
             driver.find_element_by_xpath(xpath).click()
-
+            areYouSureXpath = """/html/body//div/h2[text()="Withdraw invitation"]"""
+            if driver.find_element_by_xpath(areYouSureXpath) is None:
+                logger.info("keep Withdraw")
+            else:
+                driver.find_element_by_xpath(
+                    """/html/body//div/button[2]/span[text()="Withdraw"]""").click()
     except Exception as exc:
         logger.exception("failed", exc_info=exc)
         driver.get_screenshot_as_file("logs/crash.png")
