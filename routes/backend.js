@@ -83,11 +83,37 @@ const addCon = (req, res) => {
     const python = spawn('python', ['BOT/addConnections.py', userId])
     // collect data from script
     python.stdout.on('data', function (data) {
-      console.log('add Connections from backend ...')
+      console.log('addCon from backend ...')
       dataToSend = data.toString()
     })
     python.on('close', (code) => {
       console.log(`'add Connections child process close all stdio with code ${code}`)
+      // send data to browser
+      res.send(dataToSend)
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500)
+  }
+}
+
+const manage_data = (req, res) => {
+  try {
+    var dataToSend
+    const value = req.params['value']
+    const option = req.params['option']
+
+    console.log(value)
+    console.log(option)
+
+    const python = spawn('python', ['BOT/exportReports.py', value, option])
+    // collect data from script
+    python.stdout.on('data', function (data) {
+      console.log('manage_data from backend ...')
+      dataToSend = data.toString()
+    })
+    python.on('close', (code) => {
+      console.log(`'manage data child process close all stdio with code ${code}`)
       // send data to browser
       res.send(dataToSend)
     })
@@ -135,4 +161,5 @@ module.exports = {
   addCon,
   addEmployee,
   withrowPy,
+  manage_data,
 }

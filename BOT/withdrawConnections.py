@@ -9,7 +9,7 @@ import os
 import re
 from dataclasses import dataclass
 from typing import Dict, Set
-from numpy import full
+# from numpy import full
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
