@@ -123,6 +123,31 @@ const manage_data = (req, res) => {
   }
 }
 
+const sendEmailsUrl = (req, res) => {
+  try {
+    var dataToSend
+    const headLine = req.params['headLine']
+    const mess = req.params['mess']
+
+    const python = spawn('python', ['BOT/sendEmails.py', headLine, mess])
+    // collect data from script
+    python.stdout.on('data', function (data) {
+      console.log('sendEmails from backend ...')
+      console.log(headLine)
+      console.log(mess)
+      dataToSend = data.toString()
+    })
+    python.on('close', (code) => {
+      console.log(`'sendEmails data child process close all stdio with code ${code}`)
+      // send data to browser
+      res.send(dataToSend)
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500)
+  }
+}
+
 const updateJson = function (req, res) {
   try {
     readFile((data) => {
@@ -162,4 +187,5 @@ module.exports = {
   addEmployee,
   withrowPy,
   manage_data,
+  sendEmailsUrl,
 }

@@ -50,6 +50,7 @@ class User:
     email: str
     password: str
 
+
 class AddConnectionsTracker:
     def __init__(self, filename):
         self.filename = filename
@@ -72,6 +73,7 @@ class AddConnectionsTracker:
 
     def already_addConnections(self, full_name) -> bool:
         return full_name in self.already_sent
+
 
 def get_email_and_password():
     f = open("data/detailsFromUser.json")
@@ -98,6 +100,7 @@ def get_email_and_password():
     numOfConnections = data["1"]["connections"]
     startFrom = data["1"]["start_from"]
     return email, password, numOfConnections, startFrom
+
 
 def setup(driver, fullscreen=False):
     # go to linkedin
@@ -167,10 +170,12 @@ def initialize_logger():
 
 
 def main():
-    addConnections_tracker_filename = os.path.join("logs", "addConnections_tracker.csv")
+    addConnections_tracker_filename = os.path.join(
+        "logs", "addConnections_tracker.csv")
     print("addConnections_tracker_filename: addConnections_tracker_filename:",
           addConnections_tracker_filename)
-    addConnections_tracker = AddConnectionsTracker(addConnections_tracker_filename)
+    addConnections_tracker = AddConnectionsTracker(
+        addConnections_tracker_filename)
     initialize_logger()
     driver, numOfConnections, startFrom = initialize_linkedin()
     time.sleep(4)
@@ -196,7 +201,7 @@ def main():
             return
         else:
             numOfConnections = len(numberOfPeople)
-    
+
     howMany = int(numOfConnections) + int(startFrom)
     print(howMany)
     try:
@@ -208,7 +213,7 @@ def main():
             fullName = fullName.replace("z", str(x))
             logger.info(fullName)
             fullName = driver.find_element_by_xpath(fullName).text
-             
+
             logger.info(fullName)
             addConnections_tracker.add_user_to_addConnections_list(fullName)
             xpath = """//*[@id="main"]/div/div/div[2]/div/div[1]/ul/li[x]/div/*/*/*/label"""

@@ -34,7 +34,7 @@ from firebase_admin import firestore
 #     for doc in docs:
 #        #print('{} => {} ',doc.id,  doc.to_dict())
 #        print('{} => {} ',doc.id, doc.get('name'))
-
+# use to be temp.py
 
 logger = logging.getLogger("bot")
 

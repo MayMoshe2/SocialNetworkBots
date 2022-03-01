@@ -7,6 +7,7 @@ import logging
 import sys
 import os
 import re
+import string
 from dataclasses import dataclass
 from typing import Dict, Set
 from selenium import webdriver
@@ -47,13 +48,13 @@ def get_email_and_password():
     for doc in docs:
         value = int(doc.get('value'))
         if value == pointer:
-            email = doc.get('username')
-            password = doc.get('password')
+            receiver_address = doc.get('username')
         else:
             logger.info("No success")
-    receiver_address = email
     option = int(sys.argv[2])
 
+    email = "EaglePointBot@gmail.com"
+    password = "B0t1234!"
     return email, password, receiver_address, option
 
 
@@ -70,44 +71,54 @@ def initialize_logger():
         logger.addHandler(handler)
 
 
-def sendMail(senderEmail, senderPass, receiver_address, attach_file_name):
-    message = MIMEMultipart()
-    message['From'] = senderEmail
-    message['To'] = receiver_address
-    message['Subject'] = 'A test mail sent by Python. It has an attachment.'
-    # The subject line
-    # The body and the attachments for the mail
-    mail_content = '''Hello, this is the report you asked :)'''
-    message.attach(MIMEText(mail_content, 'plain'))
-    attach_file = open(attach_file_name, 'rb')  # Open the file as binary mode
-    payload = MIMEBase('application', 'octate-stream')
-    payload.set_payload((attach_file).read())
-    encoders.encode_base64(payload)  # encode the attachment
-    # add payload header with filename
-    payload.add_header('Content-Decomposition',
-                       'attachment', filename=attach_file_name)
-    message.attach(payload)
-    # Create SMTP session for sending the mail
-    session = smtplib.SMTP('smtp.gmail.com', 587)  # use gmail with port
-    session.starttls()  # enable security
-    session.login(senderEmail, senderPass)  # login with mail_id and password
-    text = message.as_string()
-    session.sendmail(senderEmail, receiver_address, text)
-    session.quit()
+def sendMail(senderEmail, senderPass, receiver_address, attach_file_name, file):
+
+    logger.info(senderEmail)
+    logger.info(senderPass)
+    try:
+        message = MIMEMultipart()
+        message['From'] = senderEmail
+        message['To'] = receiver_address
+        message['Subject'] = 'Report of ' + file
+        # The subject line
+        # The body and the attachments for the mail
+        mail_content = '''Hello, this is the report you asked :) Please download the file and open it with notepad or typist.'''
+        message.attach(MIMEText(mail_content, 'plain'))
+        attach_file = open(attach_file_name)  # Open the file as binary mode
+        payload = MIMEBase('application', 'octate-stream')
+        payload.set_payload((attach_file).read())
+        encoders.encode_base64(payload)  # encode the attachment
+        # add payload header with filename
+        payload.add_header('Content-Decomposition',
+                           'attachment', filename=attach_file_name)
+        message.attach(payload)
+        # Create SMTP session for sending the mail
+        session = smtplib.SMTP('smtp.gmail.com', 587)  # use gmail with port
+        session.starttls()  # enable security
+        # login with mail_id and password
+        session.login(senderEmail, senderPass)
+        logger.info("im here!")
+        text = message.as_string()
+        session.sendmail(senderEmail, receiver_address, text)
+        session.quit()
+    except Exception as exc:
+        logger.exception("failed", exc_info=exc)
     logger.info('Mail Sent')
 
 
 def main():
     initialize_logger()
 
-    deliveryTrackerRep = "logs\delivery_tracker.csv"
-    addConnectionsRep = "logs\addConnections_tracker.csv"
-    withdrawConnectionsTrackerRep = "logs\withdrawConnections_tracker.csv"
+    deliveryTrackerRep = "logs/delivery_tracker.csv"
+    addConnectionsRep = "logs/addConnections_tracker.csv"
+    withdrawConnectionsTrackerRep = "logs/withdrawConnections_tracker.csv"
 
     senderEmail, senderPass, receiver_address, option = get_email_and_password()
     if option == 0:
         logger.info("export deliverytracker")
-        sendMail(senderEmail, senderPass, receiver_address, deliveryTrackerRep)
+        file = "deliverytracker"
+        sendMail(senderEmail, senderPass, receiver_address,
+                 deliveryTrackerRep, file)
 
     elif option == 1:
         logger.info("delete deliverytracker")
@@ -116,7 +127,9 @@ def main():
 
     elif option == 2:
         logger.info("export addConnections")
-        sendMail(senderEmail, senderPass, receiver_address, addConnectionsRep)
+        file = "addConnections"
+        sendMail(senderEmail, senderPass, receiver_address,
+                 deliveryTrackerRep, file)
 
     elif option == 3:
         logger.info("delete addConnections")
@@ -125,8 +138,9 @@ def main():
 
     elif option == 4:
         logger.info("export withdrawPeople")
+        file = "withdrawPeople"
         sendMail(senderEmail, senderPass, receiver_address,
-                 withdrawConnectionsTrackerRep)
+                 deliveryTrackerRep, file)
 
     elif option == 5:
         logger.info("delete withdrawPeople")

@@ -11,7 +11,6 @@ if (!firebase.apps.length) {
   })
 }
 
-
 var db = firebase.firestore()
 
 async function loadDetails() {
@@ -77,15 +76,14 @@ writeToFile = function () {
       // console.log("success");
       callPython()
       alert('Before making more action, please wait until this action end.')
-      window.location.href = '/mainPage'
+      window.location.href = 'mainPage.html'
     },
     error: function (jqXhr, textStatus, errorThrown) {
       alert(errorThrown)
-      window.location.href = '/mainPage'
+      window.location.href = 'mainPage.html'
     },
   })
-  window.location.href = '/mainPage'
-  // alert('stop')
+  window.location.href = 'mainPage.html' // alert('stop')
 }
 
 callPython = function () {

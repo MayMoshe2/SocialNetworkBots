@@ -22,7 +22,6 @@ toManage = function (value) {
     error: function (jqXhr, textStatus, errorThrown) {
       alert(errorThrown)
       window.location.href = '/mainPage'
-
     },
   })
 }

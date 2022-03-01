@@ -18,11 +18,11 @@ async function submitForm() {
   snapshot.forEach((doc) => {
     //console.log(doc.data().userName);
     if (userName === doc.data().userName && password === doc.data().password) {
-      window.location.href = '/mainPage'
+      window.location.href = 'mainPage.html'
       return
     }
   })
-  document.getElementById('wrong_option').innerHTML += '*Emploee not found'
+  document.getElementById('wrong_option').innerHTML = '*Emploee not found'
   console.log('not found')
 }
 
