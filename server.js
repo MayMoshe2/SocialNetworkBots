@@ -1,6 +1,6 @@
 const express = require('express')
 ;(path = require('path')), (fs = require('fs')), (cors = require('cors')), (routers = require('./routes/routes.js'))
-const port = 3002
+const port = process.env.PORT || 3002
 
 const app = express()
 
