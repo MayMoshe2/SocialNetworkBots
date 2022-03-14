@@ -1,7 +1,7 @@
 const express = require('express')
 ;(path = require('path')), (fs = require('fs')), (cors = require('cors')), (routers = require('./routes/routes.js'))
 const port = process.env.PORT || 3002
-
+const host = '0.0.0.0'
 const app = express()
 
 app.use('/', express.static(path.join(__dirname, 'html')))
@@ -23,6 +23,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/', routers)
 
-const server = app.listen(port, () => {
+const server = app.listen(port, host, function () {
   console.log('listening on port %s...', server.address().port)
 })
