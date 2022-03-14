@@ -94,11 +94,15 @@ def main():
     db = firestore.client()
     emp_ref = db.collection('users')
     docs = emp_ref.stream()
-    receiver_address = " "
+
+    receiver_address = "["
+
     for doc in docs:
         receiver_address += doc.get('username')
-        receiver_address += ";"
-    receiver_address = 'maymoshe222@gmail.com, nirmaman631@gmail.com'
+        receiver_address += ","
+    receiver_address += "]"
+
+    # receiver_address = 'maymoshe222@gmail.com, nirmaman631@gmail.com'
     sendMail(senderEmail, senderPass, receiver_address, headline, message)
     logger.info(receiver_address)
     logger.info("Done")
