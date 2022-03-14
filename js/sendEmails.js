@@ -24,11 +24,11 @@ function sendEmail() {
     url: '/sendEmailsUrl/' + headLine + '/' + mess, // the url where we want to POST
     success: function () {
       console.log('Send Emails is called from client')
-      window.location.href = '/mainPage'
+      window.location.href = 'mainPage.html'
     },
     error: function (jqXhr, textStatus, errorThrown) {
       alert(errorThrown)
-      window.location.href = '/mainPage'
+      window.location.href = 'mainPage.html'
     },
   })
 }
