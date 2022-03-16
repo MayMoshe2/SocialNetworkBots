@@ -11,7 +11,7 @@ if (!firebase.apps.length) {
   })
 }
 var db = firebase.firestore()
-
+var web = 'https://social-network-bot-eagle-point.herokuapp.com'
 function sendEmail() {
   console.log('nir')
   console.log(document.getElementById('message').value)
@@ -21,7 +21,9 @@ function sendEmail() {
 
   $.ajax({
     type: 'get', // define the type of HTTP verb we want to use (POST for our form)
-    url: '/sendEmailsUrl/' + headLine + '/' + mess, // the url where we want to POST
+    //url: web + '/sendEmailsUrl/' + headLine + '/' + mess, // the url where we want to POST
+    url: web + '/sendEmailsUrl/' + headLine + '/' + mess, // the url where we want to POST
+
     success: function () {
       console.log('Send Emails is called from client')
       window.location.href = 'mainPage.html'
