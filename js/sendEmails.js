@@ -22,7 +22,7 @@ function sendEmail() {
   $.ajax({
     type: 'get', // define the type of HTTP verb we want to use (POST for our form)
     //url: web + '/sendEmailsUrl/' + headLine + '/' + mess, // the url where we want to POST
-    url: web + '/backend/sendEmailsUrl/' + headLine + '/' + mess, // the url where we want to POST
+    url: 'sendEmailsUrl/' + headLine + '/' + mess, // the url where we want to POST
 
     success: function () {
       console.log('Send Emails is called from client')
