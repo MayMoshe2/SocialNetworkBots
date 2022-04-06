@@ -79,7 +79,6 @@ PyScreeze==0.1.28
 pytest==6.2.2
 python-dateutil==2.8.2
 pytweening==1.0.4
-pywin32==303
 pyzmq==22.3.0
 requests==2.27.1
 rsa==4.8
