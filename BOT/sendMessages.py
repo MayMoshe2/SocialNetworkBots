@@ -200,7 +200,7 @@ user_filters = [
     "https://www.linkedin.com/search/results/people/?currentCompany=%5B%2227159493%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH",
 ]
 
-def loginTo(driver, email, password):
+def login(driver, email, password):
     # enter phone/email
     email_element = driver.find_element_by_xpath("//*[@id='username']")
     email_element.send_keys(email)
@@ -360,27 +360,12 @@ class DeliveryTracker:
         return full_name in self.already_sent
 
 
-@app.route("/")
-def home():
-    return "hi"
-@app.route("/index")
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-   message = None
-   if request.method == 'GET':
-        urL='https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin'
-        chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
-        webbrowser.register('chrome',  None,webbrowser.BackgroundBrowser(chrome_path))
-        webbrowser.get('chrome').open_new_tab(urL)
-
 if __name__ == "__main__":
-    app.run(debug = True)
 
-    # urL='https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin'
-    # chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
-    # webbrowser.register('chrome',  None,webbrowser.BackgroundBrowser(chrome_path))
-    # webbrowser.get('chrome').open_new_tab(urL)
+    urL='https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin'
+    chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+    webbrowser.register('chrome',  None,webbrowser.BackgroundBrowser(chrome_path))
+    webbrowser.get('chrome').open_new_tab(urL)
     # os.makedirs("logs", exist_ok=True)
     # delivery_tracker_filename = os.path.join("logs", "delivery_tracker.csv")
     # print("delivery_tracker_filename: delivery_tracker_filename:",
