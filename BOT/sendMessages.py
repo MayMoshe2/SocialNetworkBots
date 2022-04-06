@@ -1,6 +1,6 @@
 from cmath import log
 import pyautogui
-# import webbrowser
+import webbrowser
 # import UserPage
 # import DeliveryTracker
 import time
@@ -10,17 +10,21 @@ import os
 import re
 from dataclasses import dataclass
 from typing import Dict, Set
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
-import chromedriver_binary
+# from selenium import webbrowser
+
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.chrome.options import Options
+# import chromedriver_binary
 import json
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+from flask import Flask, render_template, redirect, url_for,request
+from flask import make_response
+app = Flask(__name__)
 
 
 # initializations
@@ -171,25 +175,32 @@ def prompt_user():
 
 
 def initialize_linkedin():
-    email, password, user_filter, message, num_pages = prompt_user()
+    # email, password, user_filter, message, num_pages = prompt_user()
     try:
-        driver = webdriver.Chrome(options=set_chrome_options())
-        setup(driver, fullscreen=True)
-        login(driver, email=email, password=password)
-        apply_filter(driver, user_filter=user_filter)
-        print(user_filter)
+        # driver = webdriver.Chrome(options=set_chrome_options())
+
+        urL='https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin'
+        chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+        webbrowser.register('chrome',  None,webbrowser.BackgroundBrowser(chrome_path))
+        webbrowser.get('chrome').open_new_tab(urL)
+        # driver = webbrowser.get('chrome')
+        # driver.open_new("https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin")
+        # setup(driver, fullscreen=True)
+        # login(driver, email=email, password=password)
+        # apply_filter(driver, user_filter=user_filter)
+        # print(user_filter)
     except Exception as exc:
         logger.info("initialize_linkedin2")
         print(exc)
     logger.info(f"logged in")
-    return driver, user_filter, message, num_pages
+    # return driver, user_filter, message, num_pages
 
 user_filters = [
     # "https://www.linkedin.com/search/results/people/?industry=%5B%22135%22%2C%224%22%2C%2296%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&page=1&title=CEO",
     "https://www.linkedin.com/search/results/people/?currentCompany=%5B%2227159493%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH",
 ]
 
-def login(driver, email, password):
+def loginTo(driver, email, password):
     # enter phone/email
     email_element = driver.find_element_by_xpath("//*[@id='username']")
     email_element.send_keys(email)
@@ -349,32 +360,53 @@ class DeliveryTracker:
         return full_name in self.already_sent
 
 
-if __name__ == "__main__":
-    os.makedirs("logs", exist_ok=True)
-    delivery_tracker_filename = os.path.join("logs", "delivery_tracker.csv")
-    print("delivery_tracker_filename: delivery_tracker_filename:",
-          delivery_tracker_filename)
-    initialize_logger()
-    driver, user_filter, message, num_pages = initialize_linkedin()
-    page = UserPage(driver, message, delivery_tracker_filename, testing=False)
+@app.route("/")
+def home():
+    return "hi"
+@app.route("/index")
 
-    try:
-        for i in range(int(num_pages)):
-            page_number = i + 1
-            logger.info(f"Processing page {page_number}")
-            user_elements = page.get_user_elements()
-            logger.info(f"Found {len(user_elements)} users on this page")
-            if len(user_elements) == 0:
-                logger.info(
-                    f"No more users on this page. My work here is done")
-                break
-            page.send_message_to_users(user_elements)
-            logger.info("Attempting to go to next page")
-            user_filter = get_next_page_url(user_filter)
-            apply_filter(driver, user_filter=user_filter)
-            time.sleep(1)
-    except Exception as exc:
-        logger.exception("failed", exc_info=exc)
-        driver.get_screenshot_as_file("logs/crash.png")
-        # driver.close()
-    logger.info("Done")
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+   message = None
+   if request.method == 'GET':
+        urL='https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin'
+        chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+        webbrowser.register('chrome',  None,webbrowser.BackgroundBrowser(chrome_path))
+        webbrowser.get('chrome').open_new_tab(urL)
+
+if __name__ == "__main__":
+    app.run(debug = True)
+
+    # urL='https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin'
+    # chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+    # webbrowser.register('chrome',  None,webbrowser.BackgroundBrowser(chrome_path))
+    # webbrowser.get('chrome').open_new_tab(urL)
+    # os.makedirs("logs", exist_ok=True)
+    # delivery_tracker_filename = os.path.join("logs", "delivery_tracker.csv")
+    # print("delivery_tracker_filename: delivery_tracker_filename:",
+    #       delivery_tracker_filename)
+    # initialize_logger()
+    # driver, user_filter, message, num_pages = initialize_linkedin()
+    # initialize_linkedin()
+    # page = UserPage(driver, message, delivery_tracker_filename, testing=False)
+
+    # try:
+    #     for i in range(int(num_pages)):
+    #         page_number = i + 1
+    #         logger.info(f"Processing page {page_number}")
+    #         user_elements = page.get_user_elements()
+    #         logger.info(f"Found {len(user_elements)} users on this page")
+    #         if len(user_elements) == 0:
+    #             logger.info(
+    #                 f"No more users on this page. My work here is done")
+    #             break
+    #         page.send_message_to_users(user_elements)
+    #         logger.info("Attempting to go to next page")
+    #         user_filter = get_next_page_url(user_filter)
+    #         apply_filter(driver, user_filter=user_filter)
+    #         time.sleep(1)
+    # except Exception as exc:
+    #     logger.exception("failed", exc_info=exc)
+    #     driver.get_screenshot_as_file("logs/crash.png")
+    #     # driver.close()
+    # logger.info("Done")

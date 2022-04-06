@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <script type="text/javascript" src ="../js/messageOnEvent.js"></script>
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' data: fonts.gstatic.com;"> -->
   </head>
   <body onload ="loadDetails()" >
     <div class="main-block">
@@ -28,19 +29,19 @@
             <div class="radio" id = "radio_options" name="checkbox">
             <div>
               <div class="row">
-                <input type="radio" id="option1" value="0" name="checkbox" onclick="showT()" required><span>specified filter from linkedin </span>
+                <input type="radio" id="option1" value="0" name="checkbox" onclick="showT()" ><span>specified filter from linkedin </span>
                 <div class="link_option">
                   <input  type="hidden" id ="Add_link_Id" name="name" placeholder="Add link" >
                 </div>   
               </div>
           </div>        
                     <div>
-              <input type="radio" value="2" name="checkbox" id="option3" onclick="hideT()"required><span>Test Eagle Point employees </span>
+              <input type="radio" value="2" name="checkbox" id="option3" onclick="hideT()"><span>Test Eagle Point employees </span>
             </div>
           </div>
           <br>
-          <input class="event_link" type="text" name="event_link" id="event_link" placeholder="Link to event" required>
-          <input class="message" type="text" name="message" id="message" placeholder="Write your message" required >
+          <input class="event_link" type="text" name="event_link" id="event_link" placeholder="Link to event" >
+          <input class="message" type="text" name="message" id="message" placeholder="Write your message"  >
           <input class="num_of_page" type="number" name="num_of_page" id="num_of_page" min="0" max="100" placeholder="choose number of pages" >
         </div>
         <button type="submit" onclick="writeToFile()" >Send messages</button>
