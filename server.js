@@ -1,6 +1,6 @@
 const express = require('express')
 ;(path = require('path')), (fs = require('fs')), (cors = require('cors')), (routers = require('./routes/routes.js'))
-const port = process.env.PORT
+const port = process.env.PORT || 5000
 const host = '0.0.0.0'
 const app = express()
 

@@ -15,13 +15,13 @@ async function loadDetails() {
   const snapshot = await citiesRef.get()
   await snapshot.forEach((doc) => {
     if (doc.data.name == null || doc.data.value == null || doc.data.password == null || doc.data.username == null) {
-      console.log('the problem :' + doc.id)
+      // console.log('the problem :' + doc.id)
     }
-    console.log(doc.id, '=>', doc.data())
+    // console.log(doc.id, '=>', doc.data())
     dropDown += '<option value = ' + doc.data().value + '>' + doc.data().name + '</option>'
   })
   dropDown += '</select>'
-  console.log(dropDown)
+  // console.log(dropDown)
   document.getElementById('drop_down').innerHTML += dropDown
 }
 run_python = function () {
@@ -31,46 +31,24 @@ run_python = function () {
   if (user == '' || connections == '' || start_from == '') {
     return
   }
-  console.log('user: ' + user + 'connections : ' + connections + 'start_from : ' + start_from)
-  console.log('run python from client')
+
+  const json = {
+    user: user,
+    connections: connections,
+    start_from: start_from,
+  }
+
   $.ajax({
-    type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
-    url: '/updateJson/1', // the url where we want to POST
-    contentType: 'application/json',
-    data: JSON.stringify({
-      user: user,
-      connections: connections,
-      start_from: start_from,
-    }),
-    processData: false,
-    encode: true,
-    success: function () {
-      // console.log("success");
-      callPython2()
-      alert('Before making more action, please wait until this action end.')
-      //window.location.href = "/runPy";
+    method: 'get',
+    url: '/addCon',
+    data: json,
+    success: function (data) {
+      console.log('run python from client')
+      console.log(data)
     },
-    error: function (jqXhr, textStatus, errorThrown) {
-      alert(errorThrown)
-      window.location.href = '/mainPage'
+    error: function (xhr, desc, err) {
+      console.log(xhr)
+      console.log('Details0: ' + desc + '\nError:' + err + '/n' + xhr)
     },
   })
-  // alert('1')
-
-  // alert('nir')
-}
-callPython2 = function () {
-  console.log('callpython2')
-  $.ajax({
-    type: 'get', // define the type of HTTP verb we want to use (POST for our form)
-    url: '/addCon/' + document.getElementById('users_name').value, // the url where we want to POST
-    success: function () {
-      console.log('addCon is called from client')
-    },
-    error: function (jqXhr, textStatus, errorThrown) {
-      alert(errorThrown)
-    },
-  })
-
-  // alert('nir')
 }
