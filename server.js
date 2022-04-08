@@ -6,7 +6,7 @@ const app = express()
 
 app.use('/', express.static(path.join(__dirname, 'html')))
 app.use('/MessageOnEvent', express.static(path.join(__dirname, 'html/messageOnEvent.html')))
-app.use('/mainPage', express.static(path.join(__dirname, 'html/mainPage.html')))
+app.use('/mainPage', express.static(path.join(__dirname, '/mainPage.html')))
 app.use('/addConnections', express.static(path.join(__dirname, 'html/addConnections.html')))
 app.use('/index', express.static(path.join(__dirname, 'index.html')))
 app.use('/manageData', express.static(path.join(__dirname, 'html/manageData.html')))

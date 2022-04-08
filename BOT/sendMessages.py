@@ -1,8 +1,5 @@
 from cmath import log
-import pyautogui
 import webbrowser
-# import UserPage
-# import DeliveryTracker
 import time
 import logging
 import sys
@@ -10,14 +7,6 @@ import os
 import re
 from dataclasses import dataclass
 from typing import Dict, Set
-# from selenium import webbrowser
-
-# from selenium.webdriver.support.ui import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as EC
-# from selenium.webdriver.common.by import By
-# from selenium.webdriver.common.keys import Keys
-# from selenium.webdriver.chrome.options import Options
-# import chromedriver_binary
 import json
 import firebase_admin
 from firebase_admin import credentials
@@ -25,20 +14,6 @@ from firebase_admin import firestore
 from flask import Flask, render_template, redirect, url_for,request
 from flask import make_response
 app = Flask(__name__)
-
-
-# initializations
-# cred = credentials.Certificate("socialnetworksbots-firebase-adminsdk-ckg7j-0ed2aef80b.json")
-# firebase_admin.initialize_app(cred)
-# db = firestore.client()
-
-# def nir():
-#     emp_ref = db.collection('users')
-#     docs = emp_ref.stream()
-#     for doc in docs:
-#        #print('{} => {} ',doc.id,  doc.to_dict())
-#        print('{} => {} ',doc.id, doc.get('name'))
-# use to be temp.py
 
 logger = logging.getLogger("bot")
 
@@ -57,8 +32,6 @@ def set_chrome_options(headless: bool = False) -> None:
     chrome_prefs["profile.default_content_settings"] = {"images": 2}
     return chrome_options
 
-# helper function
-
 
 @dataclass
 class User:
@@ -74,7 +47,7 @@ def initialize_logger():
     formatter = logging.Formatter(
         "%(asctime)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
     handlers = [logging.StreamHandler(
-        sys.stdout), logging.FileHandler(filename=f"logs/output.log")]
+        sys.stdout), logging.FileHandler(filename=f"BOT/logs/output.log")]
     for handler in handlers:
         handler.setLevel(logging.DEBUG)
         handler.setFormatter(formatter)
@@ -107,16 +80,6 @@ messages = [
 ]
 
 
-def get_user_filter():
-    inp = input(
-        "Please paste the link of your specified filter from linkedin (press enter for first connections that are ceos of tech companies. Enter 1 to test eagle point employees)"
-    )
-    try:
-        filter_id = 0 if inp == "" else int(inp)
-        return user_filters[filter_id]
-    except (ValueError, IndexError):
-        return inp
-
 
 def get_current_page_number(user_filter):
     regex_match = re.match(".*page=([0-9]+).*", user_filter)
@@ -142,15 +105,12 @@ def prompt_user():
         "socialnetworksbots-firebase-adminsdk-ckg7j-0ed2aef80b.json")
     firebase_admin.initialize_app(cred)
     db = firestore.client()
-
     f = open("data/detailsFromUser.json")
     data = json.load(f)
     id_user = int(data["0"]["user"])
     logger.info(id_user)
-
     emp_ref = db.collection('users')
     docs = emp_ref.stream()
-
     logger.info("start prompt5 ")
     for doc in docs:
         value = int(doc.get('value'))
@@ -175,28 +135,28 @@ def prompt_user():
 
 
 def initialize_linkedin():
-    # email, password, user_filter, message, num_pages = prompt_user()
+    email, password, user_filter, message, num_pages = prompt_user()
     try:
         # driver = webdriver.Chrome(options=set_chrome_options())
-
-        urL='https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin'
+        # urL='https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin'
+        urL = "https://www.google.com/"
         chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
         webbrowser.register('chrome',  None,webbrowser.BackgroundBrowser(chrome_path))
-        webbrowser.get('chrome').open_new_tab(urL)
+        driver = webbrowser.get('chrome').open_new_tab(urL)
+        logger.info("connected")
         # driver = webbrowser.get('chrome')
         # driver.open_new("https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin")
         # setup(driver, fullscreen=True)
-        # login(driver, email=email, password=password)
-        # apply_filter(driver, user_filter=user_filter)
+        login(driver, email=email, password=password)
+        apply_filter(driver, user_filter=user_filter)
         # print(user_filter)
     except Exception as exc:
         logger.info("initialize_linkedin2")
         print(exc)
     logger.info(f"logged in")
-    # return driver, user_filter, message, num_pages
+    return driver, user_filter, message, num_pages
 
 user_filters = [
-    # "https://www.linkedin.com/search/results/people/?industry=%5B%22135%22%2C%224%22%2C%2296%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&page=1&title=CEO",
     "https://www.linkedin.com/search/results/people/?currentCompany=%5B%2227159493%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH",
 ]
 
@@ -361,18 +321,11 @@ class DeliveryTracker:
 
 
 if __name__ == "__main__":
-
-    urL='https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin'
-    chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
-    webbrowser.register('chrome',  None,webbrowser.BackgroundBrowser(chrome_path))
-    webbrowser.get('chrome').open_new_tab(urL)
-    # os.makedirs("logs", exist_ok=True)
-    # delivery_tracker_filename = os.path.join("logs", "delivery_tracker.csv")
-    # print("delivery_tracker_filename: delivery_tracker_filename:",
-    #       delivery_tracker_filename)
-    # initialize_logger()
-    # driver, user_filter, message, num_pages = initialize_linkedin()
-    # initialize_linkedin()
+    os.makedirs("logs", exist_ok=True)
+    delivery_tracker_filename = os.path.join("logs", "delivery_tracker.csv")
+    print("delivery_tracker_filename: delivery_tracker_filename:", delivery_tracker_filename)
+    initialize_logger()
+    driver, user_filter, message, num_pages = initialize_linkedin()
     # page = UserPage(driver, message, delivery_tracker_filename, testing=False)
 
     # try:
@@ -394,4 +347,4 @@ if __name__ == "__main__":
     #     logger.exception("failed", exc_info=exc)
     #     driver.get_screenshot_as_file("logs/crash.png")
     #     # driver.close()
-    # logger.info("Done")
+    logger.info("Done")
