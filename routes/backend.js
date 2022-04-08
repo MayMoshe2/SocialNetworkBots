@@ -32,18 +32,23 @@ const writeFile = (fileData, callback, filePath = dataPath, encoding = 'utf8') =
   })
 }
 
-const firstPython = (req, res) => {
+const sendLinkdInMessag = (req, res) => {
   try {
     var dataToSend
-    const python = spawn('python', ['BOT/sendMessages.py'])
-    // collect data from script
+    const user = req.query.user
+    const box = req.query.box
+    const filterLink = req.query.filterLink
+    const link = req.query.link
+    const message = req.query.message
+    const pages = req.query.pages
+    const python = spawn('python', ['BOT/sendMessages.py', user, box, filterLink, link, message, pages])
+
     python.stdout.on('data', function (data) {
       console.log('Pipe data from python script ...')
       dataToSend = data.toString()
     })
     python.on('close', (code) => {
       console.log(`child process close all stdio with code ${code}`)
-      // send data to browser
       res.send(dataToSend)
     })
   } catch (error) {
@@ -77,10 +82,12 @@ const withrowPy = (req, res) => {
 const addCon = (req, res) => {
   try {
     var dataToSend
-    const userId = req.params['value']
-    console.log(userId)
 
-    const python = spawn('python', ['BOT/addConnections.py', userId])
+    const user = req.query.user
+    const connections = req.query.connections
+    const start_from = req.query.start_from
+
+    const python = spawn('python', ['BOT/addConnections.py', user, connections, start_from])
     // collect data from script
     python.stdout.on('data', function (data) {
       console.log('addCon from backend ...')
@@ -88,7 +95,6 @@ const addCon = (req, res) => {
     })
     python.on('close', (code) => {
       console.log(`'add Connections child process close all stdio with code ${code}`)
-      // send data to browser
       res.send(dataToSend)
     })
   } catch (error) {
@@ -180,7 +186,7 @@ const addEmployee = (req, res) => {
 
 module.exports = {
   updateJson,
-  firstPython,
+  sendLinkdInMessag,
   writeFile,
   readFile,
   addCon,

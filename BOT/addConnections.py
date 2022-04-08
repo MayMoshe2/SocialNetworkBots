@@ -162,7 +162,7 @@ def initialize_logger():
     formatter = logging.Formatter(
         "%(asctime)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
     handlers = [logging.StreamHandler(
-        sys.stdout), logging.FileHandler(filename=f"logs/output.log")]
+        sys.stdout), logging.FileHandler(filename=f"BOT/logs/output.log")]
     for handler in handlers:
         handler.setLevel(logging.DEBUG)
         handler.setFormatter(formatter)
@@ -230,4 +230,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    initialize_logger()
+    logger.info("ADDcONNECTIOS")
+    logger.info(sys.argv[1] + " user")
+    logger.info(sys.argv[2] + " connections")
+    logger.info(sys.argv[3] + " start_from ")
