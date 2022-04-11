@@ -1,60 +1,124 @@
 const { log } = require('console')
 const fs = require('fs')
 const { spawn } = require('child_process')
-const { required } = require('nodemon/lib/config')
-// const collection = db.collection('users')
-
-{
-  /* <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script> */
-}
-
-// variables
-const dataPath = './data/detailsFromUser.json'
+rquire('chromedriver')
+var webdriver = require('selenium-webdriver')
+const { Builder, By, Key, until } = require('selenium-webdriver')
+const { ThenableWebDriver } = require('selenium-webdriver')
+var tabToOpen
+var tab
 
 // helper methods
-const readFile = (callback, returnJson = false, filePath = dataPath, encoding = 'utf8') => {
-  fs.readFile(filePath, encoding, (err, data) => {
-    if (err) {
-      console.log(err)
-    }
-    if (!data) data = '{}'
-    callback(returnJson ? JSON.parse(data) : data)
-  })
+
+const login = (tab, email, pass) => {
+  // tabToOpen = tab.get('https://www.linkedin.com/checkpoint/lg/sign-in-another-account')
+  tabToOpen = tab.get("https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fsearch%2Fresults%2Fpeople%2F%3Fkeywords%3Dmay%2520moshe%26network%3D%255B%2522O%2522%255D%26origin%3DGLOBAL_SEARCH_HEADER%26sid%3DLt2&amp;fromSignIn=true&amp;trk=cold_join_sign_in")
+  tabToOpen
+    .then(function () {
+      // Timeout to wait if connection is slow
+      let findTimeOutP = tab.manage().setTimeouts({
+        implicit: 10000, // 10 seconds
+      })
+      return findTimeOutP
+    })
+    .then(function () {
+      // Step 2 - Finding the username input
+      let promiseUsernameBox = tab.findElement(By.xpath('//*[@id="username"]'))
+      return promiseUsernameBox
+    })
+    .then(function (usernameBox) {
+      // Step 3 - Entering the username
+      let promiseFillUsername = usernameBox.sendKeys(email)
+      return promiseFillUsername
+    })
+    .then(function () {
+      console.log('Username entered successfully in' + "'login demonstration' for GEEKSFORGEEKS")
+
+      // Step 4 - Finding the password input
+      let promisePasswordBox = tab.findElement(By.xpath('//*[@id="password"]'))
+      return promisePasswordBox
+    })
+    .then(function (passwordBox) {
+      // Step 5 - Entering the password
+      let promiseFillPassword = passwordBox.sendKeys(pass)
+      return promiseFillPassword
+    })
+    .then(function () {
+      console.log('Password entered successfully in' + " 'login demonstration' for GEEKSFORGEEKS")
+
+      // Step 6 - Finding the Sign In button
+      let promiseSignInBtn = tab.findElement(By.xpath('//*[@id="organic-div"]/form/div[3]/button'))
+      return promiseSignInBtn
+    })
+    .then(function (signInBtn) {
+      // Step 7 - Clicking the Sign In button
+      let promiseClickSignIn = signInBtn.click()
+      return promiseClickSignIn
+    })
+    .then(function () {
+      console.log('Successfully signed in GEEKSFORGEEKS!')
+    })
+    .catch(function (err) {
+      console.log('Error ', err, ' occurred!')
+    })
 }
 
-const writeFile = (fileData, callback, filePath = dataPath, encoding = 'utf8') => {
-  fs.writeFile(filePath, fileData, encoding, (err) => {
-    if (err) {
-      console.log(err)
-    }
-    callback()
-  })
-}
+async function sendLinkdInMessag(req, res) {
+  // const user = req.query.user
+  // const box = req.query.box
+  // const filterLink = req.query.filterLink
+  const link = req.query.link
+  const message = req.query.message
+  // const pages = req.query.pages
 
-const sendLinkdInMessag = (req, res) => {
-  try {
-    var dataToSend
-    const user = req.query.user
-    const box = req.query.box
-    const filterLink = req.query.filterLink
-    const link = req.query.link
-    const message = req.query.message
-    const pages = req.query.pages
-    const python = spawn('python', ['BOT/sendMessages.py', user, box, filterLink, link, message, pages])
+  const pages = 4
+  const filterLink  = "https://www.linkedin.com/search/results/people/?keywords=may%20moshe&network=%5B%22F%22%5D&origin=FACETED_SEARCH&position=0&searchId=c1bc2f06-baed-4b72-8561-547df677c1f4&sid=Va5"
 
-    python.stdout.on('data', function (data) {
-      console.log('Pipe data from python script ...')
-      dataToSend = data.toString()
+  tab = new webdriver.Builder().forBrowser('chrome').build()
+  let email = 'nirmaman631@gmail.com'
+  let pass = 'nir123456'
+  await login(tab, email, pass)
+  //create csv file for tracker
+  console.log("2")
+  tabToOpen = tab.get(filterLink)
+  tabToOpen
+  .then(function () {
+    // Timeout to wait if connection is slow
+    let findTimeOutP = tab.manage().setTimeouts({
+      implicit: 10000, // 10 seconds
     })
-    python.on('close', (code) => {
-      console.log(`child process close all stdio with code ${code}`)
-      res.send(dataToSend)
-    })
-  } catch (error) {
-    console.log(error)
-    res.status(500)
-  }
+    return findTimeOutP
+  }).then(function () {
+    for(let i = 1 ; i < pages ; i++){
+      console.log("1")
+      let numPeopleInPage = tab.findElement(By.xpath("//*[@id='main']/div/div/div[1]/ul/li[1]/div/div/div[2]/div[1]/div[1]/div/span[1]/span/a/span/span[1]/text()"))
+      console.log("Found " + numPeopleInPage.toString() +" users on this page")
+      if (numPeopleInPage== 0){
+        console.log("No more users on this page. My work here is done")
+      }
+      for(let j = 1 ; j < numPeopleInPage ; j++){
+        let fullName = tab.findElement(By.xpath("//*[@id='main']/div/div/div[1]/ul/li[change]/div/div/div[2]/div[1]/div[1]/div/span[1]/span/a/span/span[1]/text()"))
+        fullName.replace("change", j.toString())
+        console.log("sending message to: " + fullName)
+        let messageButton = tab.findElement(By.xpath("//main/div/div/div[1]/ul/li[change]/div/div/div[3]/div/div/button/span"))
+        messageButton.replace("change", j.toString())
+        messageButton.click()
+        let messageToSend = message + link
+        let messageBox = tab.findElement(By.css(".msg-form__contenteditable"))
+        messageBox.sendKeys(messageToSend)
+        let messageButtonSend = tab.findElement(By.xpath("//button[contains(@class, 'send-button')]")).click()
+        console.log("message sent")
+        //add name to delivery tracker
+        console.log("moving to the next page")
+        if (tab.findElement(By.xpath("//main/div/div/div[3]/div/div/button[2]"))){
+          tab.findElement(By.xpath("//main/div/div/div[3]/div/div/button[2]")).click()
+        }
+        else
+        {
+          console.log("There are no pages anymore!")
+        }
+      }
+  }})
 }
 
 const withrowPy = (req, res) => {
@@ -79,28 +143,73 @@ const withrowPy = (req, res) => {
   }
 }
 
-const addCon = (req, res) => {
-  try {
-    var dataToSend
-
+async function addCon(req, res) {
+  // try {
     const user = req.query.user
     const connections = req.query.connections
     const start_from = req.query.start_from
+    const filterLink  = "https://www.linkedin.com/mynetwork/import-contacts/results/member/"
 
-    const python = spawn('python', ['BOT/addConnections.py', user, connections, start_from])
-    // collect data from script
-    python.stdout.on('data', function (data) {
-      console.log('addCon from backend ...')
-      dataToSend = data.toString()
+    tab = new webdriver.Builder().forBrowser('chrome').build()
+    let email = 'nirmaman631@gmail.com'
+    let pass = 'nir123456'
+    await login(tab, email, pass)
+    //create csv file for tracker
+    console.log("2")
+    tabToOpen = tab.get(filterLink)
+    if(tab.findElement(By.xpath("//*[@id='main']//*/h2"))){
+        console.log("There are no more connections to add!")
+       tab.close()
+       return
+      }
+    tabToOpen
+    .then(function () {
+      // Timeout to wait if connection is slow
+      let findTimeOutP = tab.manage().setTimeouts({
+        implicit: 10000, // 10 seconds
+      })
+      return findTimeOutP
+    }).then(function () {
+      let numPeopleInPage = tab.findElement(By.xpath("//*[@id='main']/div/div/div[2]/div/div[1]/ul/li"))
+      console.log("Found " + numPeopleInPage.toString() +" users on this page")
+      if (numPeopleInPage== 0){
+        console.log("No more users on this page. My work here is done")
+      }
+      if(numPeopleInPage < start_from || numPeopleInPage < connections){
+        if(numPeopleInPage < start_from){
+          console.log("There arent enough connections! Please choose a different number to start from.")
+        }
+        else{
+          connections = numPeopleInPage
+        }
+      }
+      let howManyPeople = connections+start_from
+      for(let i = start_from ; i < howManyPeople ; i++){
+        let fullName = "//ul/li[z]//*/h4"
+        fullName.replace("z", i.toString())
+        tab.findElement(By.xpath(fullName))
+        //add fulle name to tracker
+        let xpathOfCon = "//*[@id='main']/div/div/div[2]/div/div[1]/ul/li[change]/div/*/*/*/label"
+        xpathOfCon.replace("change", i.toString())
+        tab.findElement(By.xpath(xpathOfCon)).click()
+      }
+      tab.findElement(By.xpath("//*[contains(span, 'Add')]")).click()
     })
-    python.on('close', (code) => {
-      console.log(`'add Connections child process close all stdio with code ${code}`)
-      res.send(dataToSend)
-    })
-  } catch (error) {
-    console.log(error)
-    res.status(500)
-  }
+  
+//     const python = spawn('python', ['BOT/addConnections.py', user, connections, start_from])
+//     // collect data from script
+//     python.stdout.on('data', function (data) {
+//       console.log('addCon from backend ...')
+//       dataToSend = data.toString()
+//     })
+//     python.on('close', (code) => {
+//       console.log(`'add Connections child process close all stdio with code ${code}`)
+//       res.send(dataToSend)
+//     })
+//   } catch (error) {
+//     console.log(error)
+//     res.status(500)
+//   }
 }
 
 const manage_data = (req, res) => {
@@ -187,8 +296,6 @@ const addEmployee = (req, res) => {
 module.exports = {
   updateJson,
   sendLinkdInMessag,
-  writeFile,
-  readFile,
   addCon,
   addEmployee,
   withrowPy,
