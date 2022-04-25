@@ -1,10 +1,14 @@
-const { log } = require('console')
+const { log, assert } = require('console')
 const fs = require('fs')
 const { spawn } = require('child_process')
-rquire('chromedriver')
+require('chromedriver')
 var webdriver = require('selenium-webdriver')
 const { Builder, By, Key, until } = require('selenium-webdriver')
 const { ThenableWebDriver } = require('selenium-webdriver')
+const { Driver } = require('selenium-webdriver/chrome')
+const { WebElement } = require('selenium-webdriver')
+const { listeners } = require('process')
+const console = require('console')
 var tabToOpen
 var tab
 
@@ -68,57 +72,215 @@ async function sendLinkdInMessag(req, res) {
   // const box = req.query.box
   // const filterLink = req.query.filterLink
   const link = req.query.link
-  const message = req.query.message
+  //const message = req.query.message
+  const message = "Hello!"
   // const pages = req.query.pages
 
-  const pages = 4
-  const filterLink  = "https://www.linkedin.com/search/results/people/?keywords=may%20moshe&network=%5B%22F%22%5D&origin=FACETED_SEARCH&position=0&searchId=c1bc2f06-baed-4b72-8561-547df677c1f4&sid=Va5"
-
+  const people = 10 /// from fireBase
+  if(people == 0){
+    console.log("There are no people!");
+    return;
+  }
+//  const filterLink  = "https://www.linkedin.com/search/results/people/?keywords=may%20moshe&network=%5B%22F%22%5D&origin=FACETED_SEARCH&position=0&searchId=c1bc2f06-baed-4b72-8561-547df677c1f4&sid=Va5"
+  const filterLink  = "https://www.linkedin.com/search/results/people/?connectionOf=%22ACoAABKD5zABxjSMSCW7ABT32D5qqC6NlqnaWp4%22&industry=%5B%224%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&schoolFilter=%5B%2215106848%22%5D&sid=H9Y&title=cyber"
+  let numOfPages = people/10
   tab = new webdriver.Builder().forBrowser('chrome').build()
   let email = 'nirmaman631@gmail.com'
   let pass = 'nir123456'
-  await login(tab, email, pass)
+  // await login(tab, email, pass)
   //create csv file for tracker
-  console.log("2")
-  tabToOpen = tab.get(filterLink)
+  tabToOpen = tab.get("https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fsearch%2Fresults%2Fpeople%2F%3Fkeywords%3Dmay%2520moshe%26network%3D%255B%2522O%2522%255D%26origin%3DGLOBAL_SEARCH_HEADER%26sid%3DLt2&amp;fromSignIn=true&amp;trk=cold_join_sign_in")
   tabToOpen
-  .then(function () {
-    // Timeout to wait if connection is slow
-    let findTimeOutP = tab.manage().setTimeouts({
-      implicit: 10000, // 10 seconds
+    .then(function () {
+      // Timeout to wait if connection is slow
+      let findTimeOutP = tab.manage().setTimeouts({
+        implicit: 10000, // 10 seconds
+      })
+      return findTimeOutP
     })
-    return findTimeOutP
-  }).then(function () {
-    for(let i = 1 ; i < pages ; i++){
-      console.log("1")
-      let numPeopleInPage = tab.findElement(By.xpath("//*[@id='main']/div/div/div[1]/ul/li[1]/div/div/div[2]/div[1]/div[1]/div/span[1]/span/a/span/span[1]/text()"))
-      console.log("Found " + numPeopleInPage.toString() +" users on this page")
-      if (numPeopleInPage== 0){
-        console.log("No more users on this page. My work here is done")
-      }
-      for(let j = 1 ; j < numPeopleInPage ; j++){
-        let fullName = tab.findElement(By.xpath("//*[@id='main']/div/div/div[1]/ul/li[change]/div/div/div[2]/div[1]/div[1]/div/span[1]/span/a/span/span[1]/text()"))
-        fullName.replace("change", j.toString())
-        console.log("sending message to: " + fullName)
-        let messageButton = tab.findElement(By.xpath("//main/div/div/div[1]/ul/li[change]/div/div/div[3]/div/div/button/span"))
-        messageButton.replace("change", j.toString())
-        messageButton.click()
-        let messageToSend = message + link
-        let messageBox = tab.findElement(By.css(".msg-form__contenteditable"))
-        messageBox.sendKeys(messageToSend)
-        let messageButtonSend = tab.findElement(By.xpath("//button[contains(@class, 'send-button')]")).click()
-        console.log("message sent")
-        //add name to delivery tracker
-        console.log("moving to the next page")
-        if (tab.findElement(By.xpath("//main/div/div/div[3]/div/div/button[2]"))){
-          tab.findElement(By.xpath("//main/div/div/div[3]/div/div/button[2]")).click()
+    .then(function () {
+      // Step 2 - Finding the username input
+      let promiseUsernameBox = tab.findElement(By.xpath('//*[@id="username"]'))
+      return promiseUsernameBox
+    })
+    .then(function (usernameBox) {
+      // Step 3 - Entering the username
+      let promiseFillUsername = usernameBox.sendKeys(email)
+      return promiseFillUsername
+    })
+    .then(function () {
+      console.log('Username entered successfully in' + "'login demonstration' for GEEKSFORGEEKS")
+
+      // Step 4 - Finding the password input
+      let promisePasswordBox = tab.findElement(By.xpath('//*[@id="password"]'))
+      return promisePasswordBox
+    })
+    .then(function (passwordBox) {
+      // Step 5 - Entering the password
+      let promiseFillPassword = passwordBox.sendKeys(pass)
+      return promiseFillPassword
+    })
+    .then(function () {
+      console.log('Password entered successfully in' + " 'login demonstration' for GEEKSFORGEEKS")
+
+      // Step 6 - Finding the Sign In button
+      let promiseSignInBtn = tab.findElement(By.xpath('//*[@id="organic-div"]/form/div[3]/button'))
+      return promiseSignInBtn
+    })
+    .then(function (signInBtn) {
+      // Step 7 - Clicking the Sign In button
+      let promiseClickSignIn = signInBtn.click()
+      return promiseClickSignIn
+    })
+    .then(function () {
+      console.log('Successfully signed in GEEKSFORGEEKS!')
+    })
+  .then(function () {
+    // tabToOpen = tab.get(filterLink)
+    tab.get(filterLink). 
+    then(function(){
+      let findTimeOutP = tab.manage().setTimeouts({
+        implicit: 10000, // 10 seconds
+      })
+      console.log("wait11");
+      return findTimeOutP
+    })
+    .then (async function(){
+       for (let i = 1; i <= numOfPages; i++) {
+        console.log("1")
+          for (let j = 1; j <= 10 ; j++) {
+            let change = j
+            let messageButtonXpath = "//main/div/div/div[1]/ul/li[" + change + "]/div/div/div[3]/div/div/button/span"
+            console.log(messageButtonXpath);
+            console.log("1.", j);
+            let messageButton = await tab.findElement(By.xpath(messageButtonXpath)).then( found => {
+              console.log("found person")
+              tab.findElement(By.xpath(messageButtonXpath)).click().then(
+                 function(){
+                  console.log("2.",j);
+                  let messageBox =  tab.findElement(By.css('.msg-form__contenteditable'))
+                  console.log("here3")
+                  return messageBox
+                }
+                ).then( function(messageBox){
+                  console.log("3.",j);
+                  let promiseFillMessage =  messageBox.sendKeys(message)
+                  console.log("here4");
+                  return promiseFillMessage
+                }
+                ).then( function(){
+                  console.log("4.",j);
+                  let sendbutton =  tab.findElement(By.xpath("//button[contains(@class, 'send-button')]"))
+                  sendbutton.click()
+                  
+                }).then(function(){
+                  let findTimeOutP = tab.manage().setTimeouts({
+                    implicit: 10000, // 10 seconds
+                  })
+                  console.log("wait2");
+                  return findTimeOutP
+                }).then( function() {
+                  try{
+                  let closeMessage =  tab.findElement(By.xpath(".//button[3]//span[contains(.,'Close your')]"))
+                  closeMessage.click()
+                  }
+                  catch(err){
+                    console.log(err);
+                  }
+                })
+            }, error => {
+              console.log("There are no more people to send messages to.");
+              return ;
+            })
+            // if(typeof(messageButton) === undefined){
+            //   console.log("There are no more people to send messages to.");
+            //   return ;
+            // }
+            // else{
+            //   console.log("im here2");
+            //   messageButton.click()
+            // }
+            // let fullName = tab.findElement(By.xpath("//*[@id='main']/div/div/div[1]/ul/li[change]/div/div/div[2]/div[1]/div[1]/div/span[1]/span/a/span/span[1]/text()"))
+            // fullName.replace("change", j.toString())
+            // console.log("sending message to: " + fullName)
+
+            // let messageToSend = message + link
+            // let messageBox = tab.findElement(By.css(".msg-form__contenteditable"))
+            // messageBox.sendKeys(messageToSend)
+            // let messageButtonSend = tab.findElement(By.xpath("//button[contains(@class, 'send-button')]")).click()
+            // console.log("message sent")
+            // //add name to delivery tracker
+            // console.log("moving to the next page")
+            // if (tab.findElement(By.xpath("//main/div/div/div[3]/div/div/button[2]"))) {
+            //   tab.findElement(By.xpath("//main/div/div/div[3]/div/div/button[2]")).click()
+            // }
+  
+            // else {
+            //   console.log("There are no pages anymore!")
+            // }
+          }
         }
-        else
-        {
-          console.log("There are no pages anymore!")
-        }
-      }
-  }})
+
+      // let messageButton = tab.findElement(By.xpath("/html/body/div[6]/div[3]/div[2]/div/div[1]/main/div/div/div[1]/ul/li/div/div/div[3]/div/div/button"))
+      // console.log("find element");
+      // return messageButton
+     })
+    // .then(function () {
+    //   // console.log(numPeopleInPage);
+    //   // let temp = messageButton.click()
+    //   return temp
+    // })
+
+    // Timeout to wait if connection is slow
+  })
+  // .then(function() {
+  //  // let numPeopleInPage = tab.findElement("/html/body/div[6]/div[3]/div[2]/div/div[1]/main/div/div/h2")
+  //   let messageButton = tab.findElement(By.xpath("/html/body/div[6]/div[3]/div[2]/div/div[1]/main/div/div/div[1]/ul/li/div/div/div[3]/div/div/button"))
+  //   console.log("find element");
+  //   return messageButton
+  //   //xpath("/html/body/div[6]/div[3]/div[2]/div/div[1]/main/div/div/div[1]/ul/li/div/div/div[3]/div/div/button"))      return numPeopleInPage. messageButton
+  // })
+  .then(function (messageButton) {
+    // console.log(numPeopleInPage);
+    // let temp = messageButton.click()
+    // return temp
+      
+    //   let numPeopleInPage = tab.findElement(By.xpath("//*[@id='main']/div/div/div[1]/ul/li[1]/div/div/div[2]/div[1]/div[1]/div/span[1]/span/a/span/span[1]/text()"))
+    // console.log(numPeopleInPage)
+    // for (let i = 1; i < pages; i++) {
+    //   console.log("1")
+    //   let numPeopleInPage = tab.findElement(By.xpath("//*[@id='main']/div/div/div[1]/ul/li").element)
+    //     console.log("Found " + JSON.stringify(numPeopleInPage) + " users on this page")
+    //     if (numPeopleInPage == 0) {
+    //       console.log("No more users on this page. My work here is done")
+    //     }
+        
+    //     for (let j = 1; j < numPeopleInPage; j++) {
+    //       let fullName = tab.findElement(By.xpath("//*[@id='main']/div/div/div[1]/ul/li[change]/div/div/div[2]/div[1]/div[1]/div/span[1]/span/a/span/span[1]/text()"))
+    //       fullName.replace("change", j.toString())
+    //       console.log("sending message to: " + fullName)
+    //       let messageButton = tab.findElement(By.xpath("//main/div/div/div[1]/ul/li[change]/div/div/div[3]/div/div/button/span"))
+    //       messageButton.replace("change", j.toString())
+    //       messageButton.click()
+    //       let messageToSend = message + link
+    //       let messageBox = tab.findElement(By.css(".msg-form__contenteditable"))
+    //       messageBox.sendKeys(messageToSend)
+    //       let messageButtonSend = tab.findElement(By.xpath("//button[contains(@class, 'send-button')]")).click()
+    //       console.log("message sent")
+    //       //add name to delivery tracker
+    //       console.log("moving to the next page")
+    //       if (tab.findElement(By.xpath("//main/div/div/div[3]/div/div/button[2]"))) {
+    //         tab.findElement(By.xpath("//main/div/div/div[3]/div/div/button[2]")).click()
+    //       }
+
+    //       else {
+    //         console.log("There are no pages anymore!")
+    //       }
+    //     }
+    //   }
+  }).catch(function (err) {
+    console.log('Error ', err, ' occurred!')
+  })
 }
 
 const withrowPy = (req, res) => {
