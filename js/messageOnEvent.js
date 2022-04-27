@@ -33,13 +33,24 @@ showT = function () {
 hideT = function () {
   document.getElementById('Add_link_Id').type = 'hidden'
 }
-writeToFile = function () {
+writeToFile = async function () {
   let user = document.getElementById('users_name').value
   let box = document.getElementById('option1').checked
   let filterLink = document.getElementById('Add_link_Id').value
   let link = document.getElementById('event_link').value
   let message = document.getElementById('message').value
   let pages = document.getElementById('num_of_page').value
+  let email, pass
+
+  const citiesRef = db.collection('users')
+  const snapshot = await citiesRef.get()
+  await snapshot.forEach((doc) => {
+    if (user == doc.data().value) {
+      email = doc.data().username
+      pass = doc.data().password
+      console.log(doc.data().username + doc.data().password)
+    }
+  })
 
   if (box == true) {
     box = '1'
@@ -49,6 +60,8 @@ writeToFile = function () {
 
   const json = {
     user: user,
+    email: email,
+    pass: pass,
     box: box,
     filterLink: filterLink,
     link: link,
