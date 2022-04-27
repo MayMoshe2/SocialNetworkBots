@@ -15,130 +15,71 @@ var tab
 
 // helper methods
 
-const login = (tab, email, pass) => {
-  // tabToOpen = tab.get('https://www.linkedin.com/checkpoint/lg/sign-in-another-account')
-  tabToOpen = tab.get("https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fsearch%2Fresults%2Fpeople%2F%3Fkeywords%3Dmay%2520moshe%26network%3D%255B%2522O%2522%255D%26origin%3DGLOBAL_SEARCH_HEADER%26sid%3DLt2&amp;fromSignIn=true&amp;trk=cold_join_sign_in")
-  tabToOpen
-    .then(function () {
-      // Timeout to wait if connection is slow
-      let findTimeOutP = tab.manage().setTimeouts({
-        implicit: 10000, // 10 seconds
-      })
-      return findTimeOutP
-    })
-    .then(function () {
-      // Step 2 - Finding the username input
-      let promiseUsernameBox = tab.findElement(By.xpath('//*[@id="username"]'))
-      return promiseUsernameBox
-    })
-    .then(function (usernameBox) {
-      // Step 3 - Entering the username
-      let promiseFillUsername = usernameBox.sendKeys(email)
-      return promiseFillUsername
-    })
-    .then(function () {
-      console.log('Username entered successfully in' + "'login demonstration' for GEEKSFORGEEKS")
-
-      // Step 4 - Finding the password input
-      let promisePasswordBox = tab.findElement(By.xpath('//*[@id="password"]'))
-      return promisePasswordBox
-    })
-    .then(function (passwordBox) {
-      // Step 5 - Entering the password
-      let promiseFillPassword = passwordBox.sendKeys(pass)
-      return promiseFillPassword
-    })
-    .then(function () {
-      console.log('Password entered successfully in' + " 'login demonstration' for GEEKSFORGEEKS")
-
-      // Step 6 - Finding the Sign In button
-      let promiseSignInBtn = tab.findElement(By.xpath('//*[@id="organic-div"]/form/div[3]/button'))
-      return promiseSignInBtn
-    })
-    .then(function (signInBtn) {
-      // Step 7 - Clicking the Sign In button
-      let promiseClickSignIn = signInBtn.click()
-      return promiseClickSignIn
-    })
-    .then(function () {
-      console.log('Successfully signed in GEEKSFORGEEKS!')
-    })
-    .catch(function (err) {
-      console.log('Error ', err, ' occurred!')
-    })
-}
-
 async function sendLinkdInMessag(req, res) {
   // const user = req.query.user
   // const box = req.query.box
-  // const filterLink = req.query.filterLink
+  // const email = req.query.email -------------- the original!
+  // const password = req.query.pass  ---------------- the original!
+  
   const link = req.query.link
   //const message = req.query.message
   const message = "Hello!"
-  // const pages = req.query.pages
-
+  // const people = req.query.people
+  const listPeople = []
   const people = 10 /// from fireBase
   if(people == 0){
     console.log("There are no people!");
     return;
   }
-//  const filterLink  = "https://www.linkedin.com/search/results/people/?keywords=may%20moshe&network=%5B%22F%22%5D&origin=FACETED_SEARCH&position=0&searchId=c1bc2f06-baed-4b72-8561-547df677c1f4&sid=Va5"
-  // const filterLink  = "https://www.linkedin.com/search/results/people/?connectionOf=%22ACoAABKD5zABxjSMSCW7ABT32D5qqC6NlqnaWp4%22&industry=%5B%224%22%5D&network=%5B%22F%22%5D&origin=FACETED_SEARCH&schoolFilter=%5B%2215106848%22%5D&sid=H9Y&title=cyber"
   const filterLink = "https://www.linkedin.com/search/results/people/?keywords=yotvat&lastName=yotvat&network=%5B%22F%22%5D&origin=GLOBAL_SEARCH_HEADER&sid=Y8T"
-  let numOfPages = people/10
+  // const filterLink = req.query.filterLink 
+ 
+  if (box == 3 || (box == 1 && !req.query.filterLink)){
+    filterLink = "https://www.linkedin.com/search/results/people/?currentCompany=%5B%2227159493%22%5D&keywords=eagle%20point%20funding&origin=FACETED_SEARCH&position=1&searchId=542c02cc-6545-4615-b73f-7b19a91dece5&sid=lhE"
+  }
+  
+  let numOfPages = Math.ceil(people/10)
   tab = new webdriver.Builder().forBrowser('chrome').build()
   let email = 'nirmaman631@gmail.com'
   let pass = 'nir123456'
-  // await login(tab, email, pass)
-  //create csv file for tracker
   tabToOpen = tab.get("https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fsearch%2Fresults%2Fpeople%2F%3Fkeywords%3Dmay%2520moshe%26network%3D%255B%2522O%2522%255D%26origin%3DGLOBAL_SEARCH_HEADER%26sid%3DLt2&amp;fromSignIn=true&amp;trk=cold_join_sign_in")
   tabToOpen
-    .then(function () {
-      // Timeout to wait if connection is slow
+    .then(function () { // Timeout to wait if connection is slow
       let findTimeOutP = tab.manage().setTimeouts({
         implicit: 10000, // 10 seconds
       })
       return findTimeOutP
     })
     .then(function () {
-      // Step 2 - Finding the username input
       let promiseUsernameBox = tab.findElement(By.xpath('//*[@id="username"]'))
       return promiseUsernameBox
     })
     .then(function (usernameBox) {
-      // Step 3 - Entering the username
       let promiseFillUsername = usernameBox.sendKeys(email)
       return promiseFillUsername
     })
     .then(function () {
       console.log('Username entered successfully in' + "'login demonstration' for GEEKSFORGEEKS")
-
-      // Step 4 - Finding the password input
       let promisePasswordBox = tab.findElement(By.xpath('//*[@id="password"]'))
       return promisePasswordBox
     })
     .then(function (passwordBox) {
-      // Step 5 - Entering the password
       let promiseFillPassword = passwordBox.sendKeys(pass)
       return promiseFillPassword
     })
     .then(function () {
-      console.log('Password entered successfully in' + " 'login demonstration' for GEEKSFORGEEKS")
-
-      // Step 6 - Finding the Sign In button
+      console.log('Password entered successfully in' + " 'login demonstration' for LinkedIn")
       let promiseSignInBtn = tab.findElement(By.xpath('//*[@id="organic-div"]/form/div[3]/button'))
       return promiseSignInBtn
     })
     .then(function (signInBtn) {
-      // Step 7 - Clicking the Sign In button
       let promiseClickSignIn = signInBtn.click()
       return promiseClickSignIn
     })
     .then(function () {
-      console.log('Successfully signed in GEEKSFORGEEKS!')
+      console.log('Successfully signed in LinkedIn!')
     })
   .then(function () {
-    // tabToOpen = tab.get(filterLink)
     tab.get(filterLink). 
     then(function(){
       let findTimeOutP = tab.manage().setTimeouts({
@@ -156,9 +97,13 @@ async function sendLinkdInMessag(req, res) {
             console.log("1.", j);
             let messageButton = await tab.findElement(By.xpath(messageButtonXpath)).then(async found => {
               console.log("found person")
-              // let nameXpath = "//ul/li[" + change + "]/div/div/div[2]/div[1]/div[1]/div/span[1]/span/a/span/span[1]"
-              // let namePerson = tab.findElement(By.xpath(nameXpath))
-              // console.log(namePerson);
+              let nameXpath = "//div/div[1]/ul/li[" + change + "]/div/div/div[2]/div[1]/div[1]/div/span[1]/span/a/span/span[1]"
+              var textPromise = tab.findElement(By.xpath(nameXpath)).getText();
+              await textPromise.then((text) => {
+                console.log("name", text);
+                listPeople.push(text)
+              });
+              console.log(listPeople);
               await tab.findElement(By.xpath(messageButtonXpath)).click().then(
                 async function(){
                   console.log("2.",j);
@@ -208,7 +153,21 @@ async function sendLinkdInMessag(req, res) {
               return ;
             })
           }
+          let xpathNext = tab.findElement(By.xpath("//div/div/div[2]/div/button[2]")).then(function(){
+            if(xpathNext){
+              xpathNext.click()
+            }
+            else{
+              console.log("There is no more pages!!");
+              console.log("End of action for the BOT :)");
+              tab.close()
+              return;
+            }
+          })
         }
+     }).then(async function(){
+      var file = JSON.stringify(listPeople);
+      console.log(file);
      })
   })
   .catch(function (err) {
@@ -397,11 +356,6 @@ module.exports = {
   manage_data,
   sendEmailsUrl,
 }
-
-
-
-
-
 
 function sleep(ms) {
   return new Promise((resolve) => {
