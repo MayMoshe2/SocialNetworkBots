@@ -39,9 +39,10 @@ writeToFile = async function () {
   let filterLink = document.getElementById('Add_link_Id').value
   let link = document.getElementById('event_link').value
   let message = document.getElementById('message').value
-  let pages = document.getElementById('num_of_page').value
+  let people = document.getElementById('num_of_page').value
   let email, pass
 
+  // locate the username and password and send them on the http call:
   const citiesRef = db.collection('users')
   const snapshot = await citiesRef.get()
   await snapshot.forEach((doc) => {
@@ -66,7 +67,7 @@ writeToFile = async function () {
     filterLink: filterLink,
     link: link,
     message: message,
-    pages: pages,
+    people: people,
   }
 
   $.ajax({
