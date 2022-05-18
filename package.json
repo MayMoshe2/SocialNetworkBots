@@ -21,6 +21,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "firebase": "^8.10.0",
+    "firebase-admin": "^10.2.0",
     "jquery-validation": "^1.19.3",
     "nodemailer": "^6.7.5",
     "nodemon": "^2.0.15",
