@@ -526,20 +526,14 @@ async function addCon(req, res) {
 async function help_to_send_mail(send_to, text) {
   try {
     let testAccount = await nodemailer.createTestAccount()
-    // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 587,
-      //service: 'gmail',
       auth: {
         user: 'EaglePointBot@gmail.com', // generated ethereal user
         pass: 'njgpgjqmszqcqmwr', // generated ethereal password
       },
-      // njgpgjqmszqcqmwe
     })
-    //nodejs95
-    //B0t1234!
-    // send mail with defined transport object
     let info = await transporter.sendMail({
       from: 'EaglePointBot@gmail.com', // sender address
       to: send_to, // list of receivers
@@ -548,11 +542,7 @@ async function help_to_send_mail(send_to, text) {
     })
 
     console.log('Message sent: %s', info.messageId)
-    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-    // Preview only available when sending through an Ethereal account
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
   } catch (err) {
     console.log(err)
   }
@@ -562,47 +552,94 @@ async function manage_data(req, res) {
   //Message:
   //value = 0 -  Extract data
   //value = 1  Delete Data
-  //Bot Users:
+  //connection:
   //value = 2 - Extract
   // value = 3 Delete
   //Withdraw
   //value = 4 - Extract
   //value = 5 Delete
   try {
-    let send_mail_with_data
+    let send_mail_with_data = ''
     let get_from_FB
-    let sendTo
+    let sendTo = ''
     const user = req.params['value']
     const option = req.params['option']
     const snapshot = await citiesRef.get()
     if (option == 0) {
-      sendTo = 'Hi! /n Here is the names of the poeple you sent me'
-      //value = 0 -  Extract data
+      send_mail_with_data = 'Hi! \n Here is the list of the poeple you sent message to: \n'
       snapshot.forEach((doc) => {
         if (user == doc.data().value) {
           // get all the msg_repo from the firebase
           get_from_FB = doc.data().msg_repo
-          sendTo = doc.data().username
-          console.log(get_from_FB)
+          sendTo += doc.data().username
         }
       })
-      send_mail_with_data = get_from_FB.toString() // convert the response from firebase to string.
-      console.log(send_mail_with_data)
+      send_mail_with_data += get_from_FB
+      send_mail_with_data += '\n Have a great day :)'
       help_to_send_mail(sendTo, send_mail_with_data)
     } else if (option == 1) {
-      console.log(option)
+      try {
+        const snapshot = await citiesRef.get()
+        snapshot.forEach((doc) => {
+          if (user == doc.data().value) {
+            const update = doc.ref.update({ msg_repo: [] })
+          }
+        })
+        console.log('msg_repo deleted')
+      } catch (err) {
+        console.log(err)
+        return
+      }
     } else if (option == 2) {
-      console.log(option)
+      send_mail_with_data = 'Hi! \n Here is the list of the poeple you connected with: \n'
+      snapshot.forEach((doc) => {
+        if (user == doc.data().value) {
+          // get all the msg_repo from the firebase
+          get_from_FB = doc.data().con_repo
+          sendTo += doc.data().username
+        }
+      })
+      send_mail_with_data += get_from_FB
+      send_mail_with_data += '\n Have a great day :)'
+      help_to_send_mail(sendTo, send_mail_with_data)
     } else if (option == 3) {
-      console.log(option)
+      try {
+        const snapshot = await citiesRef.get()
+        snapshot.forEach((doc) => {
+          if (user == doc.data().value) {
+            const update = doc.ref.update({ con_repo: [] })
+          }
+        })
+        console.log('con_repo deleted')
+      } catch (err) {
+        console.log(err)
+        return
+      }
     } else if (option == 4) {
-      console.log(option)
+      send_mail_with_data = 'Hi! \n Here is the list of the poeple you withdrow: \n'
+      snapshot.forEach((doc) => {
+        if (user == doc.data().value) {
+          get_from_FB = doc.data().withdrow_repo
+          sendTo += doc.data().username
+        }
+      })
+      send_mail_with_data += get_from_FB
+      send_mail_with_data += '\n Have a great day :)'
+      help_to_send_mail(sendTo, send_mail_with_data)
     } else if (option == 5) {
-      console.log(option)
+      try {
+        const snapshot = await citiesRef.get()
+        snapshot.forEach((doc) => {
+          if (user == doc.data().value) {
+            const update = doc.ref.update({ withdrow_repo: [] })
+          }
+        })
+        console.log('withdrow_repo deleted')
+      } catch (err) {
+        console.log(err)
+        return
+      }
     }
-
-    // console.log(user)
-    // console.log(option)
   } catch (error) {
     console.log(error)
     res.status(500)
