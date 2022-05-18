@@ -31,7 +31,7 @@
               <div class="row">
                 <input type="radio" id="option1" value="0" name="checkbox" onclick="showT()" ><span>specified filter from linkedin </span>
                 <div class="link_option">
-                  <input  type="hidden" id ="Add_link_Id" name="name" placeholder="Add link" >
+                  <input  type="hidden" id ="Add_link_Id" name="name" placeholder="Add link" required >
                 </div>   
               </div>
           </div>        
@@ -40,9 +40,9 @@
             </div>
           </div>
           <br>
-          <input class="event_link" type="text" name="event_link" id="event_link" placeholder="Link to event" >
-          <input class="message" type="text" name="message" id="message" placeholder="Write your message"  >
-          <input class="num_of_page" type="number" name="num_of_page" id="num_of_page" min="0" max="100" placeholder="choose number of people" >
+          <input class="event_link" type="text" name="event_link" id="event_link" placeholder="Link to event" required >
+          <input class="message" type="text" name="message" id="message" placeholder="Write your message"  required>
+          <input class="num_of_page" type="number" name="num_of_page" id="num_of_page" min="0" max="100" placeholder="choose number of people" required>
         </div>
         <button type="input" onclick="writeToFile()" >Send messages</button>
       </form>

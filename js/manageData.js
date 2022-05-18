@@ -10,6 +10,15 @@ firebase.initializeApp({
 var db = firebase.firestore()
 
 toManage = function (value) {
+  //Message:
+  //value = 0 -  Extract data
+  //value = 1  Delete Data
+  //Bot Users:
+  //value = 2 - Extract
+  // value = 3 Delete
+  //Withdraw
+  //value = 4 - Extract
+  //value = 5 Delete
   console.log(value)
   console.log(document.getElementById('users_name').value)
   $.ajax({
@@ -17,7 +26,7 @@ toManage = function (value) {
     url: '/manage_data/' + document.getElementById('users_name').value + '/' + value, // the url where we want to POST
     success: function () {
       console.log('manage_data is called from client')
-      window.location.href = '/mainPage'
+      // window.location.href = '/mainPage'
     },
     error: function (jqXhr, textStatus, errorThrown) {
       alert(errorThrown)

@@ -13,10 +13,13 @@ const { close } = require('inspector')
 const admin = require('firebase-admin')
 const serviceAccount = require('../socialnetworksbots-firebase-adminsdk-ckg7j-0ed2aef80b.json')
 const setDoc = require('firebase/firestore')
+var nodemailer = require('nodemailer')
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 })
 const db = admin.firestore()
+const citiesRef = db.collection('users')
 
 var tabToOpen
 var tab
@@ -182,9 +185,12 @@ async function sendLinkdInMessag(req, res) {
           }
         })
         .then(async function () {
-          const citiesRef = db.collection('users')
-          const snapshot = await citiesRef.get()
           try {
+            //לקחתי את השורות הבאות :
+            //const citiesRef = db.collection('users')
+            //const snapshot = await citiesRef.get()
+            //והעברתי אותם ללמעלה כדי שיהיו גלובאליות. אם יש בעיה אז להחזיר לפה.
+            const snapshot = await citiesRef.get()
             snapshot.forEach((doc) => {
               if (user == doc.data().value) {
                 const update = doc.ref.update({ msg_repo: listPeople })
@@ -427,27 +433,86 @@ async function addCon(req, res) {
   //     res.status(500)
   //   }
 }
-
-const manage_data = (req, res) => {
+async function help_to_send_mail(send_to, text) {
   try {
-    var dataToSend
-    const value = req.params['value']
+    let testAccount = await nodemailer.createTestAccount()
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      //service: 'gmail',
+      auth: {
+        user: 'EaglePointBot@gmail.com', // generated ethereal user
+        pass: 'njgpgjqmszqcqmwr', // generated ethereal password
+      },
+      // njgpgjqmszqcqmwe
+    })
+    //nodejs95
+    //B0t1234!
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: 'EaglePointBot@gmail.com', // sender address
+      to: send_to, // list of receivers
+      subject: 'DoNotReplay', // Subject line
+      text: text, // plain text body
+    })
+
+    console.log('Message sent: %s', info.messageId)
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+    // Preview only available when sending through an Ethereal account
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+async function manage_data(req, res) {
+  //Message:
+  //value = 0 -  Extract data
+  //value = 1  Delete Data
+  //Bot Users:
+  //value = 2 - Extract
+  // value = 3 Delete
+  //Withdraw
+  //value = 4 - Extract
+  //value = 5 Delete
+  try {
+    let send_mail_with_data
+    let get_from_FB
+    let sendTo
+    const user = req.params['value']
     const option = req.params['option']
+    const snapshot = await citiesRef.get()
+    if (option == 0) {
+      sendTo = "Hi! /n Here is the names of the poeple you sent me"
+      //value = 0 -  Extract data
+      snapshot.forEach((doc) => {
+        if (user == doc.data().value) {
+          // get all the msg_repo from the firebase
+          get_from_FB = doc.data().msg_repo
+          sendTo = doc.data().username
+          console.log(get_from_FB)
+        }
+      })
+      send_mail_with_data = get_from_FB.toString() // convert the response from firebase to string.
+      console.log(send_mail_with_data)
+      help_to_send_mail(sendTo, send_mail_with_data)
+    } else if (option == 1) {
+      console.log(option)
+    } else if (option == 2) {
+      console.log(option)
+    } else if (option == 3) {
+      console.log(option)
+    } else if (option == 4) {
+      console.log(option)
+    } else if (option == 5) {
+      console.log(option)
+    }
 
-    console.log(value)
-    console.log(option)
-
-    const python = spawn('python', ['BOT/exportReports.py', value, option])
-    // collect data from script
-    python.stdout.on('data', function (data) {
-      console.log('manage_data from backend ...')
-      dataToSend = data.toString()
-    })
-    python.on('close', (code) => {
-      console.log(`'manage data child process close all stdio with code ${code}`)
-      // send data to browser
-      res.send(dataToSend)
-    })
+    // console.log(user)
+    // console.log(option)
   } catch (error) {
     console.log(error)
     res.status(500)
