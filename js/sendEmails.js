@@ -4,33 +4,25 @@ if (!firebase.apps.length) {
     apiKey: 'AIzaSyCxzOG5wE6-A9PTPlQUSJEGHoz1Acbetm8',
     authDomain: 'socialnetworksbots.firebaseapp.com',
     projectId: 'socialnetworksbots',
-    // storageBucket: 'socialnetworksbots.appspot.com',
-    // messagingSenderId: '180389196591',
-    // appId: '1:180389196591:web:a00c8fc35f5c496e55e7da',
-    // measurementId: 'G-XN1SBKC3B4',
   })
 }
 var db = firebase.firestore()
 var web = 'https://social-network-bot-eagle-point.herokuapp.com'
 function sendEmail() {
   console.log('nir')
-  console.log(document.getElementById('message').value)
-  console.log(document.getElementById('event_link').value)
+
   var headLine = document.getElementById('message').value
   var mess = document.getElementById('event_link').value
-
-  $.ajax({
-    type: 'get', // define the type of HTTP verb we want to use (POST for our form)
-    //url: web + '/sendEmailsUrl/' + headLine + '/' + mess, // the url where we want to POST
-    url: 'sendEmailsUrl/' + headLine + '/' + mess, // the url where we want to POST
-
-    success: function () {
-      console.log('Send Emails is called from client')
-      window.location.href = 'mainPage.html'
-    },
-    error: function (jqXhr, textStatus, errorThrown) {
-      alert(errorThrown)
-      window.location.href = 'mainPage.html'
-    },
-  })
+  console.log('headLine', headLine)
+  console.log('mess', mess)
+  try {
+    $.ajax({
+      type: 'get',
+      url: 'sendEmailsUrl/' + headLine + '/' + mess,
+    })
+    alert('The operation was successful. Please wait a minute')
+  } catch (err) {
+    console.log(err)
+  }
+  window.location.href = '/mainPage.html'
 }
