@@ -38,6 +38,7 @@ async function sendLinkdInMessag(req, res) {
         if (userId == doc.data().value) {
           const email = doc.data().username
           const pass = doc.data().password
+          arrayInData = doc.data().msg_repo
         }
       })
     })
@@ -251,12 +252,14 @@ async function sendLinkdInMessag(req, res) {
             //const citiesRef = db.collection('users')
             //const snapshot = await citiesRef.get()
             //והעברתי אותם ללמעלה כדי שיהיו גלובאליות. אם יש בעיה אז להחזיר לפה.
-            const snapshot = await citiesRef.get()
-            snapshot.forEach((doc) => {
-              if (userId == doc.data().value) {
-                const update = doc.ref.update({ msg_repo: listPeople })
-              }
-            })
+            if (arrayInData.length + listPeople.length <= 100) {
+              const snapshot = await citiesRef.get()
+              snapshot.forEach((doc) => {
+                if (userId == doc.data().value) {
+                  const update = doc.ref.update({ msg_repo: listPeople })
+                }
+              })
+            }
           } catch (err) {
             console.log('Error ', err, ' occurred!')
             console.log('There is no more pages!!')
@@ -280,6 +283,7 @@ async function withrowPy(req, res) {
       if (userId == doc.data().value) {
         const email = doc.data().username
         const pass = doc.data().password
+        arrayInData = doc.data().withdrow_repo
       }
     })
   } catch (err) {
@@ -417,12 +421,14 @@ async function withrowPy(req, res) {
             //const citiesRef = db.collection('users')
             //const snapshot = await citiesRef.get()
             //והעברתי אותם ללמעלה כדי שיהיו גלובאליות. אם יש בעיה אז להחזיר לפה.
-            const snapshot = await citiesRef.get()
-            snapshot.forEach((doc) => {
-              if (userId == doc.data().value) {
-                const update = doc.ref.update({ withdrow_repo: listPeople })
-              }
-            })
+            if (arrayInData.length + listPeople.length <= 100) {
+              const snapshot = await citiesRef.get()
+              snapshot.forEach((doc) => {
+                if (userId == doc.data().value) {
+                  const update = doc.ref.update({ withdrow_repo: listPeople })
+                }
+              })
+            }
           } catch (err) {
             console.log('Error ', err, ' occurred!')
             console.log('There is no more pages!!')
@@ -456,6 +462,7 @@ async function addCon(req, res) {
       if (userId == doc.data().value) {
         const email = doc.data().username
         const pass = doc.data().password
+        arrayInData = doc.data().con_repo
       }
     })
   } catch (err) {
@@ -583,12 +590,14 @@ async function addCon(req, res) {
             //const citiesRef = db.collection('users')
             //const snapshot = await citiesRef.get()
             //והעברתי אותם ללמעלה כדי שיהיו גלובאליות. אם יש בעיה אז להחזיר לפה.
-            const snapshot = await citiesRef.get()
-            snapshot.forEach((doc) => {
-              if (userId == doc.data().value) {
-                const update = doc.data().update({ con_repo: listPeople })
-              }
-            })
+            if (arrayInData.length + listPeople.length <= 100) {
+              const snapshot = await citiesRef.get()
+              snapshot.forEach((doc) => {
+                if (userId == doc.data().value) {
+                  const update = doc.data().update({ con_repo: listPeople })
+                }
+              })
+            }
           } catch (err) {
             console.log('Error ', err, ' occurred!')
             console.log('There is no more pages!!')
@@ -613,10 +622,11 @@ async function help_to_send_mail(send_to, text, headLine) {
       host: 'smtp.gmail.com',
       port: 587,
       auth: {
-        user: 'EaglePointBot@walla.com', // generated ethereal user
-        pass: 'nir123456', // generated ethereal password
+        user: 'EaglePointBot@gmail.com', // generated ethereal user
+        pass: 'jairmhxsvtqqhvcx', // generated ethereal password
       },
     })
+
     let info = await transporter.sendMail({
       from: 'EaglePointBot@gmail.com', // sender address
       to: send_to, // list of receivers

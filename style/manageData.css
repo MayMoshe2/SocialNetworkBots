@@ -19,7 +19,11 @@ body {
   background: url('background.jpeg') no-repeat center;
   background-size: cover;
 }
+h2{
 
+  text-align: center;
+
+}
 .main-block {
   padding: 25px;
   background: rgba(0, 0, 0, 0.5);
