@@ -16,9 +16,9 @@ const admin = require('firebase-admin')
 const serviceAccount = require('../socialnetworksbots-firebase-adminsdk-ckg7j-0ed2aef80b.json')
 const setDoc = require('firebase/firestore')
 var nodemailer = require('nodemailer')
-var Vue = require('vue');
-var VueScrollTo = require('vue-scrollto');
- 
+//var Vue = require('vue');
+//var VueScrollTo = require('vue-scrollto');
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 })
@@ -32,17 +32,15 @@ async function sendLinkdInMessag(req, res) {
   const userId = req.query.user
   const box = req.query.box
   try {
-    //const snapshot = 
-    citiesRef.get().then (
-      snapshot => {
-        snapshot.forEach((doc) => {
-          if (userId == doc.data().value) {
-            const email = doc.data().username
-            const pass = doc.data().password
-          }
-        })
-      }
-    )
+    //const snapshot =
+    citiesRef.get().then((snapshot) => {
+      snapshot.forEach((doc) => {
+        if (userId == doc.data().value) {
+          const email = doc.data().username
+          const pass = doc.data().password
+        }
+      })
+    })
   } catch (err) {
     console.log(err)
     return
@@ -615,8 +613,8 @@ async function help_to_send_mail(send_to, text, headLine) {
       host: 'smtp.gmail.com',
       port: 587,
       auth: {
-        user: 'EaglePointBot@gmail.com', // generated ethereal user
-        pass: 'njgpgjqmszqcqmwr', // generated ethereal password
+        user: 'EaglePointBot@walla.com', // generated ethereal user
+        pass: 'nir123456', // generated ethereal password
       },
     })
     let info = await transporter.sendMail({
