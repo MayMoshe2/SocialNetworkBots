@@ -58,22 +58,23 @@ async function addEmployee() {
     console.log(maxVal)
   })
   maxVal = maxVal + 1
-  let name = document.getElementById('name').value
-  let username = document.getElementById('username').value
-  let password = document.getElementById('password').value
-  let sec_password = document.getElementById('sec_password').value
   db.collection('users')
     .add({
       name: document.getElementById('name').value,
       password: document.getElementById('password').value,
       username: document.getElementById('username').value,
       value: maxVal,
+      con_repo: ['start: '],
+      msg_repo: ['start: '],
+      withdrow_repo: ['start: '],
     })
     .then((docRef) => {
       console.log('Document written with ID: ', docRef.id)
-      alert(name + ' Added successfully!')
+      alert(document.getElementById('name').value + ' Added successfully!')
+      window.location.href = '/mainPage.html'
     })
     .catch((error) => {
       console.log(error)
+      window.location.href = '/mainPage.html'
     })
 }

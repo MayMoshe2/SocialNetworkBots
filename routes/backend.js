@@ -252,14 +252,28 @@ async function sendLinkdInMessag(req, res) {
             //const citiesRef = db.collection('users')
             //const snapshot = await citiesRef.get()
             //והעברתי אותם ללמעלה כדי שיהיו גלובאליות. אם יש בעיה אז להחזיר לפה.
-            if (arrayInData.length + listPeople.length <= 100) {
-              const snapshot = await citiesRef.get()
-              snapshot.forEach((doc) => {
-                if (userId == doc.data().value) {
-                  const update = doc.ref.update({ msg_repo: listPeople })
+            arrayInData = arrayInData.concat(listPeople)
+
+            snapshot.forEach((doc) => {
+              if (userId == doc.data().value) {
+                if (arrayInData) {
+                  if (arrayInData.length + listPeople.length <= 100) {
+                    try {
+                      const update = doc.ref.update({ withdrow_repo: listPeople })
+                    } catch (err) {
+                      console.log(err)
+                    }
+                  }
+                } else {
+                  console.log('007')
+                  try {
+                    const update = doc.ref.update({ withdrow_repo: listPeople })
+                  } catch (err) {
+                    console.log(err)
+                  }
                 }
-              })
-            }
+              }
+            })
           } catch (err) {
             console.log('Error ', err, ' occurred!')
             console.log('There is no more pages!!')
@@ -421,14 +435,27 @@ async function withrowPy(req, res) {
             //const citiesRef = db.collection('users')
             //const snapshot = await citiesRef.get()
             //והעברתי אותם ללמעלה כדי שיהיו גלובאליות. אם יש בעיה אז להחזיר לפה.
-            if (arrayInData.length + listPeople.length <= 100) {
-              const snapshot = await citiesRef.get()
-              snapshot.forEach((doc) => {
-                if (userId == doc.data().value) {
-                  const update = doc.ref.update({ withdrow_repo: listPeople })
+            arrayInData = arrayInData.concat(listPeople)
+            snapshot.forEach((doc) => {
+              if (userId == doc.data().value) {
+                if (arrayInData) {
+                  if (arrayInData.length <= 100) {
+                    try {
+                      const update = doc.ref.update({ withdrow_repo: arrayInData })
+                    } catch (err) {
+                      console.log(err)
+                    }
+                  }
+                } else {
+                  console.log('007')
+                  try {
+                    const update = doc.ref.update({ withdrow_repo: arrayInData })
+                  } catch (err) {
+                    console.log(err)
+                  }
                 }
-              })
-            }
+              }
+            })
           } catch (err) {
             console.log('Error ', err, ' occurred!')
             console.log('There is no more pages!!')
@@ -444,24 +471,24 @@ async function withrowPy(req, res) {
 }
 
 //פונקציה שנועדה עבור נסיונות
-async function tryMe(req, res) {
-  const snapshot = await citiesRef.get()
-  snapshot.forEach((doc) => {
-    if (userId == doc.data().value) {
-      const numOfWithdrow = doc.ref.withdrow_repo
-    }
-  })
-  console.log(numOfWithdrow.length)
+async function tryMe() {
+  let listPeople = ['first name', 'second name']
+  let sec = ['third', 'bla bla']
+  listPeople = listPeople.concat(sec)
+  console.log(listPeople)
 }
 
 async function addCon(req, res) {
   const userId = req.query.user
+  let email
+  let pass
+  let arrayInData
   try {
     const snapshot = await citiesRef.get()
     snapshot.forEach((doc) => {
       if (userId == doc.data().value) {
-        const email = doc.data().username
-        const pass = doc.data().password
+        email = doc.data().username
+        pass = doc.data().password
         arrayInData = doc.data().con_repo
       }
     })
@@ -469,13 +496,14 @@ async function addCon(req, res) {
     console.log(err)
     return
   }
+  console.log(email, ' ', pass, ' ', arrayInData)
   const connections = req.query.connections
   const start_from = req.query.start_from
   const filterLink = 'https://www.linkedin.com/mynetwork/import-contacts/results/member/'
   const listPeople = []
   tab = new webdriver.Builder().forBrowser('chrome').build()
-  let email = 'maymoshe222@gmail.com'
-  let pass = 'Ma208832873'
+  //email = 'maymoshe222@gmail.com'
+  //pass = 'Ma208832873'
   let numOfPages = Math.ceil(connections / 10)
   tabToOpen = tab.get('https://www.linkedin.com/checkpoint/lg/sign-in-another-account')
   tabToOpen
@@ -590,14 +618,32 @@ async function addCon(req, res) {
             //const citiesRef = db.collection('users')
             //const snapshot = await citiesRef.get()
             //והעברתי אותם ללמעלה כדי שיהיו גלובאליות. אם יש בעיה אז להחזיר לפה.
-            if (arrayInData.length + listPeople.length <= 100) {
-              const snapshot = await citiesRef.get()
-              snapshot.forEach((doc) => {
-                if (userId == doc.data().value) {
-                  const update = doc.data().update({ con_repo: listPeople })
+            console.log('Befor the if')
+            arrayInData = arrayInData.concat(listPeople)
+            const snapshot = await citiesRef.get()
+            snapshot.forEach((doc) => {
+              if (userId == doc.data().value) {
+                console.log('004')
+                if (arrayInData) {
+                  console.log('005')
+                  if (arrayInData.length + listPeople.length <= 100) {
+                    console.log('006')
+                    try {
+                      const update = doc.ref.update({ con_repo: listPeople })
+                    } catch (err) {
+                      console.log(err)
+                    }
+                  }
+                } else {
+                  console.log('007')
+                  try {
+                    const update = doc.ref.update({ con_repo: listPeople })
+                  } catch (err) {
+                    console.log(err)
+                  }
                 }
-              })
-            }
+              }
+            })
           } catch (err) {
             console.log('Error ', err, ' occurred!')
             console.log('There is no more pages!!')
@@ -750,24 +796,6 @@ async function sendEmailsUrl(req, res) {
   }
 }
 
-const updateJson = function (req, res) {
-  try {
-    readFile((data) => {
-      const userId = req.params['id']
-      if (data[userId]) {
-        delete data[userId]
-      }
-      data[userId] = req.body
-      writeFile(JSON.stringify(data, null, 2), () => {
-        res.status(200).send('user Updated')
-      })
-    }, true)
-  } catch (error) {
-    console.log(error)
-    res.status(500)
-  }
-}
-
 const addEmployee = (req, res) => {
   //let name = req.data.name
   console.log('addEmploeefrom backend')
@@ -781,7 +809,6 @@ const addEmployee = (req, res) => {
 }
 
 module.exports = {
-  updateJson,
   sendLinkdInMessag,
   addCon,
   addEmployee,
