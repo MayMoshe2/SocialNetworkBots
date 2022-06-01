@@ -625,15 +625,9 @@ async function help_to_send_mail(send_to, text) {
 }
 
 async function manage_data(req, res) {
-  //Message:
-  //value = 0 -  Extract data
-  //value = 1  Delete Data
-  //connection:
-  //value = 2 - Extract
-  // value = 3 Delete
-  //Withdraw
-  //value = 4 - Extract
-  //value = 5 Delete
+  //Message: 0 -  Extract 1 - Delete
+  //connection: 2 - Extract 3 - Delete
+  //Withdraw 4 - Extract 5 Delete
   try {
     let send_mail_with_data = ''
     let get_from_FB
@@ -722,25 +716,18 @@ async function manage_data(req, res) {
   }
 }
 
-const sendEmailsUrl = (req, res) => {
+async function sendEmailsUrl(req, res) {
   try {
-    var dataToSend
     const headLine = req.params['headLine']
     const mess = req.params['mess']
-
-    const python = spawn('python', ['BOT/sendEmails.py', headLine, mess])
-    // collect data from script
-    python.stdout.on('data', function (data) {
-      console.log('sendEmails from backend ...')
-      console.log(headLine)
-      console.log(mess)
-      dataToSend = data.toString()
+    let sendTo = []
+    const snapshot = await citiesRef.get()
+    snapshot.forEach((doc) => {
+      sendTo += doc.data().username
+      sendTo += ','
     })
-    python.on('close', (code) => {
-      console.log(`'sendEmails data child process close all stdio with code ${code}`)
-      // send data to browser
-      res.send(dataToSend + 'TEST')
-    })
+    sendTo = sendTo.slice(0, -1)
+    console.log(sendTo)
   } catch (error) {
     console.log(error)
     res.status(500)
