@@ -16,7 +16,9 @@ const admin = require('firebase-admin')
 const serviceAccount = require('../socialnetworksbots-firebase-adminsdk-ckg7j-0ed2aef80b.json')
 const setDoc = require('firebase/firestore')
 var nodemailer = require('nodemailer')
-
+var Vue = require('vue');
+var VueScrollTo = require('vue-scrollto');
+ 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 })
@@ -30,19 +32,23 @@ async function sendLinkdInMessag(req, res) {
   const userId = req.query.user
   const box = req.query.box
   try {
-    const snapshot = citiesRef.get()
-    snapshot.forEach((doc) => {
-      if (userId == doc.data().value) {
-        const email = doc.data().username
-        const pass = doc.data().password
+    //const snapshot = 
+    citiesRef.get().then (
+      snapshot => {
+        snapshot.forEach((doc) => {
+          if (userId == doc.data().value) {
+            const email = doc.data().username
+            const pass = doc.data().password
+          }
+        })
       }
-    })
+    )
   } catch (err) {
     console.log(err)
     return
   }
   const link = req.query.link
-  const message = req.query.message
+  let message = req.query.message
   message = message + link
   const people = req.query.people
   const listPeople = []
@@ -110,6 +116,8 @@ async function sendLinkdInMessag(req, res) {
             implicit: 10000, // 10 seconds
           })
           console.log('wait11')
+          Vue.use(VueScrollTo)
+          return
           return findTimeOutP
         })
         .then(async function () {
