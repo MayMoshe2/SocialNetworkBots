@@ -112,9 +112,8 @@ async function sendLinkdInMessag(req, res) {
           console.log('wait11')
           return findTimeOutP
         })
-        .then(async function (){
-
-          console.log("url: ", urlLink);
+        .then(async function () {
+          console.log('url: ', urlLink)
           let xpathNext = tab.findElement(By.xpath('//div/div/div[2]/div/button[2]')).then(function () {
             if (xpathNext) {
               xpathNext.click()
@@ -267,9 +266,10 @@ async function sendLinkdInMessag(req, res) {
 }
 
 async function withrowPy(req, res) {
-  const  userId = req.params['value']
+  const userId = req.params['value']
   try {
     const snapshot = await citiesRef.get()
+
     snapshot.forEach((doc) => {
       if (userId == doc.data().value) {
         const email = doc.data().username
@@ -280,14 +280,15 @@ async function withrowPy(req, res) {
     console.log(err)
     return
   }
+
   tab = new webdriver.Builder().forBrowser('chrome').build()
-  let email = 'maymoshe222@gmail.com'
-  let pass = 'Ma208832873'
+  let email = 'nirmaman631@gmail.com' //'maymoshe222@gmail.com'
+  let pass = 'nir123456' //'Ma208832873'
   const listPeople = []
-  
+
   filterLink = 'https://www.linkedin.com/mynetwork/invitation-manager/sent/'
   tabToOpen = tab.get('https://www.linkedin.com/checkpoint/lg/sign-in-another-account')
-  
+
   tabToOpen
     .then(function () {
       // Timeout to wait if connection is slow
@@ -325,6 +326,7 @@ async function withrowPy(req, res) {
     .then(function () {
       console.log('Successfully signed in LinkedIn!')
     })
+
     .then(function () {
       tab
         .get(filterLink)
@@ -335,22 +337,20 @@ async function withrowPy(req, res) {
           console.log('wait11')
           return findTimeOutP
         })
-        .then(
-          async function () {
-            let numOfPeople = await tab.findElement(By.xpath("//section/div[2]/div[1]/button[1]/span")).getText()
-            let result = numOfPeople.slice(8);
-            result = result.slice(0, -1); 
-            console.log("result ", result);
-            result = Number(result)
-            console.log("result ", result);
-            return result
-          }
-        )
+        .then(async function () {
+          let numOfPeople = await tab.findElement(By.xpath('//section/div[2]/div[1]/button[1]/span')).getText()
+          let result = numOfPeople.slice(8)
+          result = result.slice(0, -1)
+          console.log('result ', result)
+          result = Number(result)
+          console.log('result ', result)
+          return result
+        })
         .then(async function (result) {
-          console.log("im here", result);
+          console.log('im here', result)
           for (let j = 1; j <= result; j++) {
             let change = j
-            let connectionButtonXpath = '//section/div[2]/ul/li['+ change + ']/div/div[2]/button'
+            let connectionButtonXpath = '//section/div[2]/ul/li[' + change + ']/div/div[2]/button'
             console.log('1.', j)
             let connectionButton = await tab.findElement(By.xpath(connectionButtonXpath)).then(
               async (found) => {
@@ -375,16 +375,14 @@ async function withrowPy(req, res) {
                   .then(async function () {
                     console.log('3.', j)
                     try {
-                      let withdrawButton = await tab.findElement(By.xpath("/html/body/div[3]/div/div/div[3]/button[2]"))
+                      let withdrawButton = await tab.findElement(By.xpath('/html/body/div[3]/div/div/div[3]/button[2]'))
                       await sleep(1000)
                       await withdrawButton.click()
                       await sleep(1000)
                       console.log('after withdraw ', j)
-                      let successWithdrawXpath = "/html/body/div[1]/section/div/div/button"
-                      let successWithdraw = await tab.findElement(By.xpath(successWithdrawXpath))
-                      .then(
-                        async (found) => {
-                          await tab
+                      let successWithdrawXpath = '/html/body/div[1]/section/div/div/button'
+                      let successWithdraw = await tab.findElement(By.xpath(successWithdrawXpath)).then(async (found) => {
+                        await tab
                           .findElement(By.xpath(successWithdrawXpath))
                           .click()
                           .then(async function () {
@@ -394,23 +392,20 @@ async function withrowPy(req, res) {
                             console.log('wait4')
                             return findTimeOutP
                           })
-                        }
-                      )
-                      
+                      })
                     } catch {
                       console.log('cant withdraw the message')
                     }
                   })
               },
               (error) => {
-                  console.log('There are no more people to withdraw.')
-                  return
+                console.log('There are no more people to withdraw.')
+                return
               }
             )
           }
-        }
-      )
-      .then(async function () {
+        })
+        .then(async function () {
           try {
             //לקחתי את השורות הבאות :
             //const citiesRef = db.collection('users')
@@ -429,11 +424,22 @@ async function withrowPy(req, res) {
             tab.close()
             return
           }
-      })
+        })
     })
     .catch(function (err) {
       console.log('Error ', err, ' occurred!')
     })
+}
+
+//פונקציה שנועדה עבור נסיונות
+async function tryMe(req, res) {
+  const snapshot = await citiesRef.get()
+  snapshot.forEach((doc) => {
+    if (userId == doc.data().value) {
+      const numOfWithdrow = doc.ref.withdrow_repo
+    }
+  })
+  console.log(numOfWithdrow.length)
 }
 
 async function addCon(req, res) {
@@ -574,7 +580,7 @@ async function addCon(req, res) {
             const snapshot = await citiesRef.get()
             snapshot.forEach((doc) => {
               if (userId == doc.data().value) {
-                const update = doc.ref.update({ con_repo: listPeople })
+                const update = doc.data().update({ con_repo: listPeople })
               }
             })
           } catch (err) {
@@ -584,15 +590,18 @@ async function addCon(req, res) {
             tab.close()
             return
           }
-        })  
+        })
     })
     .catch(function (err) {
       console.log('Error ', err, ' occurred!')
     })
 }
 
-async function help_to_send_mail(send_to, text) {
+async function help_to_send_mail(send_to, text, headLine) {
   try {
+    if (!headLine) {
+      headLine = 'DoNotReplay'
+    }
     let testAccount = await nodemailer.createTestAccount()
     let transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -605,7 +614,7 @@ async function help_to_send_mail(send_to, text) {
     let info = await transporter.sendMail({
       from: 'EaglePointBot@gmail.com', // sender address
       to: send_to, // list of receivers
-      subject: 'DoNotReplay', // Subject line
+      subject: headLine, // Subject line
       text: text, // plain text body
     })
 
@@ -715,10 +724,9 @@ async function sendEmailsUrl(req, res) {
     let sendTo = []
     const snapshot = await citiesRef.get()
     snapshot.forEach((doc) => {
-      sendTo += doc.data().username
-      sendTo += ','
+      sendTo.push(doc.data().username)
     })
-    sendTo = sendTo.slice(0, -1)
+    help_to_send_mail(sendTo, mess, headLine)
     console.log(sendTo)
   } catch (error) {
     console.log(error)
