@@ -1,23 +1,10 @@
-const { log, assert } = require('console')
-const fs = require('fs')
-const { spawn } = require('child_process')
 require('chromedriver')
 var webdriver = require('selenium-webdriver')
-const { Builder, By, Key, until } = require('selenium-webdriver')
-const { ThenableWebDriver } = require('selenium-webdriver')
-const { Driver } = require('selenium-webdriver/chrome')
-const { WebElement } = require('selenium-webdriver')
-const { listeners } = require('process')
+const { By } = require('selenium-webdriver')
 const console = require('console')
-const { close } = require('inspector')
-const { elementIsDisabled } = require('selenium-webdriver/lib/until')
-const { Window } = require('selenium-webdriver/lib/webdriver')
 const admin = require('firebase-admin')
 const serviceAccount = require('../socialnetworksbots-firebase-adminsdk-ckg7j-0ed2aef80b.json')
-const setDoc = require('firebase/firestore')
 var nodemailer = require('nodemailer')
-//var Vue = require('vue');
-//var VueScrollTo = require('vue-scrollto');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
