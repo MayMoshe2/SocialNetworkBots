@@ -16,6 +16,7 @@
     "kit"
   ],
   "dependencies": {
+    "@degjs/scroll-to": "^2.0.0",
     "body-parser": "^1.18.3",
     "chromedriver": "^100.0.0",
     "cors": "^2.8.5",
@@ -28,6 +29,8 @@
     "puppeteer-autoscroll-down": "^1.1.1",
     "scroll-js": "^3.5.1",
     "selenium-webdriver": "^4.1.1",
+    "vue": "^3.2.36",
+    "vue-scrollto": "^2.20.0",
     "window-scroll": "^1.0.0"
   }
 }
