@@ -56,8 +56,13 @@ async function sendLinkdInMessag(req, res) {
 
   let numOfPages = Math.ceil(people / 10)
   tab = new webdriver.Builder().forBrowser('chrome').build()
+<<<<<<< HEAD
   // let email = 'nirmaman631@gmail.com'
   // let pass = 'nir123456'
+=======
+  let email = ''
+  let pass = ''
+>>>>>>> 587626b8eb09315a43e0f7990512d6a774336285
   tabToOpen = tab.get('https://www.linkedin.com/checkpoint/lg/sign-in-another-account')
   tabToOpen
     .then(function () {
@@ -476,7 +481,7 @@ async function addCon(req, res) {
   const listPeople = []
   tab = new webdriver.Builder().forBrowser('chrome').build()
   //email = 'maymoshe222@gmail.com'
-  //pass = 'Ma208832873'
+  //pass = ''
   let numOfPages = Math.ceil(connections / 10)
   tabToOpen = tab.get('https://www.linkedin.com/checkpoint/lg/sign-in-another-account')
   tabToOpen
@@ -630,8 +635,8 @@ async function help_to_send_mail(send_to, text, headLine) {
       host: 'smtp.gmail.com',
       port: 587,
       auth: {
-        user: 'EaglePointBot@gmail.com', // generated ethereal user
-        pass: 'jairmhxsvtqqhvcx', // generated ethereal password
+        user: 'EaglePointBot@walla.com', // generated ethereal user
+        pass: 'ja', // generated ethereal password
       },
     })
 
