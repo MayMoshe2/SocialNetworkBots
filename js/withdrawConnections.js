@@ -32,9 +32,12 @@ writeToFile = function () {
     success: function () {
       console.log('withrowPyn is called from client')
       // alert('stop1')
+      window.location.href = '/mainPage.html'
     },
     error: function (jqXhr, textStatus, errorThrown) {
       alert(errorThrown)
+      window.location.href = '/mainPage.html'
     },
   })
+  window.location.href = '/mainPage.html'
 }

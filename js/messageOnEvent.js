@@ -82,4 +82,5 @@ writeToFile = async function () {
       console.log('Details0: ' + desc + '\nError:' + err)
     },
   })
+  window.location.href = '/mainPage.html'
 }

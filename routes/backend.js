@@ -5,6 +5,7 @@ const console = require('console')
 const admin = require('firebase-admin')
 const serviceAccount = require('../socialnetworksbots-firebase-adminsdk-ckg7j-0ed2aef80b.json')
 var nodemailer = require('nodemailer')
+const chrome = require('selenium-webdriver/chrome')
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -18,13 +19,15 @@ var tab
 async function sendLinkdInMessag(req, res) {
   const userId = req.query.user
   const box = req.query.box
+  let email
+  let pass
+  let arrayInData
   try {
-    //const snapshot =
     citiesRef.get().then((snapshot) => {
       snapshot.forEach((doc) => {
         if (userId == doc.data().value) {
-          const email = doc.data().username
-          const pass = doc.data().password
+          email = doc.data().username
+          pass = doc.data().password
           arrayInData = doc.data().msg_repo
         }
       })
@@ -38,14 +41,13 @@ async function sendLinkdInMessag(req, res) {
   message = message + link
   const people = req.query.people
   const listPeople = []
-  // const people = 10 /// from fireBase
   if (people == 0) {
     console.log('There are no people!')
     return
   }
 
-  const filterLink = 'https://www.linkedin.com/search/results/people/?keywords=david&network=%5B%22F%22%5D&origin=GLOBAL_SEARCH_HEADER&sid=IcY'
-  // const filterLink = req.query.filterLink
+  // const filterLink = 'https://www.linkedin.com/search/results/people/?keywords=david&network=%5B%22F%22%5D&origin=GLOBAL_SEARCH_HEADER&sid=IcY'
+  const filterLink = req.query.filterLink
 
   if (box == 3 || (box == 1 && !req.query.filterLink)) {
     filterLink =
@@ -54,8 +56,8 @@ async function sendLinkdInMessag(req, res) {
 
   let numOfPages = Math.ceil(people / 10)
   tab = new webdriver.Builder().forBrowser('chrome').build()
-  let email = 'nirmaman631@gmail.com'
-  let pass = 'nir123456'
+  // let email = 'nirmaman631@gmail.com'
+  // let pass = 'nir123456'
   tabToOpen = tab.get('https://www.linkedin.com/checkpoint/lg/sign-in-another-account')
   tabToOpen
     .then(function () {
@@ -102,26 +104,16 @@ async function sendLinkdInMessag(req, res) {
             implicit: 10000, // 10 seconds
           })
           console.log('wait11')
-          Vue.use(VueScrollTo)
-          return
           return findTimeOutP
         })
         .then(async function () {
-          console.log('url: ', urlLink)
-          let xpathNext = tab.findElement(By.xpath('//div/div/div[2]/div/button[2]')).then(function () {
-            if (xpathNext) {
-              xpathNext.click()
-            } else {
-              console.log('There is no more pages!!')
-              console.log('End of action for the BOT :)')
-              tab.close()
-              return
-            }
-            return
-          })
-        })
-        .then(async function () {
           for (let i = 1; i <= numOfPages; i++) {
+            if(i > 1){
+              const urlOf = filterLink + "&page=" + i
+              console.log(urlOf);
+              tab.get(urlOf)
+              sleep(1000)
+            }
             console.log('1')
             for (let j = 1; j <= 10; j++) {
               let change = j
@@ -220,17 +212,8 @@ async function sendLinkdInMessag(req, res) {
                     }
                   )
               })
-              let xpathNext = tab.findElement(By.xpath('//div/div/div[2]/div/button[2]')).then(function () {
-                if (xpathNext) {
-                  xpathNext.click()
-                } else {
-                  console.log('There is no more pages!!')
-                  console.log('End of action for the BOT :)')
-                  tab.close()
-                  return
-                }
-              })
             }
+
           }
         })
         .then(async function () {
@@ -277,13 +260,15 @@ async function sendLinkdInMessag(req, res) {
 
 async function withrowPy(req, res) {
   const userId = req.params['value']
+  let email
+  let pass
+  let arrayInData
   try {
     const snapshot = await citiesRef.get()
-
     snapshot.forEach((doc) => {
       if (userId == doc.data().value) {
-        const email = doc.data().username
-        const pass = doc.data().password
+        email = doc.data().username
+        pass = doc.data().password
         arrayInData = doc.data().withdrow_repo
       }
     })
@@ -293,8 +278,8 @@ async function withrowPy(req, res) {
   }
 
   tab = new webdriver.Builder().forBrowser('chrome').build()
-  let email = 'nirmaman631@gmail.com' //'maymoshe222@gmail.com'
-  let pass = 'nir123456' //'Ma208832873'
+  // let email = 'nirmaman631@gmail.com' //'maymoshe222@gmail.com'
+  // let pass = 'nir123456' //'Ma208832873'
   const listPeople = []
 
   filterLink = 'https://www.linkedin.com/mynetwork/invitation-manager/sent/'
@@ -330,9 +315,9 @@ async function withrowPy(req, res) {
       let promiseSignInBtn = tab.findElement(By.xpath('//*[@id="organic-div"]/form/div[3]/button'))
       return promiseSignInBtn
     })
-    .then(function (signInBtn) {
+    .then(async function (signInBtn) {
       let promiseClickSignIn = signInBtn.click()
-      return promiseClickSignIn
+      return await promiseClickSignIn
     })
     .then(function () {
       console.log('Successfully signed in LinkedIn!')
@@ -419,8 +404,8 @@ async function withrowPy(req, res) {
         .then(async function () {
           try {
             //לקחתי את השורות הבאות :
-            //const citiesRef = db.collection('users')
-            //const snapshot = await citiesRef.get()
+            const citiesRef = db.collection('users')
+            const snapshot = await citiesRef.get()
             //והעברתי אותם ללמעלה כדי שיהיו גלובאליות. אם יש בעיה אז להחזיר לפה.
             arrayInData = arrayInData.concat(listPeople)
             snapshot.forEach((doc) => {
@@ -442,6 +427,7 @@ async function withrowPy(req, res) {
                   }
                 }
               }
+              return
             })
           } catch (err) {
             console.log('Error ', err, ' occurred!')
@@ -518,10 +504,10 @@ async function addCon(req, res) {
       let promiseFillPassword = passwordBox.sendKeys(pass)
       return promiseFillPassword
     })
-    .then(function () {
+    .then(async function () {
       console.log('Password entered successfully in' + " 'login demonstration' for LinkedIn")
       let promiseSignInBtn = tab.findElement(By.xpath('//*[@id="organic-div"]/form/div[3]/button'))
-      return promiseSignInBtn
+      return await promiseSignInBtn
     })
     .then(function (signInBtn) {
       let promiseClickSignIn = signInBtn.click()
@@ -541,12 +527,12 @@ async function addCon(req, res) {
           return findTimeOutP
         })
         .then(async function () {
-          for (let i = 1; i <= numOfPages; i++) {
+          for (let i = start_from; i <= numOfPages; i++) {
             console.log('1')
-            for (let j = start_from; j <= 10; j++) {
-              let change = j
+            // for (let j = start_from; j <= 10; j++) {
+              let change = i
               let connectionButtonXpath = "//*[@id='main']/div/div/div[2]/div/div[1]/ul/li[" + change + ']/div/*/*/*/label'
-              console.log('1.', j)
+              console.log('1.', i)
               let connectionButton = await tab.findElement(By.xpath(connectionButtonXpath)).then(
                 async (found) => {
                   console.log('found person')
@@ -568,46 +554,35 @@ async function addCon(req, res) {
                       console.log('wait2')
                       return findTimeOutP
                     })
-                    .then(async function () {
-                      console.log('3.', j)
-                      try {
-                        let addButton = await tab.findElement(By.xpath("//*[contains(span, 'Add')]"))
-                        await sleep(1000)
-                        await addButton.click()
-                        await sleep(1000)
-                        console.log('after adding ', j)
-                      } catch {
-                        console.log('cant add the message')
-                      }
-                    })
                 },
                 (error) => {
                   console.log('There are no more people to connect.')
                   return
                 }
               )
-            }
-            // let xpathNext = tab.findElement(By.xpath('//div/div/div[2]/div/button[2]')).then(function () {
-            //   if (xpathNext) {
-            //     xpathNext.click()
-            //   } else {
-            //     console.log('There is no more pages!!')
-            //     console.log('End of action for the BOT :)')
-            //     tab.close()
-            //     return
-            //   }
-            // })
+          }
+        })
+        .then(async function () {
+          console.log('3.')
+          try {
+            let addButton = await tab.findElement(By.xpath("//*[contains(span, 'Add')]"))
+            await sleep(1000)
+            await addButton.click()
+            await sleep(1000)
+            console.log('after adding ')
+          } catch {
+            console.log('cant add the message')
           }
         })
         .then(async function () {
           try {
             //לקחתי את השורות הבאות :
-            //const citiesRef = db.collection('users')
-            //const snapshot = await citiesRef.get()
+            const citiesRef = db.collection('users')
+            const snapshot = await citiesRef.get()
             //והעברתי אותם ללמעלה כדי שיהיו גלובאליות. אם יש בעיה אז להחזיר לפה.
             console.log('Befor the if')
             arrayInData = arrayInData.concat(listPeople)
-            const snapshot = await citiesRef.get()
+            // snapshot = await citiesRef.get()
             snapshot.forEach((doc) => {
               if (userId == doc.data().value) {
                 console.log('004')

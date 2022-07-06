@@ -18,7 +18,7 @@ async function submitForm() {
   snapshot.forEach((doc) => {
     //console.log(doc.data().userName);
     if (userName === doc.data().userName && password === doc.data().password) {
-      window.location.href = '/html/mainPage.html'
+      window.location.href = 'mainPage.html' // /html/mainPage.html
       return
     }
   })

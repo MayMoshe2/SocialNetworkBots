@@ -51,4 +51,5 @@ run_python = function () {
       console.log('Details0: ' + desc + '\nError:' + err + '/n' + xhr)
     },
   })
+  window.location.href = '/mainPage.html'
 }
